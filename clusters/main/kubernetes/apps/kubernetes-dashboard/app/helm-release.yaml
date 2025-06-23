@@ -37,3 +37,19 @@ spec:
         ports:
           main:
             port: 80
+   ingress:
+        main:
+          enabled: true
+          ingressClassName: internal
+          annotations:
+          integrations:
+            traefik:
+              enabled: false
+            certManager:
+              enabled: true
+              certificateIssuer: domain-1-le-prod
+          hosts:
+            - host: kube.${DOMAIN_0}
+              paths:
+                - path: /
+                  pathType: Prefix
