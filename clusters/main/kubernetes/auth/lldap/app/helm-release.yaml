@@ -85,15 +85,15 @@ spec:
     #       method: object_store
     #       credentials: minio
 
-    persistence:
-      data:
-        volsync:
-          - name: data
-            type: restic
-            credentials: minio
-            dest:
-              enabled: true
-            src:
-              enabled: true
-              trigger:
-                schedule: 20 0 * * *
+    # persistence:
+    #   data:
+    #     volsync:
+    #       - name: data
+    #         type: restic
+    #         credentials: minio
+    #         dest:
+    #           enabled: true
+    #         src:
+    #           enabled: true
+    #           trigger:
+    #             schedule: 20 0 * * *
