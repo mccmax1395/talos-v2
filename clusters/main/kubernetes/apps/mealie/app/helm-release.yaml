@@ -1,0 +1,54 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: mealie
+  namespace: mealie
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: mealie
+      version: 24.9.1
+      sourceRef:
+        kind: HelmRepository
+        name: truecharts
+        namespace: flux-system
+      interval: 15m
+  timeout: 20m
+  maxHistory: 3
+  driftDetection:
+    mode: warn
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    service:
+      # main:
+      #   type: LoadBalancer
+      #   loadBalancerIP: ${MEALIE_IP}
+      #   ports:
+      #     main:
+      #       port: 9000 # Default mealie port
+    ingress:
+        main:
+          enabled: true
+          ingressClassName: internal
+          annotations:
+          integrations:
+            traefik:
+              enabled: false
+            certManager:
+              enabled: true
+              certificateIssuer: domain-0-le-prod
+          hosts:
+            - host: mealie.${DOMAIN_0}
+              paths:
+                - path: /
+                  pathType: Prefix
