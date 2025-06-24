@@ -37,8 +37,11 @@ spec:
       #     main:
       #       port: 9000 # Default mealie port
     mealie:
+      frontend:
+    theme:
+      light_primary: "#E58147"
       api:
-        lldap:
+        ldap:
           auth_enabled: true
           server_url: ldap://lldap-ldap.lldap.svc.cluster.local:3890
           base_dn: dc=homelab,dc=home
