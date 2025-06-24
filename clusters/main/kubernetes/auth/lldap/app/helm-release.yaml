@@ -66,7 +66,7 @@ spec:
                 # LLDAP_SMTP_OPTIONS__SMTP_ENCRYPTION: TLS
                 # LLDAP_SMTP_OPTIONS__USER: ${SMTP_USER}
                 LLDAP_VERBOSE: true
-                LLDAP_key_file: /data/private_key
+                # LLDAP_key_file: /data/private_key
     # cnpg:
     #   main:
     #     annotations:
