@@ -55,7 +55,7 @@ spec:
                 LLDAP_LDAP_BASE_DN: "dc=homelab,dc=home"
                 LLDAP_LDAP_USER_DN: admin
                 LLDAP_LDAP_USER_EMAIL: admin@${DOMAIN_0}
-                LLDAP_LDAP_USER_PASS: ${LLDAP_PASSWORD}
+                # LLDAP_LDAP_USER_PASS: ${LLDAP_PASSWORD}
                 GID: 568
                 UID: 568
                 # LLDAP_SMTP_OPTIONS__FROM: LLDAP Admin <lldap@${DOMAIN_0}>
