@@ -36,10 +36,12 @@ spec:
       #   ports:
       #     main:
       #       port: 9000 # Default mealie port
-    lldap:
-      auth_enabled: true
-      server_url: ldap://lldap-ldap.lldap.svc.cluster.local:3890
-      base_dn: dc=homelab,dc=home
+    mealie:
+      api:
+        lldap:
+          auth_enabled: true
+          server_url: ldap://lldap-ldap.lldap.svc.cluster.local:3890
+          base_dn: dc=homelab,dc=home
     ingress:
         main:
           enabled: true
