@@ -38,8 +38,8 @@ spec:
       #       port: 9000 # Default mealie port
     mealie:
       frontend:
-    theme:
-      light_primary: "#E58147"
+        theme:
+          light_primary: "#E58147"
       api:
         ldap:
           auth_enabled: true
