@@ -135,7 +135,7 @@ spec:
               redirect_uris:
                 - "https://mealie.${DOMAIN_0}/auth/oidc.callback"
               scopes:
-                - 'openid'
+              - 'openid'
               - 'email'
               - 'profile'
               - 'groups'
