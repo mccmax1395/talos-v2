@@ -57,7 +57,7 @@ spec:
                 AUTHELIA_STORAGE_ENCRYPTION_KEY: ${AUTHELIA_ENCRYPTION_KEY}
     persistence:
       config:
-        enabled: false
+        enabled: true
       private-key:
         enabled: true
         mountPath: /opt/private.pem
@@ -124,8 +124,7 @@ spec:
           jwks:
             - algorithm: "RS256"
               use: "sig"
-              key: |
-                {{- secret "/opt/private.pem" | nindent 10 }}
+              key: file:/opt/private.pem
           clients:
             - client_id: ${MEALIE_OIDC_CLIENT_ID}
               client_name: "Mealie"
