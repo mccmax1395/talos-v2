@@ -51,16 +51,16 @@ data:
         cors:
           endpoints: ["authorization", "token", "revocation", "introspection"]
           allowed_origins_from_client_redirect_uris: true
-        hmac_secret: "${AUTHELIA_HMAC_SECRET}"
+        hmac_secret: {{ secret "/config/secret/hmac_secret" }}
         jwks:
           - algorithm: "RS256"
             use: "sig"
             key: |
-              {{ secret "/config/jwks/rsa_private_key.pem" | mindent 10 "|" | msquote }}
+              {{ secret "/config/secret/jwks_key.pem" | mindent 10 "|" | msquote }}
         clients:
           - client_id: ${MEALIE_OIDC_CLIENT_ID}
             client_name: "Mealie"
-            client_secret: "${MEALIE_HASHED_OIDC_CLIENT_SECRET}"
+            client_secret: {{ secret "/config/secret/clients_mealie_client_secret" }}
             public: false
             authorization_policy: "two_factor"
             redirect_uris:
