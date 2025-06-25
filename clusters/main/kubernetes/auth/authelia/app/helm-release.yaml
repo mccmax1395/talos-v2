@@ -125,7 +125,7 @@ spec:
             - algorithm: "RS256"
               use: "sig"
               key: |
-                $(cat private.pem | sed 's/^/      /')
+                 {{- secret "/opt/private.pem" | nindent 10 }}
           clients:
             - client_id: ${MEALIE_OIDC_CLIENT_ID}
               client_name: "Mealie"

@@ -29,6 +29,14 @@ spec:
   uninstall:
     keepHistory: false
   values:
+    workload:
+      main:
+        podSpec:
+          containers:
+            main:
+              env:
+                OIDC_CLIENT_SECRET: ${MEALIE_OIDC_CLIENT_SECRET}
+
     # service:
       # main:
       #   type: LoadBalancer
