@@ -125,7 +125,7 @@ spec:
             - algorithm: "RS256"
               use: "sig"
               key: |
-                {{- fileContent "/opt/private.pem" | nindent 8 }}
+                {{- fileContent "/config/private.key" | nindent 8 }}
           clients:
             - client_id: ${MEALIE_OIDC_CLIENT_ID}
               client_name: "Mealie"
