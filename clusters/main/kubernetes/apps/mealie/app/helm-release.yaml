@@ -59,7 +59,8 @@ spec:
           auth_enabled: true
           signup_enabled: true
           configuration_url: 'https://auth.${DOMAIN_0}/.well-known/openid-configuration'
-          client_id: ${MEALIE_OIDC_CLIENT_SECRET}
+          client_id: ${MEALIE_OIDC_CLIENT_ID}
+          client_secret: ${MEALIE_OIDC_CLIENT_SECRET}
           user_group: mealie-users
           admin_group: mealie-admin
           auto_redirect: false
