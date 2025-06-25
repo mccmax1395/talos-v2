@@ -27,6 +27,7 @@ data:
         user: uid=admin,ou=people,dc=homelab,dc=home
         password: ${LLDAP_PASSWORD}
     access_control:
+      default_policy: 'deny'
       rules:
       - domain:
           - ${DOMAIN_0}
@@ -51,7 +52,7 @@ data:
         cors:
           endpoints: ["authorization", "token", "revocation", "introspection"]
           allowed_origins_from_client_redirect_uris: true
-        hmac_secret: {{ secret "/config/secret/hmac_secret" }}
+        hmac_secret: "${AUTHELIA_HMAC_SECRET}"
         jwks:
           - algorithm: "RS256"
             use: "sig"
