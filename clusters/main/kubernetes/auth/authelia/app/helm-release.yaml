@@ -57,7 +57,7 @@ spec:
                 AUTHELIA_STORAGE_ENCRYPTION_KEY: ${AUTHELIA_ENCRYPTION_KEY}
     persistence:
       config:
-        enabled: true
+        enabled: false
       private-key:
         enabled: true
         mountPath: /opt/private.pem
