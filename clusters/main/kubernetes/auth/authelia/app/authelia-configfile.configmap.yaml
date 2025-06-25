@@ -61,7 +61,7 @@ data:
         clients:
           - client_id: ${MEALIE_OIDC_CLIENT_ID}
             client_name: "Mealie"
-            client_secret: {{ secret "/config/secret/clients_mealie_client_secret" }}
+            client_secret: ${MEALIE_OIDC_HASHED_CLIENT_SECRET}
             public: false
             authorization_policy: "two_factor"
             redirect_uris:
