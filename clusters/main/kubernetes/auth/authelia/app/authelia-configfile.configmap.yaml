@@ -76,6 +76,7 @@ data:
             pkce_challenge_method: 'S256'
             redirect_uris:
               - "https://mealie.${DOMAIN_0}/login"
+              - "https://mealie.${DOMAIN_0}/callback"
             grant_types:
               - 'authorization_code'
             response_types:
