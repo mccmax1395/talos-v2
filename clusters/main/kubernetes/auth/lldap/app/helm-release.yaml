@@ -35,7 +35,7 @@ spec:
           ingressClassName: external
           enabled: true
           annotations:
-            fluxcd.io/force-redeploy: "now"
+            fluxcd.io/force-redeploy: "nownow"
           integrations:
             traefik:
               enabled: false
