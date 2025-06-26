@@ -57,34 +57,7 @@ data:
           - algorithm: "RS256"
             use: "sig"
             key: |
-              -----BEGIN PRIVATE KEY-----
-              MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDPlMn+f6pctPd8
-              2pQL6fmExki6ECpLEWH21lnY0jPpxbjqg1Agyv/wN9OSMk+pz5ZCwak9fkhmKMah
-              ULYXW1+63krECsfiIbOaVnCcKVL2lRX+xFlrFDcnP6f7HnCIJD20wzuuOhFuM/K3
-              BO63ezMO7ixFJ3Pfg7ALuiIKkyzIEpOeAGzQfaxbOwesBHYAWAF1CcG61AH2vQsY
-              j0XPWP1RDO+lS84xq4hNr4P00MJY+/lezSHiCW0vsalYUa1d+5J19czWroUR0524
-              IIOXQB4jLfpbHHN68W9Z/T98npjf73FV0HQNxrvzE/dnTTnzsKlThWTy+nJkO20Y
-              WpCLTp0VAgMBAAECggEAAU7pttY/hvcz71UVylD4dH7OWHTueIlWn+mXiyOg7oOq
-              xC6uX96I40AcXDTJgYNvEVkGHHTpaEimgV06NEG2IWVoQcK8ZxHeTi2D+rYhWMN/
-              POAUnPV/Y1Wq8nktck7S7wrUah1XprQdfulon5cuJRVeCdQnBIgbg6lAsKut8Jxj
-              /XF7wTtMMRpP8ktEdWX0bm47Pnc3MbvLfHCRCm9a2jYDFtyOJRzJxLr+o/yh/g7b
-              KQ2w2Tzu2fKsf50W5t9YC72z+r/WEjBtCgVCb6mjcPtCnRYf6PsC6t1mfwrhHvXq
-              qlKzWRUGTvWUIQZoQQOPbOeV3BF2tUxF2p5mj6rQ8QKBgQDy2OL9gvKW1uTt45xy
-              q6oyrkMNalhmLP1FWjGJ0/5XVZJd6o+oggCPkPwH2cN9pGtIkBr/4bCy4Fz8i5DO
-              esSEVAuHczaAJNsCUYk/MyVZVR6mso2VYuNuHr6VKvGZGVyZ4P3wtrsbkYCWrea0
-              gVdRL5gnewCtggJub9g/O3SVeQKBgQDa0u8QyymoELfCfhChxuT62mO9D2GrK+X3
-              5aqyU4yUFiqYoCMZ2pIWMJVEJQmcMWe4X14dnI02S57GIPGQE+hR8pWy7nEAvPyE
-              nuD6ce6mq6Gu1v2TM0FYJra0uWDOSoT2DynSf7J9wQXdyZaMq79o99fJ5oc4q9XU
-              FB/ZXOtpfQKBgAEn9yytyunc7AoV41DIcG79VWRi9TjHTg1eeI3nbHaN+bxouXZb
-              6BTG4+xFpSCb/8bAqOA++tBfMRIit/XDr9vRapyid8f0ZPaF3NloLO1X8mVoxDPJ
-              3LtReibLpYrNDBvPbmYO+KUQ9EPDYC3Lz9abG2ZUt5Qb4lcUQTtL1SpBAoGAIODm
-              qLhN5wG0CpYUe6o9x28+4y5Hd4eeAxRQBIFHMwztk4ckHwNXRdxA4T9LZVuLAQnb
-              Q0m9cfYEwjI6+XH0SzPOyFbJRdofevHATgEGYaaSIYoOCar+23bdpuPfpr9NoQcA
-              Oq+TKw/wiLV8WGCJ3wS2OJDZqmsvMrFfY7JxcKUCgYEAl6h0WEmhSAuZ6Bj+3plj
-              0CBafL9fYkzMu/b5f+QvuTH/WKWn5F07cv0ZlpkD4Yi2DiSPkqa4mU73t/DKwjdk
-              5UFltGMMrAttba7n44eXrNlG6EyjVqEL3qWO2B/XM3ESJPFMS0lsbB24OvC/TiFW
-              EyyGdVNbKKkGf/kCQ0/53uY=
-              -----END PRIVATE KEY-----
+              {{ secret "/config/secret/jwks_key.pem" | mindent 10 "|" | msquote }}
         clients:
           - client_id: ${MEALIE_OIDC_CLIENT_ID}
             client_name: "Mealie"
