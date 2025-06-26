@@ -87,6 +87,7 @@ data:
               - 'code'
             scopes:
               - 'openid'
+              - 'email'
               - 'profile'
               - 'groups'
             consent_mode: implicit
