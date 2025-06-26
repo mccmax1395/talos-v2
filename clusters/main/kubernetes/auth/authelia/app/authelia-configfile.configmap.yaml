@@ -25,18 +25,18 @@ data:
       - domain:
           - ${DOMAIN_0}
           - '*.${DOMAIN_0}'
-      policy: bypass
-      resources:
-      - "^/api([/?].*)?$"
-      - "^/api([/?].*)?$"
-      - "^/identity.*$"
-      - "^/triggers.*$"
-      - "^/meshagents.*$"
-      - "^/meshsettings.*$"
-      - "^/agent.*$"
-      - "^/control.*$"
-      - "^/meshrelay.*$"
-      - "^/wl.*$"
+        policy: bypass
+        resources:
+        - "^/api([/?].*)?$"
+        - "^/api([/?].*)?$"
+        - "^/identity.*$"
+        - "^/triggers.*$"
+        - "^/meshagents.*$"
+        - "^/meshsettings.*$"
+        - "^/agent.*$"
+        - "^/control.*$"
+        - "^/meshrelay.*$"
+        - "^/wl.*$"
     session:
       cookies:
         - domain: '${DOMAIN_0}'
