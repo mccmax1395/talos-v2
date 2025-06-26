@@ -49,6 +49,7 @@ data:
     regulation:
       find_time: 10m
       ban_time: 12h
+    
     notifier:
       disable_startup_check: false
       filesystem:
