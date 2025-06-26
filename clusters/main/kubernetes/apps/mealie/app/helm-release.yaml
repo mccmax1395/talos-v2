@@ -83,11 +83,11 @@ spec:
             nginx.ingress.kubernetes.io/auth-url:           "http://authelia.authelia.svc.cluster.local:9091/api/verify"
             nginx.ingress.kubernetes.io/auth-signin:        "https://auth.${DOMAIN_0}/?rd=$scheme://$host$request_uri"
             nginx.ingress.kubernetes.io/auth-response-headers: "Remote-User,Remote-Name,Remote-Groups,Remote-Email"
-            nginx.ingress.kubernetes.io/auth-snippet: |
-              # Skip AuthRequest for any request under /api
-              if ($request_uri ~ "^/api") {
-                auth_request off;
-              }
+            # nginx.ingress.kubernetes.io/auth-snippet: |
+            #   # Skip AuthRequest for any request under /api
+            #   if ($request_uri ~ "^/api") {
+            #     auth_request off;
+            #   }
           integrations:
             traefik:
               enabled: false
