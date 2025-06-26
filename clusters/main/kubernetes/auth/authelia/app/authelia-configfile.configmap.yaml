@@ -59,7 +59,7 @@ data:
           endpoints: ["userinfo", "authorization", "token", "revocation", "introspection"]
           allowed_origins:
             - 'https://mealie.${DOMAIN_0}'
-          allowed_origins_from_client_redirect_uris: false
+          allowed_origins_from_client_redirect_uris: true
         hmac_secret: "${AUTHELIA_HMAC_SECRET}"
         jwks:
           - algorithm: "RS256"
@@ -70,13 +70,13 @@ data:
           - client_id: ${MEALIE_OIDC_CLIENT_ID}
             client_name: "Mealie"
             client_secret: ${MEALIE_OIDC_HASHED_CLIENT_SECRET}
+            enforce_pkce: public_clients_only
             public: false
             authorization_policy: "one_factor"
-            require_pkce: false
+            require_pkce: true
             pkce_challenge_method: 'S256'
             redirect_uris:
               - "https://mealie.${DOMAIN_0}/login"
-              - "https://mealie.${DOMAIN_0}/callback"
             grant_types:
               - 'authorization_code'
             response_types:
@@ -87,4 +87,4 @@ data:
               - 'profile'
               - 'groups'
             userinfo_signed_response_alg: "none"
-            token_endpoint_auth_method: "client_secret_basic"
+            token_endpoint_auth_method: "none"
