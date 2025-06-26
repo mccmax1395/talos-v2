@@ -45,7 +45,8 @@ spec:
       #     main:
       #       port: 9000 # Default mealie port
     mealie:
-      # service:
+      service:
+        OIDC_AUTO_REDIRECT:     "true"
       #   environment:
       #     OIDC_AUTH_ENABLED: 'true'
       #     OIDC_SIGNUP_ENABLED: 'true'
