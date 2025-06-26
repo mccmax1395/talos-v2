@@ -45,16 +45,6 @@ spec:
       #     main:
       #       port: 9000 # Default mealie port
     mealie:
-      # service:
-      #   environment:
-      #     OIDC_AUTH_ENABLED: 'true'
-      #     OIDC_SIGNUP_ENABLED: 'true'
-      #     OIDC_CONFIGURATION_URL: 'https://auth.${DOMAIN_0}/.well-known/openid-configuration'
-      #     OIDC_CLIENT_ID: ${MEALIE_OIDC_CLIENT_SECRET}
-      #     OIDC_CLIENT_SECRET: 'insecure_secret'
-      #     OIDC_AUTO_REDIRECT: 'false'
-      #     OIDC_ADMIN_GROUP: 'mealie-admins'
-      #     OIDC_USER_GROUP: 'mealie-users'
       frontend:
         theme:
           light_primary: "#E58147"
