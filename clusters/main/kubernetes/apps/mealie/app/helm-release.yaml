@@ -46,8 +46,8 @@ spec:
       #       port: 9000 # Default mealie port
     mealie:
       service:
-        OIDC_AUTO_REDIRECT:     "true"
-      #   environment:
+        environment:
+          OIDC_AUTO_REDIRECT:     "true"
       #     OIDC_AUTH_ENABLED: 'true'
       #     OIDC_SIGNUP_ENABLED: 'true'
       #     OIDC_CONFIGURATION_URL: 'https://auth.${DOMAIN_0}/.well-known/openid-configuration'
