@@ -49,10 +49,6 @@ spec:
       main:
         replicas: 1
         podSpec:
-          template:              
-            metadata:
-              annotations:
-                checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
           containers:
             main:
               env:
