@@ -45,9 +45,8 @@ spec:
       #     main:
       #       port: 9000 # Default mealie port
     mealie:
-      service:
-        environment:
-          OIDC_AUTO_REDIRECT:     "true"
+      # service:
+      #   environment:
       #     OIDC_AUTH_ENABLED: 'true'
       #     OIDC_SIGNUP_ENABLED: 'true'
       #     OIDC_CONFIGURATION_URL: 'https://auth.${DOMAIN_0}/.well-known/openid-configuration'
@@ -80,15 +79,10 @@ spec:
           enabled: true
           ingressClassName: external
           annotations:
-            nginx.ingress.kubernetes.io/auth-method:        "GET"
-            nginx.ingress.kubernetes.io/auth-url:           "http://authelia.authelia.svc.cluster.local:9091/api/verify"
-            nginx.ingress.kubernetes.io/auth-signin:        "https://auth.${DOMAIN_0}/?rd=$scheme://$host$request_uri"
-            nginx.ingress.kubernetes.io/auth-response-headers: "Remote-User,Remote-Name,Remote-Groups,Remote-Email"
-            # nginx.ingress.kubernetes.io/auth-snippet: |
-            #   # Skip AuthRequest for any request under /api
-            #   if ($request_uri ~ "^/api") {
-            #     auth_request off;
-            #   }
+            nginx.ingress.kubernetes.io/auth-method: 'GET'
+            nginx.ingress.kubernetes.io/auth-url: 'http://authelia.authelia.svc.cluster.local:9091/api/verify'
+            nginx.ingress.kubernetes.io/auth-signin:       "https://auth.${DOMAIN_0}/?rd=$scheme://$host$request_uri"
+            nginx.ingress.kubernetes.io/auth-response-headers: 'Remote-User,Remote-Name,Remote-Groups,Remote-Email'
           integrations:
             traefik:
               enabled: false
@@ -97,27 +91,6 @@ spec:
               certificateIssuer: domain-0-le-prod
           hosts:
             - host: mealie.${DOMAIN_0}
-              # paths:
-              #   - path: /
-              #     pathType: Prefix
               paths:
-              - path: /
-                pathType: Prefix
-                backend:
-                  service:
-                    name: mealie
-                    port:
-                      number: 9000
-              - path: /api
-                pathType: Prefix
-                backend:
-                  service:
-                    name: mealie
-                    port:
-                      number: 9000
-                # metadata:
-                #   annotations:
-                #     nginx.ingress.kubernetes.io/auth-method:        "GET"
-                #     nginx.ingress.kubernetes.io/auth-url:           "http://authelia.authelia.svc.cluster.local:9091/api/verify"
-                #     nginx.ingress.kubernetes.io/auth-signin:        "https://auth.${DOMAIN_0}/?rd=$scheme://$host$request_uri"
-                #     nginx.ingress.kubernetes.io/auth-response-headers: "Remote-User,Remote-Name,Remote-Groups,Remote-Email"
+                - path: /
+                  pathType: Prefix
