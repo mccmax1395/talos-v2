@@ -87,7 +87,12 @@ spec:
         internal:
           enabled: true
           ingressClassName: internal
-          # (no auth annotations here)
+          integrations:
+            traefik:
+              enabled: false
+            certManager:
+              enabled: true
+              certificateIssuer: domain-0-le-prod
           hosts:
             - host: mealie-internal.${DOMAIN_0}
               paths:
