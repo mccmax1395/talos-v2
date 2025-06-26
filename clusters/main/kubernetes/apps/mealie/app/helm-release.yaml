@@ -84,3 +84,12 @@ spec:
               paths:
                 - path: /
                   pathType: Prefix
+        internal:
+          enabled: true
+          ingressClassName: internal
+          # (no auth annotations here)
+          hosts:
+            - host: mealie-internal.${DOMAIN_0}
+              paths:
+                - path: /
+                  pathType: Prefix
