@@ -71,7 +71,7 @@ spec:
           client_secret: ${MEALIE_OIDC_CLIENT_SECRET}
           user_group: mealie-users
           admin_group: mealie-admin
-          auto_redirect: false
+          auto_redirect: true
           provider_name: "Authelia"
           remember_me: false
     ingress:
