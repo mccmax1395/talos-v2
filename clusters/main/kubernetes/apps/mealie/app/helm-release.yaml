@@ -73,7 +73,7 @@ spec:
           admin_group: mealie-admin
           auto_redirect: true
           provider_name: "Authelia"
-          remember_me: false
+          remember_me: true
     ingress:
         main:
           enabled: true
