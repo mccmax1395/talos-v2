@@ -94,7 +94,7 @@ data:
             require_pkce: true
             pkce_challenge_method: 'S256'
             redirect_uris:
-              - "https://mealie.${DOMAIN_0}/auth/oidc.callback"
+              - "https://mealie.${DOMAIN_0}/login"
             grant_types:
               - 'authorization_code'
             response_types:
