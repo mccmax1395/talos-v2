@@ -52,12 +52,12 @@ data:
     
     notifier:
       smtp:
-        address: smtp://${SMTP_HOST}:${SMTP_PORT}
+        address: submissions://${SMTP_HOST}:465
         username: ${SMTP_USER}
         password: ${SMTP_PASSWORD}
         sender: Authelia Admin <${SMTP_USER}>
-        disable_starttls:   false
-        disable_require_tls: false
+        tls:
+          server_name: ${SMTP_HOST}
     identity_providers:
       oidc:
         cors:
