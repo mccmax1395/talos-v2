@@ -70,7 +70,6 @@ data:
           - client_id: ${MEALIE_OIDC_CLIENT_ID}
             client_name: "Mealie"
             client_secret: ${MEALIE_OIDC_HASHED_CLIENT_SECRET}
-            enforce_pkce: public_clients_only
             public: false
             authorization_policy: "one_factor"
             require_pkce: true
