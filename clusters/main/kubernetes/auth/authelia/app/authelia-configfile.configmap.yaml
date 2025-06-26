@@ -56,8 +56,10 @@ data:
     identity_providers:
       oidc:
         cors:
-          endpoints: ["authorization", "token", "revocation", "introspection"]
-          allowed_origins_from_client_redirect_uris: true
+          endpoints: ["userinfo", "authorization", "token", "revocation", "introspection"]
+          allowed_origins:
+            - 'https://mealie.${DOMAIN_0}'
+          allowed_origins_from_client_redirect_uris: false
         hmac_secret: "${AUTHELIA_HMAC_SECRET}"
         jwks:
           - algorithm: "RS256"
@@ -70,7 +72,7 @@ data:
             client_secret: ${MEALIE_OIDC_HASHED_CLIENT_SECRET}
             public: false
             authorization_policy: "one_factor"
-            require_pkce: true
+            require_pkce: false
             pkce_challenge_method: 'S256'
             redirect_uris:
               - "https://mealie.${DOMAIN_0}/login"
