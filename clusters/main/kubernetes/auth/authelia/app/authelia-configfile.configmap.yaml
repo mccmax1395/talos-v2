@@ -37,6 +37,11 @@ data:
         - "^/control.*$"
         - "^/meshrelay.*$"
         - "^/wl.*$"
+      - domain:
+        - "mealie.${DOMAIN_0}"
+        policy: one_factor
+        resources:
+          - "^/.*$"
     session:
       cookies:
         - domain: '${DOMAIN_0}'
