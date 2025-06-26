@@ -94,24 +94,24 @@ spec:
               # paths:
               #   - path: /
               #     pathType: Prefix
-               paths:
-                - path: /
-                  pathType: Prefix
-                  backend:
-                    service:
-                      name: mealie
-                      port:
-                        number: 9000
-                - path: /api
-                  pathType: Prefix
-                  backend:
-                    service:
-                      name: mealie
-                      port:
-                        number: 9000
-                  metadata:
-                    annotations:
-                      nginx.ingress.kubernetes.io/auth-method:        "GET"
-                      nginx.ingress.kubernetes.io/auth-url:           "http://authelia.authelia.svc.cluster.local:9091/api/verify"
-                      nginx.ingress.kubernetes.io/auth-signin:        "https://auth.${DOMAIN_0}/?rd=$scheme://$host$request_uri"
-                      nginx.ingress.kubernetes.io/auth-response-headers: "Remote-User,Remote-Name,Remote-Groups,Remote-Email"
+              paths:
+              - path: /
+                pathType: Prefix
+                backend:
+                  service:
+                    name: mealie
+                    port:
+                      number: 9000
+              - path: /api
+                pathType: Prefix
+                backend:
+                  service:
+                    name: mealie
+                    port:
+                      number: 9000
+                metadata:
+                  annotations:
+                    nginx.ingress.kubernetes.io/auth-method:        "GET"
+                    nginx.ingress.kubernetes.io/auth-url:           "http://authelia.authelia.svc.cluster.local:9091/api/verify"
+                    nginx.ingress.kubernetes.io/auth-signin:        "https://auth.${DOMAIN_0}/?rd=$scheme://$host$request_uri"
+                    nginx.ingress.kubernetes.io/auth-response-headers: "Remote-User,Remote-Name,Remote-Groups,Remote-Email"
