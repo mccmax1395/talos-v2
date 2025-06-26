@@ -28,7 +28,7 @@ data:
         policy: bypass
         resources:
         - "^/api([/?].*)?$"
-        - "^/api([/?].*)?$"
+        - "^/oauth2/.*$" 
         - "^/identity.*$"
         - "^/triggers.*$"
         - "^/meshagents.*$"
