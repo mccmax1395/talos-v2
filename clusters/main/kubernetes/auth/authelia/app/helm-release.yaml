@@ -32,9 +32,6 @@ spec:
         main:
           enabled: true
           ingressClassName: external
-          annotations:
-            "fluxcd.io/force-rede
-            "fluxcd.io/force-redeploy": "nownow"
           integrations:
             traefik:
               enabled: false
