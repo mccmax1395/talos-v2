@@ -51,9 +51,13 @@ data:
       ban_time: 12h
     
     notifier:
-      disable_startup_check: false
-      filesystem:
-        filename: '/config/notification.txt'
+      smtp:
+        address: smtp://${SMTP_HOST}:${SMTP_PORT}
+        username: ${SMTP_USER}
+        password: ${SMTP_PASSWORD}
+        sender: Authelia Admin <${SMTP_USER}>
+        disable_starttls:   false
+        disable_require_tls: false
     identity_providers:
       oidc:
         cors:
