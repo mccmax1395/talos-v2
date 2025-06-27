@@ -109,8 +109,8 @@ data:
             require_pkce: true
             pkce_challenge_method: 'S256'
             redirect_uris:
-              - 'https://abs.${DOMAIN_0}/auth/openid/callback'
-              - 'https://abs.${DOMAIN_0}/auth/openid/mobile-redirect'
+              - 'https://abs.${DOMAIN_0}/audiobookshelf/auth/openid/callback'
+              - 'https://abs.${DOMAIN_0}/audiobookshelf/auth/openid/mobile-redirect'
               - 'audiobookshelf://oauth'
             scopes:
               - 'openid'
