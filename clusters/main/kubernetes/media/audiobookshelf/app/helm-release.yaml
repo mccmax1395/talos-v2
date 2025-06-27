@@ -50,8 +50,6 @@ spec:
             paths:
               - path: /
                 pathType: Prefix
-      annotations:
-        metallb.universe.tf/allow-shared-ip: "true"
     persistence:
       media:
         enabled: true
