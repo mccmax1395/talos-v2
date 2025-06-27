@@ -91,10 +91,10 @@ spec:
             traefik:
               enabled: false
           certManager:
-            enabled: true
-            certificateIssuer: internal-ca-issuer
+            enabled: false
+            certificateIssuer: ""
           hosts:
-            - host: mealie-internal.${DOMAIN_0}
+            - host: mealie-internal.local
               paths:
                 - path: /
                   pathType: Prefix
