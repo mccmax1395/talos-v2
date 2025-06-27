@@ -29,30 +29,29 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    service:
-      ingress:
-        main:
-          enabled: true
-          ingressClassName: external
-          annotations:
-          integrations:
-            traefik:
-              enabled: false
-            certManager:
-              enabled: true
-              certificateIssuer: domain-0-le-prod
-            homepage:
-              enabled: true
-              group: Tools
-              widget:
-                enabled: false
-          hosts:
-            - host: abs.${DOMAIN_0}
-              paths:
-                - path: /
-                  pathType: Prefix
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: external
         annotations:
-          metallb.universe.tf/allow-shared-ip: "true"
+        integrations:
+          traefik:
+            enabled: false
+          certManager:
+            enabled: true
+            certificateIssuer: domain-0-le-prod
+          homepage:
+            enabled: true
+            group: Tools
+            widget:
+              enabled: false
+        hosts:
+          - host: abs.${DOMAIN_0}
+            paths:
+              - path: /
+                pathType: Prefix
+      annotations:
+        metallb.universe.tf/allow-shared-ip: "true"
     persistence:
       media:
         enabled: true
