@@ -36,7 +36,7 @@ spec:
         forceConflicts: true
     cleanPrometheusOperatorObjectNames: true
     alertmanager:
-      enabled: false
+      enabled: true
     kubeEtcd:
       service:
         selector:
@@ -45,7 +45,7 @@ spec:
       enabled: false
     prometheus:
       ingress:
-        enabled: false
+        enabled: true
       prometheusSpec:
         disableCompaction: true
         podMonitorSelectorNilUsesHelmValues: false
@@ -107,7 +107,7 @@ spec:
               sourceLabels: ["__meta_kubernetes_pod_node_name"]
               targetLabel: kubernetes_node
     grafana:
-      enabled: false
+      enabled: true
       forceDeployDashboards: true
       defaultDashboardsEnabled: true
       forceDeployDatasources: true
