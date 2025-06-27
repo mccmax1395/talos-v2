@@ -37,8 +37,17 @@ data:
         - "^/control.*$"
         - "^/meshrelay.*$"
         - "^/wl.*$"
+        - "^/auth$"
+        - "^/auth/.*"
+        - "^/auth/openid/callback"
+        - "^/auth/openid/mobile-redirect"
       - domain:
         - "mealie.${DOMAIN_0}"
+        policy: one_factor
+        resources:
+          - "^/.*$"
+      - domain:
+        - "abs.${DOMAIN_0}"
         policy: one_factor
         resources:
           - "^/.*$"
