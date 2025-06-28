@@ -36,8 +36,6 @@ spec:
         forceConflicts: true
     cleanPrometheusOperatorObjectNames: true
     alertmanager:
-      ingress:
-        enabled: true
       enabled: true
     kubeEtcd:
       service:
