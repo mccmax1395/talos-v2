@@ -31,12 +31,13 @@ spec:
   values:
     service:
       main:
-        type: NodePort
+        type: ClusterIP
+        # externalIPs: [127.0.0.1]   ← cannot use loopback here: Kubernetes will reject it
         ports:
           - name: http
-            port: 7878       # in-cluster port
-            targetPort: http # container port name or number
-            nodePort: 30080  # pick an unused port in 30000–32767
+            protocol: TCP
+            port: 7878        # Service port
+            targetPort: http
         # type: LoadBalancer
         # # loadBalancerIP: ${JELLYFIN_IP}
         # ports:
