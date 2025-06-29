@@ -66,6 +66,9 @@ spec:
         internal:
           enabled: true
           ingressClassName: internal       # your in-cluster class
+          annotations:
+            kubernetes.io/ingress.class: "internal"
+            nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
           integrations:
             traefik:
               enabled: false
