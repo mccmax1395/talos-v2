@@ -29,15 +29,14 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    service:
+     service:
       main:
         type: ClusterIP
-        # externalIPs: [127.0.0.1]   ← cannot use loopback here: Kubernetes will reject it
         ports:
-          - name: http
-            protocol: TCP
-            port: 7878        # Service port
-            targetPort: http
+          main:
+            port:       7878       # Service port
+            targetPort: http       # containerPort name or number
+            protocol:   TCP
         # type: LoadBalancer
         # # loadBalancerIP: ${JELLYFIN_IP}
         # ports:
