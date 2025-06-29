@@ -66,6 +66,9 @@ spec:
         internal:
           enabled: true
           ingressClassName: internal       # your in-cluster class
+          integrations:
+            traefik:
+              enabled: false
           hosts:
             - host: server.local
               paths:
