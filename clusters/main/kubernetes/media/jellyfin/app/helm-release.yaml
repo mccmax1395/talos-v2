@@ -69,7 +69,7 @@ spec:
               paths:
                 - path: /
                   pathType: Prefix
-        internal:
+        # internal:
           # enabled: true
           # ingressClassName: internal
           # # annotations:
