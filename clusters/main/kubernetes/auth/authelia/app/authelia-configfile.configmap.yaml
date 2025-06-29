@@ -22,16 +22,6 @@ data:
     access_control:
       default_policy: 'deny'
       rules:
-       - domain:
-          - 'abs.${DOMAIN_0}'
-        policy: bypass
-        resources:
-        - "^/socket.io([/?].*)?$"
-        - "^/ping([/?].*)?$"
-        - "^/webapi([/?].*)?$"
-        - "^/login([/?].*)?$"
-        - "^/status([/?].*)?$"
-        - "^/auth([/?].*)?$"
       - domain:
           - ${DOMAIN_0}
           - '*.${DOMAIN_0}'
