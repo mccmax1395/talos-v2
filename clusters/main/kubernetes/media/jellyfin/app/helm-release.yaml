@@ -31,17 +31,11 @@ spec:
   values:
     service:
       main:
-        type: ClusterIP
+        type: LoadBalancer
+        loadBalancerIP: ${DASHBOARD_IP}
         ports:
           main:
-            port:       7878       # Service port
-            targetPort: http       # containerPort name or number
-            protocol:   tcp
-        # type: LoadBalancer
-        # # loadBalancerIP: ${JELLYFIN_IP}
-        # ports:
-        #   main:
-        #     port: 7878 # Default jellyfin port
+            port: 7878 # Default jellyfin port
     #     annotations:
     #       kubectl.kubernetes.io/restartedAt: "2025-03-01T12:34:56Z"
     ingress:
