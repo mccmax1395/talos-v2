@@ -31,11 +31,12 @@ spec:
   values:
     service:
       main:
-        type: ClusterIP
-        externalIPs:
-          - 127.0.0.1
-        port: 7878
-        targetPort: http
+        type: NodePort
+        ports:
+          - name: http
+            port: 7878       # in-cluster port
+            targetPort: http # container port name or number
+            nodePort: 30080  # pick an unused port in 30000–32767
         # type: LoadBalancer
         # # loadBalancerIP: ${JELLYFIN_IP}
         # ports:
