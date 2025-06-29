@@ -29,15 +29,15 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    service:
-      main:
-        type: LoadBalancer
-        loadBalancerIP: ${JELLYFIN_IP}
-        ports:
-          main:
-            port: 7878 # Default jellyfin port
-        annotations:
-          kubectl.kubernetes.io/restartedAt: "2025-03-01T12:34:56Z"
+    # service:
+    #   main:
+    #     type: LoadBalancer
+    #     loadBalancerIP: ${JELLYFIN_IP}
+    #     ports:
+    #       main:
+    #         port: 7878 # Default jellyfin port
+    #     annotations:
+    #       kubectl.kubernetes.io/restartedAt: "2025-03-01T12:34:56Z"
     ingress:
         main:
           enabled: true
@@ -53,6 +53,11 @@ spec:
             certManager:
               enabled: true
               certificateIssuer: domain-0-le-prod
+            homepage:
+              enabled: true
+              group: Tools
+              widget:
+                enabled: false
           hosts:
             - host: jellyfin.${DOMAIN_0}
               paths:
