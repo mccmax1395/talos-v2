@@ -63,6 +63,15 @@ spec:
               paths:
                 - path: /
                   pathType: Prefix
+        internal:
+        enabled: true
+        ingressClassName: internal       # your in-cluster class
+        hosts:
+          - host: server.local
+            paths:
+              - path: /
+                pathType: Prefix
+
     persistence:
       media:
         enabled: true
