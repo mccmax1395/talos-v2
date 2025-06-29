@@ -36,7 +36,7 @@ spec:
           main:
             port:       7878       # Service port
             targetPort: http       # containerPort name or number
-            protocol:   TCP
+            protocol:   tcp
         # type: LoadBalancer
         # # loadBalancerIP: ${JELLYFIN_IP}
         # ports:
