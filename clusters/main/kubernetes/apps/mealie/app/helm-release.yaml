@@ -89,27 +89,27 @@ spec:
               paths:
                 - path: /
                   pathType: Prefix
-           main:
-            enabled: true
-            ingressClassName: internal
-            annotations:
-              nginx.ingress.kubernetes.io/auth-method: 'GET'
-              nginx.ingress.kubernetes.io/auth-url: 'http://authelia.authelia.svc.cluster.local:9091/api/verify'
-              nginx.ingress.kubernetes.io/auth-signin:  "https://auth.${DOMAIN_0}/?rd=$scheme://$host$request_uri"
-              nginx.ingress.kubernetes.io/auth-response-headers: 'Remote-User,Remote-Name,Remote-Groups,Remote-Email'
-            integrations:
-              traefik:
+        internal:
+          enabled: true
+          ingressClassName: internal
+          # annotations:
+          #   nginx.ingress.kubernetes.io/auth-method: 'GET'
+          #   nginx.ingress.kubernetes.io/auth-url: 'http://authelia.authelia.svc.cluster.local:9091/api/verify'
+          #   nginx.ingress.kubernetes.io/auth-signin:  "https://auth.${DOMAIN_0}/?rd=$scheme://$host$request_uri"
+          #   nginx.ingress.kubernetes.io/auth-response-headers: 'Remote-User,Remote-Name,Remote-Groups,Remote-Email'
+          integrations:
+            traefik:
+              enabled: false
+            certManager:
+              enabled: true
+              certificateIssuer: domain-0-le-prod
+            homepage:
+              enabled: true
+              group: Tools
+              widget:
                 enabled: false
-              certManager:
-                enabled: true
-                certificateIssuer: domain-0-le-prod
-              homepage:
-                enabled: true
-                group: Tools
-                widget:
-                  enabled: false
-            hosts:
-              - host: mealie.${DOMAIN_0}
-                paths:
-                  - path: /
-                    pathType: Prefix
+          hosts:
+            - host: mealie.${DOMAIN_0}
+              paths:
+                - path: /
+                  pathType: Prefix
