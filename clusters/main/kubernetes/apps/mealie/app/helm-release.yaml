@@ -109,7 +109,7 @@ spec:
               widget:
                 enabled: false
           hosts:
-            - host: mealie.${DOMAIN_0}
+            - host: mealie-internal.${DOMAIN_0}
               paths:
                 - path: /
                   pathType: Prefix
