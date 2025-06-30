@@ -29,13 +29,13 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    service:
-      main:
-        type: LoadBalancer
-        loadBalancerIP: ${DASHBOARD_IP}
-        ports:
-          main:
-            port: 7878 # Default jellyfin port
+    # service:
+    #   main:
+    #     type: LoadBalancer
+    #     loadBalancerIP: ${DASHBOARD_IP}
+    #     ports:
+    #       main:
+    #         port: 7878 # Default jellyfin port
     #     annotations:
     #       kubectl.kubernetes.io/restartedAt: "2025-03-01T12:34:56Z"
     ingress:
