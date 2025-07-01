@@ -1,0 +1,53 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: tailscale
+  namespace: tailscale
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: tailscale
+      version: 10.14.2
+      sourceRef:
+        kind: HelmRepository
+        name: truecharts
+        namespace: flux-system
+      interval: 15m
+  timeout: 5m
+  maxHistory: 3
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    global:
+      stopAll: false
+    ingress:
+        main:
+          ingressClassName: internal
+          enabled: true
+          integrations:
+            traefik:
+              enabled: false
+            certManager:
+              enabled: true
+              certificateIssuer: domain-0-le-prod
+          hosts:
+            - host: tailscale.${DOMAIN_0}
+              paths:
+                - path: /
+                  pathType: Prefix
+    tailscale:
+      authkey: ${TAILSCALE_AUTH_KEY}
+      accept_dns: true
+      routes: 192.168.1.0/24 # LAN Example
+      advertise_as_exit_node: true
+      hostname: "kube-tailscale"
