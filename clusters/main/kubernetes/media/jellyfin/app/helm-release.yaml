@@ -35,7 +35,7 @@ spec:
         loadBalancerIP: ${JELLYFIN_IP}
         ports:
           main:
-            port: 7878 # Default jellyfin port
+            port: 8096 # Default jellyfin port
         # integrations:
         #   homepage:
         #       enabled: true
