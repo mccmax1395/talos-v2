@@ -36,12 +36,12 @@ spec:
         ports:
           main:
             port: 7878 # Default jellyfin port
-        integrations:
-          homepage:
-              enabled: true
-              group: Tools
-              widget:
-                enabled: false
+        # integrations:
+        #   homepage:
+        #       enabled: true
+        #       group: Tools
+        #       widget:
+        #         enabled: false
     ingress:
         main:
           enabled: true
