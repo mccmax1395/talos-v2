@@ -54,15 +54,13 @@ spec:
               paths:
                 - path: /
                   pathType: Prefix
-    # service:
-    #   main:
-    #     type: LoadBalancer
-    #     loadBalancerIP: ${JELLYSEERR_IP}
-    #     ports:
-    #       main:
-    #         port: 13378 # Default sonarr port
-    #     annotations:
-    #       metallb.universe.tf/allow-shared-ip: "true"
+    service:
+      main:
+        type: LoadBalancer
+        loadBalancerIP: ${JELLYSEERR_IP}
+        ports:
+          main:
+            port: 13378 # Default sonarr port
     persistence:
       media:
         enabled: true
