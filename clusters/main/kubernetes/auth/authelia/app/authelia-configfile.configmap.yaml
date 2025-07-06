@@ -61,6 +61,11 @@ data:
         policy: one_factor
         resources:
           - "^/.*$"
+      - domain:
+        - "organizr.${DOMAIN_0}"
+        policy: one_factor
+        resources:
+          - "^/.*$"
     session:
       cookies:
         - domain: '${DOMAIN_0}'
