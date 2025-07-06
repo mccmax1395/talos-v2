@@ -140,23 +140,3 @@ data:
             access_token_signed_response_alg: 'none'
             userinfo_signed_response_alg: 'none'
             token_endpoint_auth_method: 'client_secret_basic'
-          # - client_id: ${JELLYFIN_OIDC_CLIENT_ID}
-          #   client_name: 'audiobookshelf'
-          #   client_secret: ${JELLYFIN_OIDC_HASHED_CLIENT_SECRET}
-          #   authorization_policy: 'one_factor'
-          #   require_pkce: true
-          #   pkce_challenge_method: 'S256'
-          #   redirect_uris:
-          #     - 'https://jellyfin.example.com/sso/OID/redirect/authelia'
-          #   scopes:
-          #     - 'openid'
-          #     - 'profile'
-          #     - 'groups'
-          #   response_types:
-          #     - 'code'
-          #   grant_types:
-          #     - 'authorization_code'
-          #   consent_mode: implicit
-          #   access_token_signed_response_alg: 'none'
-          #   userinfo_signed_response_alg: 'none'
-          #   token_endpoint_auth_method: 'client_secret_post'
