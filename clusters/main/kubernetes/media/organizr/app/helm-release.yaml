@@ -54,12 +54,9 @@ spec:
               paths:
                 - path: /
                   pathType: Prefix
-    container:
-      env:
-        - name: APP_DEBUG
-          value: "true"
-        - name: LOG_LEVEL
-          value: "debug"
+    env:
+      APP_DEBUG: "true"
+      LOG_LEVEL: "debug"
 
     # service:
     #   main:
