@@ -1,14 +1,14 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: jellyseerr
-  namespace: jellyseerr
+  name: organizr
+  namespace: organizr
 spec:
   interval: 15m
   chart:
     spec:
-      chart: jellyseerr
-      version: 12.9.0
+      chart: organizr
+      version: 20.5.1
       sourceRef:
         kind: HelmRepository
         name: truecharts
@@ -50,22 +50,14 @@ spec:
               widget:
                 enabled: false
           hosts:
-            - host: jellyseerr.${DOMAIN_0}
+            - host: organizr.${DOMAIN_0}
               paths:
                 - path: /
                   pathType: Prefix
-    service:
-      main:
-        type: LoadBalancer
-        loadBalancerIP: ${JELLYSEERR_IP}
-        ports:
-          main:
-            port: 13378 # Default sonarr port
-    persistence:
-      media:
-        enabled: true
-        type: nfs
-        path: /mnt/playground/media
-        mountPath: "/Media"
-        server: 192.168.1.98
-
+    # service:
+    #   main:
+    #     type: LoadBalancer
+    #     loadBalancerIP: ${ORGANIZR_IP}
+    #     ports:
+    #       main:
+    #         port: 7878 # Default Radarr port

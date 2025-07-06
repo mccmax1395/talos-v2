@@ -1,20 +1,23 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: jellyseerr
-  namespace: jellyseerr
+  name: qbittorrent
+  namespace: qbittorrent
+  annotations:
+    fluxcd.io/reconcileAt: "2025-04-22T18:30:00Z"  
 spec:
+  # suspend: true 
   interval: 15m
   chart:
     spec:
-      chart: jellyseerr
-      version: 12.9.0
+      chart: qbittorrent
+      version: 22.5.3
       sourceRef:
         kind: HelmRepository
         name: truecharts
         namespace: flux-system
       interval: 15m
-  timeout: 20m
+  timeout: 5m
   maxHistory: 3
   driftDetection:
     mode: warn
@@ -50,17 +53,24 @@ spec:
               widget:
                 enabled: false
           hosts:
-            - host: jellyseerr.${DOMAIN_0}
+            - host: qbit.${DOMAIN_0}
               paths:
                 - path: /
                   pathType: Prefix
     service:
-      main:
-        type: LoadBalancer
-        loadBalancerIP: ${JELLYSEERR_IP}
+      # main:
+      #   type: LoadBalancer
+      #   loadBalancerIP: ${QBITTORRENT_IP}
+      #   ports:
+      #     main:
+      #       port: 10095 # Default qbittorrent port
+      torrent:
+        enabled: true
         ports:
-          main:
-            port: 13378 # Default sonarr port
+          torrent:
+            enabled: true
+            port: 49999
+            protocol: tcp
     persistence:
       media:
         enabled: true
@@ -68,4 +78,28 @@ spec:
         path: /mnt/playground/media
         mountPath: "/Media"
         server: 192.168.1.98
+      config:
+        enabled: true
+        mountPath: "/config"
+        targetSelectAll: true
 
+    addons:
+      vpn:
+        type: gluetun
+        killSwitch: true
+        excludedNetworks_IPv4:
+          - "192.168.1.0/24"
+        excludedNetworks_IPv6: []
+        env:
+          VPN_SERVICE_PROVIDER: "purevpn"
+          VPN_TYPE: "openvpn"
+          OPENVPN_USER: ${VPN_USERNAME}
+          OPENVPN_PASSWORD: ${VPN_PASSWORD}
+    # workload:
+    #     main:
+    #       podSpec:
+    #         initContainers:
+    #           initconfig:
+    #             type: init
+    #             enabled: true
+    #             command: [ "sh", "/config/mam.sh" ]
