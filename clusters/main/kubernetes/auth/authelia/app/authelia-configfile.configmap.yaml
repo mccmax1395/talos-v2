@@ -39,7 +39,7 @@ data:
       #     - '^/Sessions/AuthenticateByName$'
       #     - '^/System/Info/Public$'
       #     - '^/(api|sso)(/|$)'
-        policy: bypass
+        # policy: bypass
       - domain:
           - "abs.${DOMAIN_0}"
           - "jellyfin.${DOMAIN_0}"
