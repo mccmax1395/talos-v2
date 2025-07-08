@@ -26,6 +26,7 @@ data:
         resources:
           # public info & health
           - '^/System/Info/Public$'
+          - '^/system/info/public$'
           - '^/System/Info/?$'
           - '^/Ping$'
           # mobile login
