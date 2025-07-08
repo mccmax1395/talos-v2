@@ -32,7 +32,7 @@ data:
           # mobile login
           # - '^/Sessions/AuthenticateByName$'
           # - '^/Users/AuthenticateByName$'
-          # - '^/api/verify$'
+          - '^/api/verify$'
         policy: bypass
 
       - domain: "jellyfin.${DOMAIN_0}"
