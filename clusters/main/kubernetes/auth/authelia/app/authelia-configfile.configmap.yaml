@@ -24,6 +24,7 @@ data:
       rules:
       - domain:
           - "abs.${DOMAIN_0}"
+          - "jellyfin.${DOMAIN_0}"
         policy: bypass
         resources:
           - "^/socket.io([/?].*)?$"
@@ -58,19 +59,21 @@ data:
           - "^/.*$"
       - domain:
         - "abs.${DOMAIN_0}"
-        policy: one_factor
-        resources:
-          - "^/.*$"
-      - domain:
+        - "jellyfin.${DOMAIN_0}"
         - "organizr.${DOMAIN_0}"
         policy: one_factor
         resources:
           - "^/.*$"
-      - domain:
-        - "jellyfin.${DOMAIN_0}"
-        policy: one_factor
-        resources:
-          - "^/.*$"
+      # - domain:
+      #   - "organizr.${DOMAIN_0}"
+      #   policy: one_factor
+      #   resources:
+      #     - "^/.*$"
+      # - domain:
+      #   - "jellyfin.${DOMAIN_0}"
+      #   policy: one_factor
+      #   resources:
+      #     - "^/.*$"
     session:
       cookies:
         - domain: '${DOMAIN_0}'
