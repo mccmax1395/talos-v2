@@ -25,14 +25,14 @@ data:
       - domain: "jellyfin.${DOMAIN_0}"
         resources:
           # public info & health
-          - '^/System/Info/Public$'
+          # - '^/System/Info/Public$'
           - '^/system/info/public$'
-          - '^/System/Info/?$'
-          - '^/Ping$'
+          # - '^/System/Info/?$'
+          # - '^/Ping$'
           # mobile login
-          - '^/Sessions/AuthenticateByName$'
-          - '^/Users/AuthenticateByName$'
-          - '^/api/verify$'
+          # - '^/Sessions/AuthenticateByName$'
+          # - '^/Users/AuthenticateByName$'
+          # - '^/api/verify$'
         policy: bypass
 
       - domain: "jellyfin.${DOMAIN_0}"
