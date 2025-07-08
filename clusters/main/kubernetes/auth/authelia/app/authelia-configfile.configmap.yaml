@@ -28,6 +28,8 @@ data:
           # - '^/System/Info/Public$'
           - '^/[Ss]ystem/[Ii]nfo/[Pp]ublic$'
           - '^/Playback/BitrateTest$' 
+          - '^/Streamyfin/config$'
+          - '^/Users/AuthenticateByName'
           # - '^/system/info/public$'
           # - '^/System/Info/?$'
           # - '^/Ping$'
