@@ -22,6 +22,11 @@ data:
     access_control:
       default_policy: 'deny'
       rules:
+      - domain: "jellyfin.${DOMAIN_0}"
+        resources:
+          - '^/Users/AuthenticateByName$'
+          - '^/Sessions/AuthenticateByName$'
+        policy: bypass
       - domain:
           - "abs.${DOMAIN_0}"
           - "jellyfin.${DOMAIN_0}"
