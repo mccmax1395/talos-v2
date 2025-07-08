@@ -1,0 +1,27 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: mam-ip-update
+  namespace: qbittorrent
+spec:
+  schedule: "* * * * *"              # every minute
+  startingDeadlineSeconds: 30        # fallback window
+  concurrencyPolicy: Forbid           # don’t overlap
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: mam-update
+              image: bitnami/kubectl:latest
+              command:
+                - sh
+                - /config/mam-script.sh
+              volumeMounts:
+                - name: config
+                  mountPath: /config
+          volumes:
+            - name: config
+              persistentVolumeClaim:
+                claimName: qbittorrent-config
