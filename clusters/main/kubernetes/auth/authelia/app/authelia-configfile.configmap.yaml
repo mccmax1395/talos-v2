@@ -66,6 +66,11 @@ data:
         policy: one_factor
         resources:
           - "^/.*$"
+      - domain:
+        - "jellyfin.${DOMAIN_0}"
+        policy: one_factor
+        resources:
+          - "^/.*$"
     session:
       cookies:
         - domain: '${DOMAIN_0}'
