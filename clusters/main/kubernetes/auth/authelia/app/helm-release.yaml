@@ -48,7 +48,7 @@ spec:
                 - path: /
                   pathType: Prefix
                 - path: /.well-known/webfinger
-                  pathType: Exact
+                  pathType: Prefix
                   backend:
                     service:
                       name: webfinger-svc
