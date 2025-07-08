@@ -26,8 +26,19 @@ data:
         resources:
           - '^/Users/AuthenticateByName$'
           - '^/Sessions/AuthenticateByName$'
-          - '^/System/Info/Public$'
-          - '^/(api|sso)(/|$)'
+        policy: bypass
+
+      - domain: "jellyfin.${DOMAIN_0}"
+        resources:
+          - '^/sso/OID/redirect/authelia$'
+          - '^/sso/OID/r/authelia$'
+        policy: bypass
+      # - domain: "jellyfin.${DOMAIN_0}"
+      #   resources:
+      #     - '^/Users/AuthenticateByName$'
+      #     - '^/Sessions/AuthenticateByName$'
+      #     - '^/System/Info/Public$'
+      #     - '^/(api|sso)(/|$)'
         policy: bypass
       - domain:
           - "abs.${DOMAIN_0}"
