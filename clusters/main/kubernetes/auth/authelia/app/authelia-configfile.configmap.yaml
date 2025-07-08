@@ -154,6 +154,7 @@ data:
             pkce_challenge_method: 'S256'
             redirect_uris:
               - 'https://jellyfin.${DOMAIN_0}/sso/OID/redirect/authelia'
+              - 'https://jellyfin.${DOMAIN_0}/sso/OID/r/authelia'
             scopes:
               - 'openid'
               - 'profile'
