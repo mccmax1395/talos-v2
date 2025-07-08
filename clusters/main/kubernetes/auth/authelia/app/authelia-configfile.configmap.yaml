@@ -24,8 +24,13 @@ data:
       rules:
       - domain: "jellyfin.${DOMAIN_0}"
         resources:
-          - '^/Users/AuthenticateByName$'
+          # public info & health
+          - '^/System/Info/Public$'
+          - '^/System/Info/?$'
+          - '^/Ping$'
+          # mobile login
           - '^/Sessions/AuthenticateByName$'
+          - '^/Users/AuthenticateByName$'
         policy: bypass
 
       - domain: "jellyfin.${DOMAIN_0}"
