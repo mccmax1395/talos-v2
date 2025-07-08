@@ -47,13 +47,6 @@ spec:
               paths:
                 - path: /
                   pathType: Prefix
-                - path: /.well-known/webfinger
-                  pathType: ImplementationSpecific
-                  backend:
-                    service:
-                      name: webfinger-svc
-                      port:
-                        number: 80
     workload:
       main:
         replicas: 1
