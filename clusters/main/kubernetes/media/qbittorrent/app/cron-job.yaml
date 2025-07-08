@@ -5,6 +5,8 @@ metadata:
   namespace: qbittorrent
 spec:
   schedule: "* * * * *"              # every minute
+  successfulJobsHistoryLimit: 3   # keep only the 3 most recent successful jobs
+  failedJobsHistoryLimit: 1  
   startingDeadlineSeconds: 30        # fallback window
   concurrencyPolicy: Forbid           # don’t overlap
   jobTemplate:
