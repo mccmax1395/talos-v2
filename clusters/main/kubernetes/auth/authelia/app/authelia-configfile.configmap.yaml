@@ -27,7 +27,7 @@ data:
           # public info & health
           # - '^/System/Info/Public$'
           - '^/[Ss]ystem/[Ii]nfo/[Pp]ublic$'
-          - '^/Playback/BitrateTest' 
+          - '^/Playback/BitrateTest$' 
           # - '^/system/info/public$'
           # - '^/System/Info/?$'
           # - '^/Ping$'
