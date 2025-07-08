@@ -27,7 +27,7 @@ data:
           - '^/Users/AuthenticateByName$'
           - '^/Sessions/AuthenticateByName$'
           - '^/System/Info/Public$'
-          - '^/api/verify$'
+          - '^/(api|sso)(/|$)'
         policy: bypass
       - domain:
           - "abs.${DOMAIN_0}"
