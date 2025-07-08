@@ -26,6 +26,7 @@ data:
         resources:
           - '^/Users/AuthenticateByName$'
           - '^/Sessions/AuthenticateByName$'
+          - '^/System/Info/Public$'
         policy: bypass
       - domain:
           - "abs.${DOMAIN_0}"
