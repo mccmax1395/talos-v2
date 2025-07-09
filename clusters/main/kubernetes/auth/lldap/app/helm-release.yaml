@@ -28,13 +28,13 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    # service:
-    #   main:
-    #     type: LoadBalancer
-    #     loadBalancerIP: ${MEALIE_IP}
-    #     ports:
-    #       main:
-    #         port: 389 
+    service:
+      main:
+        type: LoadBalancer
+        loadBalancerIP: ${LLDAP_IP}
+        ports:
+          main:
+            port: 389 
     global:
       stopAll: false
     ingress:
