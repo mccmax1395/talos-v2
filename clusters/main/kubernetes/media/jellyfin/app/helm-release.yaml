@@ -34,7 +34,6 @@ spec:
         podSpec:
           containers:
             main:
-              env:
               extraArgs:
                 - "--ipv6=false"
     service:
