@@ -28,20 +28,20 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    service:
-      main:
-        type: LoadBalancer
-        loadBalancerIP: ${LLDAP_IP}
-        ldap:
-          port: 17170
-          # the port the container is actually listening on
-          targetPort: 3890
-          protocol: tcp
+    # service:
+    #   main:
+    #     type: LoadBalancer
+    #     loadBalancerIP: ${LLDAP_IP}
+    #     ldap:
+    #       port: 17170
+    #       # the port the container is actually listening on
+    #       targetPort: 3890
+    #       protocol: tcp
     global:
       stopAll: false
     ingress:
         main:
-          ingressClassName: external
+          ingressClassName: internal
           enabled: true
           annotations:
             fluxcd.io/force-redeploy: "now"
