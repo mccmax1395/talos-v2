@@ -29,6 +29,14 @@ spec:
   uninstall:
     keepHistory: false
   values:
+    workload:
+      main:
+        podSpec:
+          containers:
+            main:
+              env:
+              extraArgs:
+                - "--ipv6=false"
     service:
       main:
         type: LoadBalancer
