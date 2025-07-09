@@ -34,6 +34,8 @@ spec:
         podSpec:
           containers:
             main:
+              # If you don't have any custom env vars, you can omit or set it empty:
+              env: []
               extraArgs:
                 - "--ipv6=false"
     service:
