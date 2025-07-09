@@ -32,9 +32,11 @@ spec:
       main:
         type: LoadBalancer
         loadBalancerIP: ${LLDAP_IP}
-        ports:
-          main:
-            port: 3890 
+        ldap:
+          port: 389
+          # the port the container is actually listening on
+          targetPort: 3890
+          protocol: tcp
     global:
       stopAll: false
     ingress:
