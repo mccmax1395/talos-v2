@@ -34,7 +34,7 @@ spec:
         loadBalancerIP: ${LLDAP_IP}
         ports:
           main:
-            port: 3890 
+            port: 389 
     global:
       stopAll: false
     ingress:
