@@ -33,7 +33,7 @@ spec:
         type: LoadBalancer
         loadBalancerIP: ${LLDAP_IP}
         ldap:
-          port: 389
+          port: 17170
           # the port the container is actually listening on
           targetPort: 3890
           protocol: tcp
