@@ -28,6 +28,13 @@ spec:
   uninstall:
     keepHistory: false
   values:
+    service:
+      main:
+        type: LoadBalancer
+        loadBalancerIP: ${LLDAP_IP}
+        ports:
+          main:
+            port: 3890 
     global:
       stopAll: false
     ingress:
