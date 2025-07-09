@@ -33,6 +33,10 @@ data:
           - '^/QuickConnect/Initiate'
           - '^/QuickConnect/Connect'
           - '^/Users/AuthenticateWithQuickConnect$'
+          - '^/Sessions$'
+          - '^/Items/Suggestions$'
+          - '^/Shows/NextUp$'
+
           # - '^/system/info/public$'
           # - '^/System/Info/?$'
           # - '^/Ping$'
