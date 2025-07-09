@@ -96,8 +96,8 @@ spec:
           OPENVPN_USER: ${VPN_USERNAME}
           OPENVPN_PASSWORD: ${VPN_PASSWORD}
           SERVER_COUNTRIES: Albania
-          FIREWALL: "on"
-          FIREWALL_OUTBOUND_SUBNETS: "192.168.168.0/24"
+          # FIREWALL: "on"
+          # FIREWALL_OUTBOUND_SUBNETS: "192.168.168.0/24"
     # workload:
     #     main:
     #       podSpec:
