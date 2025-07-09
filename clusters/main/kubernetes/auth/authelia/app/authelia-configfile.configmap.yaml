@@ -32,6 +32,7 @@ data:
           - '^/Users/AuthenticateByName'
           - '^/QuickConnect/Initiate'
           - '^/QuickConnect/Connect'
+          - '^/Users/AuthenticateWithQuickConnect$'
           # - '^/system/info/public$'
           # - '^/System/Info/?$'
           # - '^/Ping$'
@@ -189,7 +190,7 @@ data:
             redirect_uris:
               - 'https://jellyfin.${DOMAIN_0}/sso/OID/redirect/authelia'
               - 'https://jellyfin.${DOMAIN_0}/sso/OID/r/authelia'
-              - 'https://jellyfin.${DOMAIN_0}//sso/OID/start/authelia'
+              - 'https://jellyfin.${DOMAIN_0}/sso/OID/start/authelia'
             scopes:
               - 'openid'
               - 'profile'
