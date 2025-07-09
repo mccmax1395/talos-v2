@@ -30,6 +30,7 @@ data:
           - '^/Playback/BitrateTest$' 
           - '^/Streamyfin/config$'
           - '^/Users/AuthenticateByName'
+          - '^/QuickConnect/Initiate'
           # - '^/system/info/public$'
           # - '^/System/Info/?$'
           # - '^/Ping$'
