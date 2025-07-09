@@ -28,15 +28,15 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    service:
-      main:
-        type: LoadBalancer
-        loadBalancerIP: ${LLDAP_IP}
-        ldap:
-          port: 389
-          # the port the container is actually listening on
-          targetPort: 3890
-          protocol: tcp
+    # service:
+    #   main:
+    #     type: LoadBalancer
+    #     loadBalancerIP: ${LLDAP_IP}
+    #     ldap:
+    #       port: 389
+    #       # the port the container is actually listening on
+    #       targetPort: 3890
+    #       protocol: tcp
     global:
       stopAll: false
     ingress:
