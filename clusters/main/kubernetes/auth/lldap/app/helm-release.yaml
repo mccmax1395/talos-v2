@@ -31,7 +31,7 @@ spec:
     service:
       main:
         type: LoadBalancer
-        loadBalancerIP: ${LLDAP_IP}
+        loadBalancerIP: ${MEALIE_IP}
         ports:
           main:
             port: 389 
