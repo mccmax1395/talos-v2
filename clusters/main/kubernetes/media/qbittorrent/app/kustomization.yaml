@@ -4,5 +4,5 @@ resources:
   - cron-job.yaml
   - namespace.yaml
   - helm-release.yaml
-  - vpn-servers.yaml
+  # - vpn-servers.yaml
   
