@@ -109,6 +109,7 @@ spec:
             FIREWALL: "on"
             FIREWALL_OUTBOUND_SUBNETS: "192.168.168.0/24"
             OPENVPN_PROTOCOL: tcp
+            HEALTH_CHECK_ADDRESS: google.com:443
     # workload:
     #     main:
     #       podSpec:
