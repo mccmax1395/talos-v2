@@ -3,11 +3,13 @@ kind: Job
 metadata:
   name: gluetun-formatter
   namespace: qbittorrent
+  annotations:
+    reconcile.fluxcd.io/recreate: "true" 
 spec:
   template:
     spec:
       securityContext:
-        runAsNonRoot: true
+        runAsNonRoot: false
         seccompProfile:
           type: RuntimeDefault
       containers:
@@ -15,7 +17,7 @@ spec:
         image: qmcgaw/gluetun
         command: ["gluetun", "format-servers", "-purevpn"]
         securityContext:
-          allowPrivilegeEscalation: false
+          allowPrivilegeEscalation: true
           capabilities:
             drop: ["ALL"]
           runAsNonRoot: false
