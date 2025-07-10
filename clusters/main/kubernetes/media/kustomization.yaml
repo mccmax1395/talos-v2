@@ -6,3 +6,4 @@ resources:
   - jellyseerr/ks.yaml
   - organizr/ks.yaml
   - qbittorrent/ks.yaml
+  - radarr/ks.yaml
