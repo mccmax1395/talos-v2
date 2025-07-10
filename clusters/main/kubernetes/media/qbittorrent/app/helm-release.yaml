@@ -4,7 +4,7 @@ metadata:
   name: qbittorrent
   namespace: qbittorrent
   annotations:
-    fluxcd.io/reconcileAt: "2025-07-22T18:30:00Z"  
+    fluxcd.io/reconcileAt: "2025-04-22T18:30:00Z"  
 spec:
   # suspend: true 
   interval: 15m
@@ -12,6 +12,7 @@ spec:
     spec:
       chart: qbittorrent
       version: 23.0.9
+      # version: 22.5.3
       sourceRef:
         kind: HelmRepository
         name: truecharts
@@ -84,20 +85,29 @@ spec:
         targetSelectAll: true
 
     addons:
+      # vpn:
+      #   type: gluetun
+      #   killSwitch: true
+      #   excludedNetworks_IPv4:
+      #     - "192.168.1.0/24"
+      #   excludedNetworks_IPv6: []
+      #   env:
+      #     VPN_SERVICE_PROVIDER: "purevpn"
+      #     VPN_TYPE: "openvpn"
+      #     OPENVPN_USER: ${VPN_USERNAME}
+      #     OPENVPN_PASSWORD: ${VPN_PASSWORD}
+      #     SERVER_COUNTRIES: "Canada"
       gluetun:
-        type: gluetun
-        killSwitch: true
-        excludedNetworks_IPv4:
-          - "192.168.1.0/24"
-        excludedNetworks_IPv6: []
-        env:
-          VPN_SERVICE_PROVIDER: "purevpn"
-          VPN_TYPE: "openvpn"
-          OPENVPN_USER: ${VPN_USERNAME}
-          OPENVPN_PASSWORD: ${VPN_PASSWORD}
-          SERVER_COUNTRIES: "Canada"
-          # FIREWALL: "on"
-          # FIREWALL_OUTBOUND_SUBNETS: "192.168.168.0/24"
+        enabled: true
+        container:
+          env:
+            VPN_SERVICE_PROVIDER: "purevpn"
+            VPN_TYPE: "openvpn"
+            OPENVPN_USER: ${VPN_USERNAME}
+            OPENVPN_PASSWORD: ${VPN_PASSWORD}
+            SERVER_COUNTRIES: "Canada"
+            FIREWALL: "on"
+            FIREWALL_OUTBOUND_SUBNETS: "192.168.168.0/24"
     # workload:
     #     main:
     #       podSpec:
