@@ -1,27 +1,25 @@
 apiVersion: batch/v1
-kind: Job
+kind: CronJob
 metadata:
   name: gluetun-formatter
   namespace: qbittorrent
-  annotations:
-    reconcile.fluxcd.io/recreate: "true" 
 spec:
-  template:
+  schedule: "@daily"  # or "@hourly", "@reboot", etc.
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 1
+  jobTemplate:
     spec:
-      securityContext:
-        runAsNonRoot: false
-        seccompProfile:
-          type: RuntimeDefault
-      containers:
-      - name: gluetun
-        image: qmcgaw/gluetun
-        command: ["/gluetun", "format-servers", "-purevpn"]
-        securityContext:
-          allowPrivilegeEscalation: true
-          capabilities:
-            drop: ["ALL"]
-          runAsNonRoot: false
-          seccompProfile:
-            type: RuntimeDefault
-      restartPolicy: Never
-  backoffLimit: 0
+      template:
+        spec:
+          containers:
+          - name: gluetun
+            image: qmcgaw/gluetun
+            command: ["/gluetun", "format-servers", "-purevpn"]
+            securityContext:
+              allowPrivilegeEscalation: true
+              capabilities:
+                drop: ["ALL"]
+              runAsNonRoot: false
+              seccompProfile:
+                type: RuntimeDefault
+          restartPolicy: Never
