@@ -84,7 +84,7 @@ spec:
         targetSelectAll: true
 
     addons:
-      vpn:
+      gluetun:
         type: gluetun
         killSwitch: true
         excludedNetworks_IPv4:
