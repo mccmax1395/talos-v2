@@ -6,6 +6,7 @@ metadata:
   annotations:
     "reconcile.fluxcd.io/recreate": "true"  # ensures Flux re-creates on changes
 spec:
+  force: true
   restartPolicy: Never
   securityContext:
     runAsNonRoot: false
