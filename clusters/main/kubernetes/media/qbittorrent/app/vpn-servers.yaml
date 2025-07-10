@@ -3,8 +3,6 @@ kind: Pod
 metadata:
   name: gluetun-formatter
   namespace: qbittorrent
-  annotations:
-    "reconcile.fluxcd.io/recreate": "true"  # ensures Flux re-creates on changes
 spec:
   # force: true
   restartPolicy: Never
