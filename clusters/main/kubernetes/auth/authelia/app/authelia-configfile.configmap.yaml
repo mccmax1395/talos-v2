@@ -29,7 +29,7 @@ data:
         users_filter: '(&({username_attribute}={input})(objectClass=person))'
         groups_filter: '(&(member={dn})(objectClass=groupOfNames))'
         attributes:
-          usernamee: uid
+          username: uid
           display_name: cn
           mail: mail
           group_name: cn
