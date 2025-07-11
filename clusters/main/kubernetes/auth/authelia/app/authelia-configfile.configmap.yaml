@@ -26,12 +26,14 @@ data:
         password: ${LLDAP_PASSWORD}
         additional_users_dn: ou=people
         additional_groups_dn: ou=groups
-        usernamee: uid
-        display_name: cn
-        mail: mail
         users_filter: '(&({username_attribute}={input})(objectClass=person))'
         groups_filter: '(&(member={dn})(objectClass=groupOfNames))'
-        group_name_attribute: cn
+        attributes:
+          usernamee: uid
+          display_name: cn
+          mail: mail
+          group_name: cn
+
 
     access_control:
       default_policy: 'deny'
