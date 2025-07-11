@@ -35,7 +35,9 @@ spec:
       stopAll: false
     blocking:
       blacklist:
-        - https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/pro.txt
+        - name: hagezi
+          lists:
+            - https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/pro.txt
     service:
       dns:
         externalTrafficPolicy: Local
