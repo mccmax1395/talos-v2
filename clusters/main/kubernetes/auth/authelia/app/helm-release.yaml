@@ -34,6 +34,7 @@ spec:
         main:
           enabled: true
           annotations:
+            fluxcd.io/force-redeploy: "nownow"
           ingressClassName: external
           integrations:
             traefik:
@@ -68,13 +69,13 @@ spec:
       #   readOnly: true
       #   type: secret
       #   objectName: private-pem-secret
-      # secrets:
-      #   enabled: true
-      #   type: secret
-      #   objectName: authelia-oidc-secret
-      #   expandObjectName: false
-      #   mountPath: /config/secret
-      #   readOnly: true
+      secrets:
+        enabled: true
+        type: secret
+        objectName: authelia-oidc-secret
+        expandObjectName: false
+        mountPath: /config/secret
+        readOnly: true
       configfile:
         enabled: true
         type: configmap
