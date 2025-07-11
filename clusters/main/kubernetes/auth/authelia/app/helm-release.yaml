@@ -62,14 +62,14 @@ spec:
     persistence:
       config:
         enabled: true
-      private-key:
-        enabled: true
-        mountPath: /opt/private.pem
-        subPath: private.pem
-        readOnly: true
-        type: secret
-        objectName: private-pem-secret
-      secrets:
+      # private-key:
+      #   enabled: true
+      #   mountPath: /opt/private.pem
+      #   subPath: private.pem
+      #   readOnly: true
+      #   type: secret
+      #   objectName: private-pem-secret
+      # secrets:
         enabled: true
         type: secret
         objectName: authelia-oidc-secret
@@ -87,10 +87,10 @@ spec:
     secret:
       authelia-configfile:
         enabled: false
-      private-pem-secret:
-        enabled: true
-        data:
-          private.pem: |
-            {{ genPrivateKey "rsa" | nindent 2 | trim }}
+      # private-pem-secret:
+      #   enabled: true
+      #   data:
+      #     private.pem: |
+      #       {{ genPrivateKey "rsa" | nindent 2 | trim }}
     
       

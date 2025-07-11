@@ -138,7 +138,7 @@ data:
           - algorithm: "RS256"
             use: "sig"
             key: |
-              {{ secret "/config/secret/jwks_key.pem" | mindent 10 "|" | msquote }}
+              {{ ${AUTHELIA_JWT_KEY} | mindent 10 "|" | msquote }}
         clients:
           - client_id: ${MEALIE_OIDC_CLIENT_ID}
             client_name: "Mealie"
