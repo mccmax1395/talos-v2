@@ -40,13 +40,13 @@ spec:
     #             value: "1"
     #           - name: net.ipv6.conf.lo.disable_ipv6
     #             value: "1"
-    service:
-      main:
-        type: LoadBalancer
-        loadBalancerIP: ${JELLYFIN_IP}
-        ports:
-          main:
-            port: 7878 # Default jellyfin port
+    # service:
+    #   main:
+    #     type: LoadBalancer
+    #     loadBalancerIP: ${JELLYFIN_IP}
+    #     ports:
+    #       main:
+    #         port: 7878 # Default jellyfin port
         # integrations:
         #   homepage:
         #       enabled: true
