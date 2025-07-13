@@ -16,7 +16,7 @@ spec:
           restartPolicy: OnFailure
           containers:
             - name: mam-update
-              image: bitnami/kubectl:latest
+              image: bash:5.1
               command:
                 - sh
                 - /config/mam-script.sh
