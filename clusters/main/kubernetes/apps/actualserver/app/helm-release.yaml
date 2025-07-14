@@ -28,16 +28,28 @@ spec:
       retries: 3
   uninstall:
     keepHistory: false
+  
   values:
+    workload:
+      main:
+        podSpec:
+          containers:
+            main:
+              env:
+                ACTUAL_OPENID_DISCOVERY_URL='http://authelia.authelia.svc.cluster.local'
+                ACTUAL_OPENID_CLIENT_ID=${ACTUAL_OIDC_CLIENT_ID}
+                ACTUAL_OPENID_CLIENT_SECRET=${ACTUAL_OIDC_CLIENT_SECRET}
+                ACTUAL_OPENID_SERVER_HOSTNAME='http://actualserver.actualserver.svc.cluster.local'
+                ACTUAL_OPENID_AUTH_METHOD=oauth2
     ingress:
         main:
           enabled: true
           ingressClassName: internal
-          # annotations:
-          #   nginx.ingress.kubernetes.io/auth-method: 'GET'
-          #   nginx.ingress.kubernetes.io/auth-url: 'http://authelia.authelia.svc.cluster.local:9091/api/verify'
-          #   nginx.ingress.kubernetes.io/auth-signin:  "https://auth.${DOMAIN_0}/sso/OID/start/authelia?rd=$scheme://$host$request_uri"
-          #   nginx.ingress.kubernetes.io/auth-response-headers: 'Remote-User,Remote-Name,Remote-Groups,Remote-Email'
+          annotations:
+            nginx.ingress.kubernetes.io/auth-method: 'GET'
+            nginx.ingress.kubernetes.io/auth-url: 'http://authelia.authelia.svc.cluster.local:9091/api/verify'
+            nginx.ingress.kubernetes.io/auth-signin:  "https://auth.${DOMAIN_0}/sso/OID/start/authelia?rd=$scheme://$host$request_uri"
+            nginx.ingress.kubernetes.io/auth-response-headers: 'Remote-User,Remote-Name,Remote-Groups,Remote-Email'
           integrations:
             traefik:
               enabled: false

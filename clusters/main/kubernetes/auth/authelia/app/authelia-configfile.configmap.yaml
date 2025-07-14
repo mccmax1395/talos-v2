@@ -58,9 +58,10 @@ data:
       #     - '^/System/Info/Public$'
       #     - '^/(api|sso)(/|$)'
         # policy: bypass
+      # Added so that ABS app can bypass.
       - domain:
           - "abs.${DOMAIN_0}"
-          - "jellyfin.${DOMAIN_0}"
+          # - "jellyfin.${DOMAIN_0}"
         policy: bypass
         resources:
           - "^/socket.io([/?].*)?$"
@@ -69,25 +70,25 @@ data:
           - "^/login([/?].*)?$"
           - "^/status([/?].*)?$"
           - "^/auth([/?].*)?$"
-      - domain:
-          - ${DOMAIN_0}
-          - '*.${DOMAIN_0}'
-        policy: bypass
-        resources:
-        - "^/api([/?].*)?$"
-        - "^/oauth2/.*$" 
-        - "^/identity.*$"
-        - "^/triggers.*$"
-        - "^/meshagents.*$"
-        - "^/meshsettings.*$"
-        - "^/agent.*$"
-        - "^/control.*$"
-        - "^/meshrelay.*$"
-        - "^/wl.*$"
-        - "^/auth$"
-        - "^/auth/.*"
-        - "^/auth/openid/callback"
-        - "^/auth/openid/mobile-redirect"
+      # - domain:
+      #     - ${DOMAIN_0}
+      #     - '*.${DOMAIN_0}'
+      #   policy: bypass
+      #   resources:
+      #   - "^/api([/?].*)?$"
+      #   - "^/oauth2/.*$" 
+      #   - "^/identity.*$"
+      #   - "^/triggers.*$"
+      #   - "^/meshagents.*$"
+      #   - "^/meshsettings.*$"
+      #   - "^/agent.*$"
+      #   - "^/control.*$"
+      #   - "^/meshrelay.*$"
+      #   - "^/wl.*$"
+      #   - "^/auth$"
+      #   - "^/auth/.*"
+      #   - "^/auth/openid/callback"
+      #   - "^/auth/openid/mobile-redirect"
       - domain:
         - "mealie.${DOMAIN_0}"
         policy: one_factor
@@ -184,21 +185,20 @@ data:
             access_token_signed_response_alg: 'none'
             userinfo_signed_response_alg: 'none'
             token_endpoint_auth_method: 'client_secret_basic'
-          - client_id: ${JELLYFIN_OIDC_CLIENT_ID}
-            client_name: 'Jellyfin'
-            client_secret: ${JELLYFIN_OIDC_HASHED_CLIENT_SECRET}
+          - client_id: ${ACTUAL_OIDC_CLIENT_ID}
+            client_name: 'Actual'
+            client_secret: ${ACTUAL_OIDC_HASHED_CLIENT_SECRET}
             public: false
             authorization_policy: 'one_factor'
-            require_pkce: true
-            pkce_challenge_method: 'S256'
+            require_pkce: false
+            pkce_challenge_method: ''
             redirect_uris:
-              - 'https://jellyfin.${DOMAIN_0}/sso/OID/redirect/authelia'
-              - 'https://jellyfin.${DOMAIN_0}/sso/OID/r/authelia'
-              - 'https://jellyfin.${DOMAIN_0}/sso/OID/start/authelia'
+              - 'https://actual-budget.example.com/openid/callback'
             scopes:
               - 'openid'
               - 'profile'
               - 'groups'
+              - 'email'
             response_types:
               - 'code'
             grant_types:
@@ -206,4 +206,4 @@ data:
             consent_mode: implicit
             access_token_signed_response_alg: 'none'
             userinfo_signed_response_alg: 'none'
-            token_endpoint_auth_method: 'client_secret_post'
+            token_endpoint_auth_method: 'client_secret_basic'
