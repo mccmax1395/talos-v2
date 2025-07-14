@@ -193,7 +193,7 @@ data:
             require_pkce: false
             pkce_challenge_method: ''
             redirect_uris:
-              - 'https://actual-budget.example.com/openid/callback'
+              - 'https://actual.${DOMAIN_0}/openid/callback'
             scopes:
               - 'openid'
               - 'profile'
