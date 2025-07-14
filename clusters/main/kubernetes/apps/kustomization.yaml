@@ -5,3 +5,4 @@ resources:
   - kubernetes-dashboard/ks.yaml
   - mealie/ks.yaml
   - homepage/ks.yaml
+  - grafana/ks.yaml
