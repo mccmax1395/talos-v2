@@ -33,10 +33,11 @@ data:
           - "^/login([/?].*)?$"
           - "^/status([/?].*)?$"
           - "^/auth([/?].*)?$"
+      #Only allow me to access
       - domain: 
         - actual.${DOMAIN_0}
         subject:
-        - ['user:mccmax95']
+        - ['group:actual-budget-users']
         policy: one_factor
         resources:
           - "^/.*$"
