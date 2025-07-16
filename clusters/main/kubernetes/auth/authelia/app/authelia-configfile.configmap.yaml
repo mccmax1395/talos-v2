@@ -42,6 +42,14 @@ data:
       #   resources:
       #     - "^/.*$"
 
+      # #Only allow certain people to access ARR stack
+      - domain: 
+        - prowlarr.${DOMAIN_0}
+        subject:
+        - ['group:mateys']
+        policy: one_factor
+        resources:
+          - "^/.*$"
       - domain:
         - "abs.${DOMAIN_0}"
         - "mealie.${DOMAIN_0}"
