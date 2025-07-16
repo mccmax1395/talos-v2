@@ -66,4 +66,5 @@ spec:
         mountPath: /config
         type: configmap
         objectName: beets-config
+        subPath: config.yaml
 
