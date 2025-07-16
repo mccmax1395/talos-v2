@@ -21,47 +21,9 @@ data:
         password: ${LLDAP_PASSWORD}
     access_control:
       default_policy: 'deny'
-      rules:
-      - domain: "jellyfin.${DOMAIN_0}"
-        resources:
-          # public info & health
-          # - '^/System/Info/Public$'
-          - '^/[Ss]ystem/[Ii]nfo/[Pp]ublic$'
-          - '^/Playback/BitrateTest$' 
-          - '^/Streamyfin/config$'
-          - '^/Users/AuthenticateByName'
-          - '^/QuickConnect/Initiate'
-          - '^/QuickConnect/Connect'
-          - '^/Users/AuthenticateWithQuickConnect$'
-          - '^/Sessions$'
-          - '^/Items/Suggestions$'
-          - '^/Shows/NextUp$'
-
-          # - '^/system/info/public$'
-          # - '^/System/Info/?$'
-          # - '^/Ping$'
-          # mobile login
-          # - '^/Sessions/AuthenticateByName$'
-          # - '^/Users/AuthenticateByName$'
-          - '^/api/verify$'
-        policy: bypass
-
-      - domain: "jellyfin.${DOMAIN_0}"
-        resources:
-          - '^/sso/OID/redirect/authelia$'
-          - '^/sso/OID/r/authelia$'
-        policy: bypass
-      # - domain: "jellyfin.${DOMAIN_0}"
-      #   resources:
-      #     - '^/Users/AuthenticateByName$'
-      #     - '^/Sessions/AuthenticateByName$'
-      #     - '^/System/Info/Public$'
-      #     - '^/(api|sso)(/|$)'
-        # policy: bypass
       # Added so that ABS app can bypass.
       - domain:
-          - "abs.${DOMAIN_0}"
-          # - "jellyfin.${DOMAIN_0}"
+        - "abs.${DOMAIN_0}"
         policy: bypass
         resources:
           - "^/socket.io([/?].*)?$"
@@ -70,47 +32,21 @@ data:
           - "^/login([/?].*)?$"
           - "^/status([/?].*)?$"
           - "^/auth([/?].*)?$"
-      # - domain:
-      #     - ${DOMAIN_0}
-      #     - '*.${DOMAIN_0}'
-      #   policy: bypass
-      #   resources:
-      #   - "^/api([/?].*)?$"
-      #   - "^/oauth2/.*$" 
-      #   - "^/identity.*$"
-      #   - "^/triggers.*$"
-      #   - "^/meshagents.*$"
-      #   - "^/meshsettings.*$"
-      #   - "^/agent.*$"
-      #   - "^/control.*$"
-      #   - "^/meshrelay.*$"
-      #   - "^/wl.*$"
-      #   - "^/auth$"
-      #   - "^/auth/.*"
-      #   - "^/auth/openid/callback"
-      #   - "^/auth/openid/mobile-redirect"
-      - domain:
-        - "mealie.${DOMAIN_0}"
+      - domain: 
+        - actual.${DOMAIN_0}
+        subject:
+          -['user:mccmax95']
         policy: one_factor
         resources:
           - "^/.*$"
+
       - domain:
         - "abs.${DOMAIN_0}"
-        - "jellyfin.${DOMAIN_0}"
+        - "mealie.${DOMAIN_0}"
         - "organizr.${DOMAIN_0}"
         policy: one_factor
         resources:
           - "^/.*$"
-      # - domain:
-      #   - "organizr.${DOMAIN_0}"
-      #   policy: one_factor
-      #   resources:
-      #     - "^/.*$"
-      # - domain:
-      #   - "jellyfin.${DOMAIN_0}"
-      #   policy: one_factor
-      #   resources:
-      #     - "^/.*$"
     session:
       cookies:
         - domain: '${DOMAIN_0}'
