@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - audiobookshelf/ks.yaml
   - bazarr/ks.yaml
+  - beets/ks.yaml
   - flaresolverr/ks.yaml
   - jellyfin/ks.yaml
   - jellyseerr/ks.yaml
