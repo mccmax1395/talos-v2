@@ -61,9 +61,9 @@ spec:
         path: /mnt/playground/media
         mountPath: "/Media"
         server: 192.168.1.98
-    config:
-      enabled: true
-      mountPath: /config
-      type: configmap
-      name: beets-config
+      config:
+        enabled: true
+        mountPath: /config
+        type: configmap
+        name: beets-config
 
