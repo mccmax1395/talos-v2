@@ -21,6 +21,7 @@ data:
         password: ${LLDAP_PASSWORD}
     access_control:
       default_policy: 'deny'
+      rules:
       # Added so that ABS app can bypass.
       - domain:
         - "abs.${DOMAIN_0}"
