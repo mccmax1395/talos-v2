@@ -44,6 +44,7 @@ data:
 
       # #Only allow certain people to access ARR stack
       - domain: 
+        - bazarr.${DOMAIN_0}
         - prowlarr.${DOMAIN_0}
         subject:
         - ['group:mateys']
