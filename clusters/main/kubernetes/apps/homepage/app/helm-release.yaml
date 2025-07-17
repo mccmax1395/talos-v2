@@ -47,6 +47,7 @@ spec:
                   pathType: Prefix
     configmap:
       config:
+
         enabled: true
         data:
           custom.js: ""
@@ -76,7 +77,7 @@ spec:
                   style: row
                   columns: 3
           services.yaml: |
-            - Arr Stack:
+            []
             
     workload:
       main:
