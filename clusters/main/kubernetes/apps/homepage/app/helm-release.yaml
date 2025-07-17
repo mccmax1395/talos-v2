@@ -75,6 +75,10 @@ spec:
               - Default:
                   style: row
                   columns: 3
+          services.yaml: |
+            ---
+            - Arr Stack:
+            
     workload:
       main:
         podSpec:
