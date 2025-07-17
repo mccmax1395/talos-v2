@@ -45,7 +45,11 @@ data:
       # #Only allow certain people to access ARR stack
       - domain: 
         - bazarr.${DOMAIN_0}
+        - profilarr.${DOMAIN_0}
         - prowlarr.${DOMAIN_0}
+        - qbit.${DOMAIN_0}
+        - radarr.${DOMAIN_0}
+        - sonarr.${DOMAIN_0}
         subject:
         - ['group:mateys']
         policy: one_factor
