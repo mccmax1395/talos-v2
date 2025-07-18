@@ -95,7 +95,7 @@ spec:
           enabled: true
           ingressClassName: internal
           hosts:
-            - host: cs-homepage.${BASE_DOMAIN}
+            - host: cs-homepage.${DOMAIN_0}
           integrations:
             certManager:
               enabled: true
