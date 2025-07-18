@@ -116,4 +116,4 @@ spec:
                 externalHost: "auth.${DOMAIN_0}"
             certManager:
               enabled: true
-              certificateIssuer: general-le-prod
+              certificateIssuer: domain-0-le-prod
