@@ -28,11 +28,6 @@ spec:
       retries: 3
   uninstall:
     keepHistory: false
-  values:
-    global:
-    integrations:
-      traefik:
-        enabled: false
     ingress:
         main:
           enabled: true
@@ -101,8 +96,6 @@ spec:
             codeserver:
               port: 36107
         ingress:
-          traefik:
-            enabled: false
           enabled: true
           ingressClassName: "internal" 
           hosts:
@@ -112,6 +105,8 @@ spec:
                   # Ignored if not kubeVersion >= 1.14-0
                   pathType: Prefix
           integrations:
+            traefik:
+            enabled: false
             nginx:
               enabled: true
               auth:
