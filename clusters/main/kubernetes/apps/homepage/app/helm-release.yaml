@@ -108,12 +108,12 @@ spec:
           integrations:
             traefik:
               enabled: false
-            nginx:
-              enabled: true
-              auth:
-                type: "authelia"
-                internalHost: "authelia.authelia.svc.cluster.local:9091"
-                externalHost: "auth.${DOMAIN_0}"
+            # nginx:
+            #   enabled: true
+            #   auth:
+            #     type: "authelia"
+            #     internalHost: "authelia.authelia.svc.cluster.local:9091"
+            #     externalHost: "auth.${DOMAIN_0}"
             certManager:
               enabled: true
               certificateIssuer: domain-0-le-prod
