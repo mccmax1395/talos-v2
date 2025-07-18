@@ -29,6 +29,10 @@ spec:
   uninstall:
     keepHistory: false
   values:
+    global:
+    integrations:
+      traefik:
+        enabled: false
     ingress:
         main:
           enabled: true
@@ -91,12 +95,29 @@ spec:
     addons:
       codeserver:
         enabled: true
+        service:
+          type: "ClusterIP"
+          ports:
+            codeserver:
+              port: 36107
         ingress:
+          traefik:
+            enabled: false
           enabled: true
-          ingressClassName: internal
+          ingressClassName: "internal" 
           hosts:
-            - host: cs-homepage.${DOMAIN_0}
+            - host: editor.homepage.${DOMAIN_0}
+              paths:
+                - path: /
+                  # Ignored if not kubeVersion >= 1.14-0
+                  pathType: Prefix
           integrations:
+            nginx:
+              enabled: true
+              auth:
+                type: "authelia"
+                internalHost: "authelia.authelia.svc.cluster.local:9091"
+                externalHost: "auth.${DOMAIN_0}"
             certManager:
               enabled: true
-              certificateIssuer: cloudflare
+              certificateIssuer: general-le-prod
