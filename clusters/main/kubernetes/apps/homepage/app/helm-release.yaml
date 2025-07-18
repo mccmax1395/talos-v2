@@ -91,11 +91,11 @@ spec:
     addons:
       codeserver:
         enabled: true
-        service:
-          type: "ClusterIP"
-          ports:
-            codeserver:
-              port: 36107
+        # service:
+        #   type: "ClusterIP"
+        #   ports:
+        #     codeserver:
+        #       port: 36107
         ingress:
           enabled: true
           ingressClassName: "internal" 
