@@ -91,29 +91,12 @@ spec:
     addons:
       codeserver:
         enabled: true
-        service:
-          type: "ClusterIP"
-          ports:
-            codeserver:
-              port: 36107
         ingress:
-          traefik:
-            enabled: false
           enabled: true
-          ingressClassName: "internal" 
+          ingressClassName: internal
           hosts:
-            - host: editor.homepage.${DOMAIN_0}
-              paths:
-                - path: /
-                  # Ignored if not kubeVersion >= 1.14-0
-                  pathType: Prefix
+            - host: cs-homepage.${BASE_DOMAIN}
           integrations:
-            nginx:
-              enabled: true
-              auth:
-                type: "authelia"
-                internalHost: "authelia.authelia.svc.cluster.local:9091"
-                externalHost: "auth.${DOMAIN_0}"
             certManager:
               enabled: true
-              certificateIssuer: general-le-prod
+              certificateIssuer: cloudflare
