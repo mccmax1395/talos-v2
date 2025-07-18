@@ -97,6 +97,8 @@ spec:
             codeserver:
               port: 36107
         ingress:
+          traefik:
+              enabled: false
           enabled: true
           ingressClassName: "internal" 
           hosts:
