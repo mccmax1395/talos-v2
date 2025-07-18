@@ -4,6 +4,6 @@ resources:
   - actualserver/ks.yaml
   - kubernetes-dashboard/ks.yaml
   - mealie/ks.yaml
-  # - homepage/ks.yaml
+  - homepage/ks.yaml
   #disabled due to insufficient resources.  Try turning it back on later once all other apps have been spun down
   # - grafana/ks.yaml
