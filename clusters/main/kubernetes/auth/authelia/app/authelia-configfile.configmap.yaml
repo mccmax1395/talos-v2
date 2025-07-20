@@ -22,6 +22,10 @@ data:
     access_control:
       default_policy: 'deny'
       rules:
+      - domain: radarr.${DOMAIN_0}
+        resources:
+          - ^/uptime-kuma-health$
+        policy: bypass
       # Added so that ABS app can bypass.
       - domain:
         - "abs.${DOMAIN_0}"
