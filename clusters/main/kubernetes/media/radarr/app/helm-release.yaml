@@ -68,16 +68,16 @@ spec:
                   pathType: Prefix
                 - path: /uptime-kuma-health
                   pathType: Exact
-                  # pathRewrite: false  # Optional, depending on chart
-                  # # Add an annotation override for this path (optional)
-                  # extraPaths:
-                  #   - path: /uptime-kuma-health
-                  #     pathType: Exact
-                  #     backend:
-                  #       service:
-                  #         name: radarr  # assuming the same service can serve this
-                  #         port:
-                  #           number: 7878
+                  pathRewrite: false  # Optional, depending on chart
+                  # Add an annotation override for this path (optional)
+                  extraPaths:
+                    - path: /uptime-kuma-health
+                      pathType: Exact
+                      backend:
+                        service:
+                          name: radarr  # assuming the same service can serve this
+                          port:
+                            number: 7878
     # service:
       # main:
       #   type: LoadBalancer
