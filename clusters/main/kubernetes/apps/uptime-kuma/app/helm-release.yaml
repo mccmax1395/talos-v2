@@ -36,6 +36,7 @@ spec:
       #   ports:
       #     main:
       #       port: 9000 # Default uptime-kuma port
+  values:
     ingress:
         main:
           enabled: true
