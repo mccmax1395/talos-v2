@@ -24,8 +24,11 @@ data:
       rules:
       - domain: radarr.${DOMAIN_0}
         resources:
-          - ^/uptime-kuma-health$
+          - ^/$
+          - ^/ping$
         policy: bypass
+        networks:
+         - 172.16.0.0/24
       # Added so that ABS app can bypass.
       - domain:
         - "abs.${DOMAIN_0}"
