@@ -4,7 +4,7 @@ metadata:
   name: uptime-kuma
   namespace: uptime-kuma
 spec:
-  interval: 15m
+  interval: 5m
   chart:
     spec:
       chart: uptime-kuma
@@ -13,53 +13,32 @@ spec:
         kind: HelmRepository
         name: truecharts
         namespace: flux-system
-      interval: 15m
-  timeout: 5m
-  maxHistory: 3
-  driftDetection:
-    mode: warn
+      interval: 5m
   install:
     createNamespace: true
+    crds: CreateReplace
     remediation:
       retries: 3
   upgrade:
-    cleanupOnFail: true
+    crds: CreateReplace
     remediation:
       retries: 3
-  uninstall:
-    keepHistory: false
-
-    # service:
-      # main:
-      #   type: LoadBalancer
-      #   loadBalancerIP: ${uptime-kuma_IP}
-      #   ports:
-      #     main:
-      #       port: 9000 # Default uptime-kuma port
   values:
+    global:
+      stopAll: false
+    resources:
+      requests:
+        cpu: 10m
     ingress:
-        main:
-          enabled: true
-          ingressClassName: internal
-          integrations:
-            # nginx:
-            #   enabled: true
-            #   auth:
-            #     type: "authelia"
-            #     internalHost: "authelia.authelia.svc.cluster.local:9091"
-            #     externalHost: "auth.${DOMAIN_0}"
-            traefik:
-              enabled: false
-            certManager:
-              enabled: true
-              certificateIssuer: domain-0-le-prod
-            homepage:
-              enabled: true
-              group: Tools
-              widget:
-                enabled: false
-          hosts:
-            - host: uptime.${DOMAIN_0}
-              paths:
-                - path: /
-                  pathType: Prefix
+      main:
+        enabled: true
+        ingressClassName: internal
+        integrations:
+          certManager:
+            enabled: true
+            certificateIssuer: domain-0-le-prod
+        hosts:
+          - host: uptime.${DOMAIN_0}
+    metrics:
+      main:
+        enabled: false
