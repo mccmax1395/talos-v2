@@ -48,7 +48,7 @@ spec:
                 ACTUAL_OPENID_CLIENT_SECRET: ${ACTUAL_OIDC_CLIENT_SECRET}
                 ACTUAL_OPENID_SERVER_HOSTNAME: 'https://actual.${DOMAIN_0}'
                 ACTUAL_OPENID_AUTH_METHOD: oauth2
-                ACTUAL_TOKEN_EXPIRATION: 86400
+                ACTUAL_TOKEN_EXPIRATION: "86400"
     ingress:
         main:
           enabled: true
