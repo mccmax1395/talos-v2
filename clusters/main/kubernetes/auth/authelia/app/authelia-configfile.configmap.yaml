@@ -37,6 +37,8 @@ data:
         - "abs.${DOMAIN_0}"
         policy: bypass
         resources:
+          - "^/_nuxt/.*$"
+          - "^/api([/?].*)?$"
           - "^/socket.io([/?].*)?$"
           - "^/ping([/?].*)?$"
           - "^/webapi([/?].*)?$"
