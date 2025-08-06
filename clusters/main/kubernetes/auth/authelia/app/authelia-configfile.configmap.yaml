@@ -72,6 +72,25 @@ data:
         policy: one_factor
         resources:
           - "^/.*$"
+      - domain:
+          - ${DOMAIN_0}
+          - '*.${DOMAIN_0}'
+        policy: bypass
+        resources:
+        - "^/api([/?].*)?$"
+        - "^/oauth2/.*$" 
+        - "^/identity.*$"
+        - "^/triggers.*$"
+        - "^/meshagents.*$"
+        - "^/meshsettings.*$"
+        - "^/agent.*$"
+        - "^/control.*$"
+        - "^/meshrelay.*$"
+        - "^/wl.*$"
+        - "^/auth$"
+        - "^/auth/.*"
+        - "^/auth/openid/callback"
+        - "^/auth/openid/mobile-redirect"
     session:
       cookies:
         - domain: '${DOMAIN_0}'
