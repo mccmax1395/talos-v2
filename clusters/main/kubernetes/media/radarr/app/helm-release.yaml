@@ -66,8 +66,6 @@ spec:
               paths:
                 - path: /
                   pathType: Prefix
-               - path: /ping
-                  pathType: Exact
     # service:
       # main:
       #   type: LoadBalancer
