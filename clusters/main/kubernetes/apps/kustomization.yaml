@@ -4,6 +4,7 @@ resources:
   - actualserver/ks.yaml
   - kubernetes-dashboard/ks.yaml
   - mealie/ks.yaml
+  - minio/ks.yaml
   - homepage/ks.yaml
   - uptime-kuma/ks.yaml
   #disabled due to insufficient resources.  Try turning it back on later once all other apps have been spun down
