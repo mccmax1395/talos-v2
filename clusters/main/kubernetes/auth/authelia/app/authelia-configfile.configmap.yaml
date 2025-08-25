@@ -33,18 +33,18 @@ data:
          - 172.17.0.0/16
          - 10.0.0.0/8
       # Added so that ABS app can bypass.
-      - domain:
-        - "abs.${DOMAIN_0}"
-        policy: bypass
-        resources:
-          - "^/_nuxt/.*$"
-          - "^/api([/?].*)?$"
-          - "^/socket.io([/?].*)?$"
-          - "^/ping([/?].*)?$"
-          - "^/webapi([/?].*)?$"
-          - "^/login([/?].*)?$"
-          - "^/status([/?].*)?$"
-          - "^/auth([/?].*)?$"
+      # - domain:
+      #   - "abs.${DOMAIN_0}"
+      #   policy: bypass
+      #   resources:
+      #     - "^/_nuxt/.*$"
+      #     - "^/api([/?].*)?$"
+      #     - "^/socket.io([/?].*)?$"
+      #     - "^/ping([/?].*)?$"
+      #     - "^/webapi([/?].*)?$"
+      #     - "^/login([/?].*)?$"
+      #     - "^/status([/?].*)?$"
+      #     - "^/auth([/?].*)?$"
       # #Only allow me to access
       - domain: 
         - actual.${DOMAIN_0}
