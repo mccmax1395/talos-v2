@@ -39,7 +39,7 @@ spec:
     ingress:
         main:
           enabled: true
-          ingressClassName: external
+          ingressClassName: internal
           annotations:
           integrations:
             traefik:
