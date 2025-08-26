@@ -84,7 +84,7 @@ spec:
       fullnameOverride: node-exporter
       prometheus:
         monitor:
-          enabled: true
+          enabled: false
           relabelings:
             - action: replace
               regex: (.*)
