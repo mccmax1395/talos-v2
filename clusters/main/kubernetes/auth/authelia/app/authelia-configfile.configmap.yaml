@@ -135,6 +135,8 @@ data:
               - 'https://abs.${DOMAIN_0}/auth/openid/callback'
               - 'https://abs.${DOMAIN_0}/auth/openid/mobile-redirect'
               - 'audiobookshelf://oauth'
+              - 'shelfplayer://oauth'
+              - 'plappa://oauth'
             scopes:
               - 'openid'
               - 'profile'
