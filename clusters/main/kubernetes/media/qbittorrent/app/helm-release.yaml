@@ -120,6 +120,7 @@ spec:
             OPENVPN_PASSWORD: ${VPN_PASSWORD}
             # SERVER_COUNTRIES: "Canada"
             FIREWALL: "on"
+            FIREWALL_DEBUG: "on"
             FIREWALL_OUTBOUND_SUBNETS: "192.168.168.0/24"
             OPENVPN_PROTOCOL: tcp
             HEALTH_CHECK_ADDRESS: google.com:443
