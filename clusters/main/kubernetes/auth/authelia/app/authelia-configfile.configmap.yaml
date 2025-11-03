@@ -174,7 +174,7 @@ data:
             token_endpoint_auth_method: 'client_secret_basic'
           - client_id: ${KAVITA_OIDC_CLIENT_ID}
             client_name: 'Kavita'
-            client_secret: $KAVITA_OIDC_HASHED_CLIENT_SECRET}
+            client_secret: ${KAVITA_OIDC_HASHED_CLIENT_SECRET}
             public: false
             authorization_policy: 'one_factor'
             require_pkce: false
