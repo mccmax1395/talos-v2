@@ -194,7 +194,7 @@ data:
               - 'profile'
               - 'groups'
               - 'email'
-              # - 'offline_access'
+              - 'offline_access'
             response_types:
               - 'code'
             grant_types:
