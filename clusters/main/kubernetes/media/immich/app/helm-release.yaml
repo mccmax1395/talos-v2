@@ -41,7 +41,12 @@ spec:
         main:
           enabled: true
           ingressClassName: internal
-          # annotations:
+          annotations:
+            nginx.ingress.kubernetes.io/server-snippet: |
+              # Mobile OAuth bridge
+              location = /mobile-callback {
+                return 302 app.immich:///oauth-callback$is_args$args;
+              }
           #   nginx.ingress.kubernetes.io/auth-method: 'GET'
           #   nginx.ingress.kubernetes.io/auth-url: 'http://authelia.authelia.svc.cluster.local:9091/api/verify'
           #   nginx.ingress.kubernetes.io/auth-signin:  "https://auth.${DOMAIN_0}/sso/OID/start/authelia?rd=$scheme://$host$request_uri"
