@@ -69,7 +69,7 @@ data:
           - "^/.*$"
       - domain:
         - "abs.${DOMAIN_0}"
-        - "kavita.${DOMAIN_0}"
+        - "kav.${DOMAIN_0}"
         - "mealie.${DOMAIN_0}"
         - "organizr.${DOMAIN_0}"
         policy: one_factor
