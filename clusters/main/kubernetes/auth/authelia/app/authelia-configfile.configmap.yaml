@@ -188,9 +188,7 @@ data:
             require_pkce: false
             pkce_challenge_method: ''
             redirect_uris:
-              - 'https://kavita.${DOMAIN_0}/openid/callback'
-              - 'https://kavita.${DOMAIN_0}/signin-oidc'
-              - 'https://kavita.${DOMAIN_0}/signout-callback-oidc'
+              - 'https://kav.${DOMAIN_0}/signin-oidc'
             scopes:
               - 'openid'
               - 'profile'
