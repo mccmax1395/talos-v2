@@ -194,7 +194,7 @@ data:
               - 'profile'
               - 'groups'
               - 'email'
-              - 'offline_access'
+              # - 'offline_access'
             response_types:
               - 'code'
             grant_types:
@@ -204,3 +204,25 @@ data:
             userinfo_signed_response_alg: 'none'
             token_endpoint_auth_method: 'client_secret_post'
             claims_policy: kavita_claims_policy
+          - client_id: ${IMMICH_OIDC_CLIENT_ID}
+            client_name: 'immich'
+            client_secret: ${IMMICH_OIDC_HASHED_CLIENT_SECRET}
+            public: false
+            authorization_policy: 'one_factor'
+            require_pkce: false
+            pkce_challenge_method: ''
+            redirect_uris:
+              - 'https://immich.${DOMAIN_0}/auth/login'
+              - 'https://immich.${DOMAIN_0}/user-settings'
+              - 'app.immich:///oauth-callback'
+            scopes:
+              - 'openid'
+              - 'profile'
+              - 'email'
+            response_types:
+              - 'code'
+            grant_types:
+              - 'authorization_code'
+            access_token_signed_response_alg: 'none'
+            userinfo_signed_response_alg: 'none'
+            token_endpoint_auth_method: 'client_secret_post'
