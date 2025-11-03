@@ -54,7 +54,7 @@ data:
         resources:
           - "^/.*$"
       # Role to allow access to immich
-       - domain: 
+      - domain: 
         - immich.${DOMAIN_0}
         subject:
         - ['group:immich-users']
