@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: immich
+  namespace: immich
+  annotations:
+    kubernetes.io/ingress.class: internal        # or use spec.ingressClassName below
+    nginx.ingress.kubernetes.io/server-snippet: |
+      # --- Mobile OAuth bridge ---
+      location = /mobile-callback {
+        return 302 app.immich:///oauth-callback$is_args$args;
+      }
+spec:
+  ingressClassName: internal
+  rules:
+    - host: immich.${DOMAIN_0}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: immich     # replace with your Immich Service name
+                port:
+                  number: 10323         # replace with your Immich Service port
+  tls:
+    - hosts:
+        - immich.${DOMAIN_0}
+      secretName: certificate-issuer-domain-0-wildcard             
