@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: immich
+  name: immich-ingress
   namespace: immich
   annotations:
     kubernetes.io/ingress.class: internal        # or use spec.ingressClassName below
