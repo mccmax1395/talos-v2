@@ -43,6 +43,7 @@ spec:
           containers:
             main:
               env:
+                APP_KEY : "base64:${FIREFLY_LARAVEL_KEY}"
                 # ACTUAL_OPENID_DISCOVERY_URL: 'https://auth.${DOMAIN_0}'
                 # ACTUAL_OPENID_CLIENT_ID: ${ACTUAL_OIDC_CLIENT_ID}
                 # ACTUAL_OPENID_CLIENT_SECRET: ${ACTUAL_OIDC_CLIENT_SECRET}
@@ -76,7 +77,7 @@ spec:
             #   widget:
             #     enabled: false
           hosts:
-            - host: firefly.${DOMAIN_0}
+            - host: ffiii.${DOMAIN_0}
               paths:
                 - path: /
                   pathType: Prefix
