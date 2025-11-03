@@ -10,7 +10,7 @@ resources:
   - jellyfin/ks.yaml
   - jellyseerr/ks.yaml
   - jellyseerr-old/ks.yaml
-  # - kavita/ks.yaml
+  - kavita/ks.yaml
   - lidarr/ks.yaml
   - organizr/ks.yaml
   - profilarr/ks.yaml
