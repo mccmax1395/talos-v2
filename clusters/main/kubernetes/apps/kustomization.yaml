@@ -7,5 +7,6 @@ resources:
   - minio/ks.yaml
   - homepage/ks.yaml
   - uptime-kuma/ks.yaml
+  - fireflyiii/ks.yaml
   #disabled due to insufficient resources.  Try turning it back on later once all other apps have been spun down
   - grafana/ks.yaml
