@@ -214,8 +214,7 @@ data:
             redirect_uris:
               - 'https://immich.${DOMAIN_0}/auth/login'
               - 'https://immich.${DOMAIN_0}/user-settings'
-              - "https://immich.${DOMAIN_0}/mobile-callback"
-              - 'app.immich:///oauth-callback'
+              - 'https://immich.${DOMAIN_0}/mobile-callback'
             scopes:
               - 'openid'
               - 'profile'
