@@ -29,10 +29,10 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    image:
-      repository: ghcr.io/iv-org/invidious
-      tag: rolling
-      pullPolicy: Always
+    # image:
+      # repository: ghcr.io/iv-org/invidious
+      # tag: rolling
+      # pullPolicy: Always
     # resources:
     #   requests:
     #     cpu: 25m
