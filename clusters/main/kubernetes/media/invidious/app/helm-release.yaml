@@ -29,6 +29,10 @@ spec:
   uninstall:
     keepHistory: false
   values:
+    image:
+      repository: ghcr.io/iv-org/invidious
+      tag: rolling
+      pullPolicy: Always
     # resources:
     #   requests:
     #     cpu: 25m
@@ -40,6 +44,11 @@ spec:
         main:
           enabled: true
           ingressClassName: internal
+          annotations:
+            nginx.ingress.kubernetes.io/proxy-buffering: "off"
+            nginx.ingress.kubernetes.io/proxy-read-timeout: "900"
+            nginx.ingress.kubernetes.io/proxy-send-timeout: "900"
+            nginx.ingress.kubernetes.io/proxy-body-size: "0"
           integrations:
             nginx:
               enabled: true
