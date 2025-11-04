@@ -6,7 +6,7 @@ resources:
   # - beets/ks.yaml
   - flaresolverr/ks.yaml
   - invidious/ks.yaml
-  # - immich/ks.yaml
+  - immich/ks.yaml
   - jellyfin/ks.yaml
   - jellyseerr/ks.yaml
   - jellyseerr-old/ks.yaml
