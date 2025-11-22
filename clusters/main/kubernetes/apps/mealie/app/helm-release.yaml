@@ -31,17 +31,12 @@ spec:
   values:
     workload:
       main:
-        replicas: 1
-        strategy: RollingUpdate
-        # rollingUpdate:
-        #   maxUnavailable: 0   # never drop the only pod
-        #   maxSurge: 1   
-        # minReadySeconds: 20      
+        replicas: 2
+        strategy: RollingUpdate     
         podSpec:
           terminationGracePeriodSeconds: 45
           containers:
             main:
-              # Use TrueCharts probes (not raw *_Probe) so the common library handles them
               probes:
                 startup:
                   enabled: true
@@ -49,7 +44,7 @@ spec:
                   path: /
                   spec:
                     periodSeconds: 2
-                    failureThreshold: 300    # ~10 minutes for long migrations
+                    failureThreshold: 300 
                 readiness:
                   enabled: true
                   type: http
@@ -68,21 +63,6 @@ spec:
                     periodSeconds: 10
                     timeoutSeconds: 2
                     failureThreshold: 3
-
-              # lifecycle:
-              #   preStop:
-              #     enabled: true
-              #     type: exec
-              #     command: ["sh","-c","sleep 15"]
-
-
-    # service:
-      # main:
-      #   type: LoadBalancer
-      #   loadBalancerIP: ${MEALIE_IP}
-      #   ports:
-      #     main:
-      #       port: 9000 # Default mealie port
     mealie:
       frontend:
         theme:
@@ -107,11 +87,6 @@ spec:
         main:
           enabled: true
           ingressClassName: internal
-          # annotations:
-          #   nginx.ingress.kubernetes.io/auth-method: 'GET'
-          #   nginx.ingress.kubernetes.io/auth-url: 'http://authelia.authelia.svc.cluster.local:9091/api/verify'
-          #   nginx.ingress.kubernetes.io/auth-signin:  "https://auth.${DOMAIN_0}/?rd=$scheme://$host$request_uri"
-          #   nginx.ingress.kubernetes.io/auth-response-headers: 'Remote-User,Remote-Name,Remote-Groups,Remote-Email'
           integrations:
             nginx:
               enabled: true
@@ -139,27 +114,3 @@ spec:
               paths:
                 - path: /
                   pathType: Prefix
-        # internal:
-        #   enabled: true
-        #   ingressClassName: internal
-        #   annotations:
-        #     nginx.ingress.kubernetes.io/auth-method: 'GET'
-        #     nginx.ingress.kubernetes.io/auth-url: 'http://authelia.authelia.svc.cluster.local:9091/api/verify'
-        #     nginx.ingress.kubernetes.io/auth-signin:  "https://auth.${DOMAIN_0}/?rd=$scheme://$host$request_uri"
-        #     nginx.ingress.kubernetes.io/auth-response-headers: 'Remote-User,Remote-Name,Remote-Groups,Remote-Email'
-        #   integrations:
-        #     traefik:
-        #       enabled: false
-        #     certManager:
-        #       enabled: true
-        #       certificateIssuer: domain-0-le-prod
-        #     homepage:
-        #       enabled: true
-        #       group: Tools
-        #       widget:
-        #         enabled: false
-        #   hosts:
-        #     - host: mealie-internal.${DOMAIN_0}
-        #       paths:
-        #         - path: /
-        #           pathType: Prefix
