@@ -35,12 +35,41 @@ spec:
         strategy: RollingUpdate
         rollingUpdate:
           maxUnavailable: 0   # never drop the only pod
-          maxSurge: 1         # temporarily run 2 pods during the update
-        # podSpec:
-        #   containers:
-        #     main:
-        #       env:
-        #         OIDC_CLIENT_SECRET: ${MEALIE_OIDC_CLIENT_SECRET}
+          maxSurge: 1   
+        minReadySeconds: 20      
+        podSpec:
+          terminationGracePeriodSeconds: 30
+          containers:
+            main:
+              startupProbe:
+                httpGet:
+                  path: /
+                  port: 9000
+                failureThreshold: 30   # ~60s with periodSeconds=2
+                periodSeconds: 2
+              readinessProbe:
+                httpGet:
+                  path: /
+                  port: 9000
+                initialDelaySeconds: 5
+                periodSeconds: 5
+                timeoutSeconds: 2
+                failureThreshold: 3
+              livenessProbe:
+                httpGet:
+                  path: /
+                  port: 9000
+                initialDelaySeconds: 30
+                periodSeconds: 10
+                timeoutSeconds: 2
+                failureThreshold: 3
+
+              # Let the Ingress/Service drain the pod before kill
+              lifecycle:
+                preStop:
+                  exec:
+                    command: ["sh","-c","sleep 10"]
+
 
     # service:
       # main:
