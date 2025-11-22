@@ -36,7 +36,7 @@ spec:
         rollingUpdate:
           maxUnavailable: 0   # never drop the only pod
           maxSurge: 1   
-        minReadySeconds: 30      
+        minReadySeconds: 20      
         podSpec:
           terminationGracePeriodSeconds: 45
           containers:
