@@ -67,8 +67,12 @@ spec:
               # Let the Ingress/Service drain the pod before kill
               lifecycle:
                 preStop:
-                  exec:
-                    command: ["sh","-c","sleep 10"]
+                  enabled: true
+                  type: exec
+                  command:
+                    - sh
+                    - -c
+                    - sleep 10
 
 
     # service:
