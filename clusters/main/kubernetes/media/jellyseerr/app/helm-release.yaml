@@ -29,6 +29,40 @@ spec:
   uninstall:
     keepHistory: false
   values:
+    workload:
+      main:
+        replicas: 2
+        strategy: RollingUpdate     
+        podSpec:
+          terminationGracePeriodSeconds: 45
+          containers:
+            main:
+              probes:
+                startup:
+                  enabled: true
+                  type: http
+                  path: /
+                  spec:
+                    periodSeconds: 2
+                    failureThreshold: 300 
+                readiness:
+                  enabled: true
+                  type: http
+                  path: /
+                  spec:
+                    initialDelaySeconds: 5
+                    periodSeconds: 5
+                    timeoutSeconds: 2
+                    failureThreshold: 3
+                liveness:
+                  enabled: true
+                  type: http
+                  path: /
+                  spec:
+                    initialDelaySeconds: 60
+                    periodSeconds: 10
+                    timeoutSeconds: 2
+                    failureThreshold: 3
     ingress:
         main:
           enabled: true

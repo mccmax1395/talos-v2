@@ -28,6 +28,57 @@ spec:
   uninstall:
     keepHistory: false
   values:
+    workload:
+      main:
+        replicas: 2
+        strategy: RollingUpdate     
+        podSpec:
+          terminationGracePeriodSeconds: 45
+          containers:
+            main:
+              env:
+                LLDAP_SMTP_OPTIONS__ENABLE_PASSWORD_RESET: true
+                LLDAP_HTTP_URL: https://lldap.${DOMAIN_0}
+                LLDAP_LDAP_BASE_DN: "dc=homelab,dc=home"
+                LLDAP_LDAP_USER_DN: admin
+                LLDAP_LDAP_USER_EMAIL: admin@${DOMAIN_0}
+                LLDAP_LDAP_USER_PASS: ${LLDAP_PASSWORD}
+                GID: 568
+                UID: 568
+                LLDAP_SMTP_OPTIONS__FROM: LLDAP Admin <${SMTP_USER}>
+                LLDAP_SMTP_OPTIONS__PASSWORD: ${SMTP_PASSWORD}
+                LLDAP_SMTP_OPTIONS__PORT: ${SMTP_PORT}
+                LLDAP_SMTP_OPTIONS__REPLY_TO: Do not reply <${SMTP_USER}>
+                LLDAP_SMTP_OPTIONS__SERVER: ${SMTP_HOST}
+                LLDAP_SMTP_OPTIONS__SMTP_ENCRYPTION: ${SMTP_ENCRYPTION}
+                LLDAP_SMTP_OPTIONS__USER: ${SMTP_USER}
+                LLDAP_VERBOSE: true
+              probes:
+                startup:
+                  enabled: true
+                  type: http
+                  path: /
+                  spec:
+                    periodSeconds: 2
+                    failureThreshold: 300 
+                readiness:
+                  enabled: true
+                  type: http
+                  path: /
+                  spec:
+                    initialDelaySeconds: 5
+                    periodSeconds: 5
+                    timeoutSeconds: 2
+                    failureThreshold: 3
+                liveness:
+                  enabled: true
+                  type: http
+                  path: /
+                  spec:
+                    initialDelaySeconds: 60
+                    periodSeconds: 10
+                    timeoutSeconds: 2
+                    failureThreshold: 3
     # service:
     #   main:
     #     type: LoadBalancer
@@ -60,29 +111,29 @@ spec:
             - host: lldap.${DOMAIN_0}
               paths:
                 - path: /
-                  pathType: Prefix
-    workload:
-      main:
-        podSpec:
-          containers:
-            main:
-              env:
-                LLDAP_SMTP_OPTIONS__ENABLE_PASSWORD_RESET: true
-                LLDAP_HTTP_URL: https://lldap.${DOMAIN_0}
-                LLDAP_LDAP_BASE_DN: "dc=homelab,dc=home"
-                LLDAP_LDAP_USER_DN: admin
-                LLDAP_LDAP_USER_EMAIL: admin@${DOMAIN_0}
-                LLDAP_LDAP_USER_PASS: ${LLDAP_PASSWORD}
-                GID: 568
-                UID: 568
-                LLDAP_SMTP_OPTIONS__FROM: LLDAP Admin <${SMTP_USER}>
-                LLDAP_SMTP_OPTIONS__PASSWORD: ${SMTP_PASSWORD}
-                LLDAP_SMTP_OPTIONS__PORT: ${SMTP_PORT}
-                LLDAP_SMTP_OPTIONS__REPLY_TO: Do not reply <${SMTP_USER}>
-                LLDAP_SMTP_OPTIONS__SERVER: ${SMTP_HOST}
-                LLDAP_SMTP_OPTIONS__SMTP_ENCRYPTION: ${SMTP_ENCRYPTION}
-                LLDAP_SMTP_OPTIONS__USER: ${SMTP_USER}
-                LLDAP_VERBOSE: true
+    #               pathType: Prefix
+    # workload:
+    #   main:
+    #     podSpec:
+    #       containers:
+    #         main:
+    #           env:
+    #             LLDAP_SMTP_OPTIONS__ENABLE_PASSWORD_RESET: true
+    #             LLDAP_HTTP_URL: https://lldap.${DOMAIN_0}
+    #             LLDAP_LDAP_BASE_DN: "dc=homelab,dc=home"
+    #             LLDAP_LDAP_USER_DN: admin
+    #             LLDAP_LDAP_USER_EMAIL: admin@${DOMAIN_0}
+    #             LLDAP_LDAP_USER_PASS: ${LLDAP_PASSWORD}
+    #             GID: 568
+    #             UID: 568
+    #             LLDAP_SMTP_OPTIONS__FROM: LLDAP Admin <${SMTP_USER}>
+    #             LLDAP_SMTP_OPTIONS__PASSWORD: ${SMTP_PASSWORD}
+    #             LLDAP_SMTP_OPTIONS__PORT: ${SMTP_PORT}
+    #             LLDAP_SMTP_OPTIONS__REPLY_TO: Do not reply <${SMTP_USER}>
+    #             LLDAP_SMTP_OPTIONS__SERVER: ${SMTP_HOST}
+    #             LLDAP_SMTP_OPTIONS__SMTP_ENCRYPTION: ${SMTP_ENCRYPTION}
+    #             LLDAP_SMTP_OPTIONS__USER: ${SMTP_USER}
+    #             LLDAP_VERBOSE: true
                 # LLDAP_key_file: /data/private_key
     # cnpg:
     #   main:

@@ -30,16 +30,12 @@ spec:
     keepHistory: false
   
   values:
-    resources:
-      requests:
-        cpu: 25m
-        memory: 200Mi
-      limits:
-        cpu: 500m
-        memory: 500Mi
     workload:
       main:
+        replicas: 2
+        strategy: RollingUpdate     
         podSpec:
+          terminationGracePeriodSeconds: 45
           containers:
             main:
               env:
@@ -49,6 +45,39 @@ spec:
                 # ACTUAL_OPENID_SERVER_HOSTNAME: 'https://actual.${DOMAIN_0}'
                 # ACTUAL_OPENID_AUTH_METHOD: oauth2
                 # ACTUAL_TOKEN_EXPIRATION: "openid-provider"
+              probes:
+                startup:
+                  enabled: true
+                  type: http
+                  path: /
+                  spec:
+                    periodSeconds: 2
+                    failureThreshold: 300 
+                readiness:
+                  enabled: true
+                  type: http
+                  path: /
+                  spec:
+                    initialDelaySeconds: 5
+                    periodSeconds: 5
+                    timeoutSeconds: 2
+                    failureThreshold: 3
+                liveness:
+                  enabled: true
+                  type: http
+                  path: /
+                  spec:
+                    initialDelaySeconds: 60
+                    periodSeconds: 10
+                    timeoutSeconds: 2
+                    failureThreshold: 3
+    resources:
+      requests:
+        cpu: 25m
+        memory: 200Mi
+      limits:
+        cpu: 500m
+        memory: 500Mi
     ingress:
         main:
           enabled: true
