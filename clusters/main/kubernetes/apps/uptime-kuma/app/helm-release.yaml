@@ -26,7 +26,7 @@ spec:
   values:
     workload:
       main:
-        replicas: 2
+        replicas: 1
         strategy: RollingUpdate     
         podSpec:
           terminationGracePeriodSeconds: 45
