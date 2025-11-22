@@ -38,41 +38,42 @@ spec:
           maxSurge: 1   
         minReadySeconds: 20      
         podSpec:
-          terminationGracePeriodSeconds: 30
+          terminationGracePeriodSeconds: 45
           containers:
             main:
-              startupProbe:
-                httpGet:
+              # Use TrueCharts probes (not raw *_Probe) so the common library handles them
+              probes:
+                startup:
+                  enabled: true
+                  type: http
                   path: /
-                  port: 9000
-                failureThreshold: 30   # ~60s with periodSeconds=2
-                periodSeconds: 2
-              readinessProbe:
-                httpGet:
+                  spec:
+                    periodSeconds: 2
+                    failureThreshold: 300    # ~10 minutes for long migrations
+                readiness:
+                  enabled: true
+                  type: http
                   path: /
-                  port: 9000
-                initialDelaySeconds: 5
-                periodSeconds: 5
-                timeoutSeconds: 2
-                failureThreshold: 3
-              livenessProbe:
-                httpGet:
+                  spec:
+                    initialDelaySeconds: 5
+                    periodSeconds: 5
+                    timeoutSeconds: 2
+                    failureThreshold: 3
+                liveness:
+                  enabled: true
+                  type: http
                   path: /
-                  port: 9000
-                initialDelaySeconds: 30
-                periodSeconds: 10
-                timeoutSeconds: 2
-                failureThreshold: 3
+                  spec:
+                    initialDelaySeconds: 60
+                    periodSeconds: 10
+                    timeoutSeconds: 2
+                    failureThreshold: 3
 
-              # Let the Ingress/Service drain the pod before kill
               lifecycle:
                 preStop:
                   enabled: true
                   type: exec
-                  command:
-                    - sh
-                    - -c
-                    - sleep 10
+                  command: ["sh","-c","sleep 15"]
 
 
     # service:
