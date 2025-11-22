@@ -39,29 +39,25 @@ spec:
               probes:
                 startup:
                   enabled: true
-                  type: http
-                  path: /
-                  spec:
-                    periodSeconds: 2
-                    failureThreshold: 300 
+                  type: exec
+                  command:
+                    - sh
+                    - -c
+                    - "tailscale status >/dev/null 2>&1"
                 readiness:
                   enabled: true
-                  type: http
-                  path: /
-                  spec:
-                    initialDelaySeconds: 5
-                    periodSeconds: 5
-                    timeoutSeconds: 2
-                    failureThreshold: 3
+                  type: exec
+                  command:
+                    - sh
+                    - -c
+                    - "tailscale status >/dev/null 2>&1"
                 liveness:
                   enabled: true
-                  type: http
-                  path: /
-                  spec:
-                    initialDelaySeconds: 60
-                    periodSeconds: 10
-                    timeoutSeconds: 2
-                    failureThreshold: 3
+                  type: exec
+                  command:
+                    - sh
+                    - -c
+                    - "tailscale status >/dev/null 2>&1"
     global:
       stopAll: false
     # ingress:
