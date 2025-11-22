@@ -36,11 +36,11 @@ spec:
         rollingUpdate:
           maxUnavailable: 0   # never drop the only pod
           maxSurge: 1         # temporarily run 2 pods during the update
-        podSpec:
-          containers:
-            main:
-              env:
-                OIDC_CLIENT_SECRET: ${MEALIE_OIDC_CLIENT_SECRET}
+        # podSpec:
+        #   containers:
+        #     main:
+        #       env:
+        #         OIDC_CLIENT_SECRET: ${MEALIE_OIDC_CLIENT_SECRET}
 
     # service:
       # main:
