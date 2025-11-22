@@ -29,30 +29,41 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    # workload:
-    #   main:
-    #     podSpec:
-    #       podSecurityContext:
-    #         sysctls:
-    #           - name: net.ipv6.conf.all.disable_ipv6
-    #             value: "1"
-    #           - name: net.ipv6.conf.default.disable_ipv6
-    #             value: "1"
-    #           - name: net.ipv6.conf.lo.disable_ipv6
-    #             value: "1"
-    # service:
-    #   main:
-    #     type: LoadBalancer
-    #     loadBalancerIP: ${JELLYFIN_IP}
-    #     ports:
-    #       main:
-    #         port: 7878 # Default jellyfin port
-        # integrations:
-        #   homepage:
-        #       enabled: true
-        #       group: Tools
-        #       widget:
-        #         enabled: false
+    values:
+    workload:
+      main:
+        replicas: 2
+        strategy: RollingUpdate     
+        podSpec:
+          terminationGracePeriodSeconds: 45
+          containers:
+            main:
+              probes:
+                startup:
+                  enabled: true
+                  type: http
+                  path: /
+                  spec:
+                    periodSeconds: 2
+                    failureThreshold: 300 
+                readiness:
+                  enabled: true
+                  type: http
+                  path: /
+                  spec:
+                    initialDelaySeconds: 5
+                    periodSeconds: 5
+                    timeoutSeconds: 2
+                    failureThreshold: 3
+                liveness:
+                  enabled: true
+                  type: http
+                  path: /
+                  spec:
+                    initialDelaySeconds: 60
+                    periodSeconds: 10
+                    timeoutSeconds: 2
+                    failureThreshold: 3
     ingress:
         main:
           enabled: true
