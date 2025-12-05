@@ -29,15 +29,15 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    persistence:
-      config:
-        enabled: true
-        type: configmap           # tell TrueCharts to use a ConfigMap
-        objectName: homepage-values  
-        expandObjectName: false       # <- use exact name, don’t prefix
-        optional: true
-        mountPath: /app/config
-        readOnly: true
+    # persistence:
+    #   config:
+    #     enabled: true
+    #     type: configmap           # tell TrueCharts to use a ConfigMap
+    #     objectName: homepage-values  
+    #     expandObjectName: false       # <- use exact name, don’t prefix
+    #     optional: true
+    #     mountPath: /app/config
+    #     readOnly: true
     ingress:
         main:
           enabled: true
@@ -54,81 +54,87 @@ spec:
               paths:
                 - path: /
                   pathType: Prefix
-    # configmap:
-    #   config:
+    configmap:
+      config:
 
-    #     enabled: true
-    #     data:
-    #       custom.js: ""
-    #       custom.css: ""
-    #       kubernetes.yaml: |
-    #         mode: cluster
-    #         ingress: true
-    #       settings.yaml: |
-    #         ---
-    #         # For configuration options and examples, please see:
-    #         # https://gethomepage.dev/latest/configs/settings
-    #         instanceName: internal
-    #         useEqualHeights: true
+        enabled: true
+        data:
+          custom.js: ""
+          custom.css: ""
+          kubernetes.yaml: |
+            mode: cluster
+            ingress: true
+          settings.yaml: |
+            ---
+            # For configuration options and examples, please see:
+            # https://gethomepage.dev/latest/configs/settings
+            instanceName: internal
+            useEqualHeights: true
 
-    #         layout:
-    #           Links for:
-    #             Offsite Users and Onsite Users:
-    #               icon: office-building
-    #               style: row
-    #               columns: 3
-    #             Onsight Users Only:
-    #               icon: home
-    #               style: row
-    #               columns: 3
+            layout:
+              Links for:
+                Offsite Users and Onsite Users:
+                  icon: office-building
+                  style: row
+                  columns: 3
+                Onsight Users Only:
+                  icon: home
+                  style: row
+                  columns: 3
               
-    #           Authentication Tools:
-    #             icon: office-building
-    #             style: row
-    #             columns: 3
+              Authentication Tools:
+                icon: office-building
+                style: row
+                columns: 3
 
-    #           Arr Stack:
-    #             icon: mdi-pirate
-    #             style: row
-    #             columns: 3
-    #             initiallyCollapsed: true
-    #           Tools:
-    #               icon: mdi-tools
-    #               style: row
-    #               columns: 3
-    #           # - Links for:
-    #           #   - Offsite Users and Onsite Users:
-    #           #       icon: office-building
-    #           #       style: row
-    #           #       columns: 3
-    #           #   - Onsight Users Only:
-    #           #       icon: home
-    #           #       style: row
-    #           #       columns: 3
+              Arr Stack:
+                icon: mdi-pirate
+                style: row
+                columns: 3
+                initiallyCollapsed: true
+              Tools:
+                  icon: mdi-tools
+                  style: row
+                  columns: 3
+              # - Links for:
+              #   - Offsite Users and Onsite Users:
+              #       icon: office-building
+              #       style: row
+              #       columns: 3
+              #   - Onsight Users Only:
+              #       icon: home
+              #       style: row
+              #       columns: 3
               
-    #           # - Authentication Tools:
-    #           #     icon: office-building
-    #           #     style: row
-    #           #     columns: 3
+              # - Authentication Tools:
+              #     icon: office-building
+              #     style: row
+              #     columns: 3
 
-    #           # - Arr Stack:
-    #           #     icon: mdi-pirate
-    #           #     style: row
-    #           #     columns: 3
-    #           #     initiallyCollapsed: true
-    #           # - Tools:
-    #           #     icon: mdi-tools
-    #           #     style: row
-    #           #     columns: 3
-    #           # - Finance:
-    #           #     icon: mdi-cash-multiple
-    #           #     #style: row
-    #           #     #columns: 3
-    #           # - Default:
-    #           #     style: row
-    #           #     columns: 3
-    #       services.yaml: |
-    #         []
+              # - Arr Stack:
+              #     icon: mdi-pirate
+              #     style: row
+              #     columns: 3
+              #     initiallyCollapsed: true
+              # - Tools:
+              #     icon: mdi-tools
+              #     style: row
+              #     columns: 3
+              # - Finance:
+              #     icon: mdi-cash-multiple
+              #     #style: row
+              #     #columns: 3
+              # - Default:
+              #     style: row
+              #     columns: 3
+          services.yaml: |
+            ---
+            - Test:
+              - Home Assistant:
+                  href: http://192.168.1.132:8123/
+                  description: Home Automation
+                  target: _self
+                  icon: home-assistant.png
             
     workload:
       main:
