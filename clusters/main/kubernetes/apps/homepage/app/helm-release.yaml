@@ -29,14 +29,14 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    persistence:
-      config:
-        enabled: true
-        type: configmap           # tell TrueCharts to use a ConfigMap
-        objectName: homepage-config  # <- the ConfigMap we created above
-        # name is the volume name; you can omit or leave default
-        mountPath: /app/config
-        readOnly: true
+    # persistence:
+    #   config:
+    #     enabled: true
+    #     type: configmap           # tell TrueCharts to use a ConfigMap
+    #     objectName: homepage-config  # <- the ConfigMap we created above
+    #     # name is the volume name; you can omit or leave default
+    #     mountPath: /app/config
+    #     readOnly: true
     ingress:
         main:
           enabled: true
