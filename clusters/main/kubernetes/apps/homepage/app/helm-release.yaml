@@ -28,7 +28,7 @@ spec:
       retries: 3
   uninstall:
     keepHistory: false
-    valuesFrom:
+  valuesFrom:
     - kind: ConfigMap
       name: homepage-values     # <--- that configmap
       valuesKey: values.yaml    # <--- key in .data

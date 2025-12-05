@@ -4,79 +4,79 @@ metadata:
   name: homepage-values
   namespace: homepage
 data:
-values.yaml: |
-  configmap:
-      config:
+  values.yaml: |
+    configmap:
+        config:
 
-        enabled: true
-        data:
-          custom.js: ""
-          custom.css: ""
-          kubernetes.yaml: |
-            mode: cluster
-            ingress: true
-          settings.yaml: |
-            ---
-            # For configuration options and examples, please see:
-            # https://gethomepage.dev/latest/configs/settings
-            instanceName: internal
-            useEqualHeights: true
+          enabled: true
+          data:
+            custom.js: ""
+            custom.css: ""
+            kubernetes.yaml: |
+              mode: cluster
+              ingress: true
+            settings.yaml: |
+              ---
+              # For configuration options and examples, please see:
+              # https://gethomepage.dev/latest/configs/settings
+              instanceName: internal
+              useEqualHeights: true
 
-            layout:
-              Links for:
-                Offsite Users and Onsite Users:
+              layout:
+                Links for:
+                  Offsite Users and Onsite Users:
+                    icon: office-building
+                    style: row
+                    columns: 3
+                  Onsight Users Only:
+                    icon: home
+                    style: row
+                    columns: 3
+                
+                Authentication Tools:
                   icon: office-building
                   style: row
                   columns: 3
-                Onsight Users Only:
-                  icon: home
+
+                Arr Stack:
+                  icon: mdi-pirate
                   style: row
                   columns: 3
-              
-              Authentication Tools:
-                icon: office-building
-                style: row
-                columns: 3
+                  initiallyCollapsed: true
+                Tools:
+                    icon: mdi-tools
+                    style: row
+                    columns: 3
+                # - Links for:
+                #   - Offsite Users and Onsite Users:
+                #       icon: office-building
+                #       style: row
+                #       columns: 3
+                #   - Onsight Users Only:
+                #       icon: home
+                #       style: row
+                #       columns: 3
+                
+                # - Authentication Tools:
+                #     icon: office-building
+                #     style: row
+                #     columns: 3
 
-              Arr Stack:
-                icon: mdi-pirate
-                style: row
-                columns: 3
-                initiallyCollapsed: true
-              Tools:
-                  icon: mdi-tools
-                  style: row
-                  columns: 3
-              # - Links for:
-              #   - Offsite Users and Onsite Users:
-              #       icon: office-building
-              #       style: row
-              #       columns: 3
-              #   - Onsight Users Only:
-              #       icon: home
-              #       style: row
-              #       columns: 3
-              
-              # - Authentication Tools:
-              #     icon: office-building
-              #     style: row
-              #     columns: 3
-
-              # - Arr Stack:
-              #     icon: mdi-pirate
-              #     style: row
-              #     columns: 3
-              #     initiallyCollapsed: true
-              # - Tools:
-              #     icon: mdi-tools
-              #     style: row
-              #     columns: 3
-              # - Finance:
-              #     icon: mdi-cash-multiple
-              #     #style: row
-              #     #columns: 3
-              # - Default:
-              #     style: row
-              #     columns: 3
-          services.yaml: |
-            []
+                # - Arr Stack:
+                #     icon: mdi-pirate
+                #     style: row
+                #     columns: 3
+                #     initiallyCollapsed: true
+                # - Tools:
+                #     icon: mdi-tools
+                #     style: row
+                #     columns: 3
+                # - Finance:
+                #     icon: mdi-cash-multiple
+                #     #style: row
+                #     #columns: 3
+                # - Default:
+                #     style: row
+                #     columns: 3
+            services.yaml: |
+              []
