@@ -138,6 +138,13 @@ spec:
                   description: Home Automation
                   target: _self
                   icon: home-assistant.png
+          bookmarks.yaml: |
+            ---
+            - Myanonamouse:
+              href: https://www.myanonamouse.net/
+              description: Private torrent server for E-books and Audiobooks
+              icon: mdi-rodent
+              target: _self
             
     workload:
       main:
