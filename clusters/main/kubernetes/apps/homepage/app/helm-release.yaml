@@ -89,7 +89,7 @@ spec:
               Test:
                 icon: office-building
                 style: row
-                columns: 3
+                columns: 2
               Arr Stack:
                 icon: mdi-pirate
                 style: row
