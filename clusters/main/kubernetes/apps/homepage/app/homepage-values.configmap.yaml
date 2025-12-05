@@ -80,8 +80,9 @@ data:
                 #     columns: 3
             services.yaml: |
               ---
-              - Home Assistant:
-                href: http://192.168.1.132:8123/
-                description: Home Automation
-                target: _self
-                icon: home-assistant.png
+              - Test:
+                - Home Assistant:
+                  href: http://192.168.1.132:8123/
+                  description: Home Automation
+                  target: _self
+                  icon: home-assistant.png
