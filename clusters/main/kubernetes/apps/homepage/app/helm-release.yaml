@@ -37,7 +37,7 @@ spec:
     persistence:
       config:
         enabled: true
-        type: configMap      # instead of pvc/hostPath/etc
+        type: configmap      # instead of pvc/hostPath/etc
         name: homepage-config  # the name of your ConfigMap
         mountPath: /app/config
         readOnly: true
