@@ -28,20 +28,16 @@ spec:
       retries: 3
   uninstall:
     keepHistory: false
-  valuesFrom:
-    - kind: ConfigMap
-      name: homepage-values     # <--- that configmap
-      valuesKey: values.yaml    # <--- key in .data
-      optional: false
   values:
     persistence:
       config:
         enabled: true
-        type: configmap      # instead of pvc/hostPath/etc
-        name: homepage-config  # the name of your ConfigMap
+        type: configmap           # tell TrueCharts to use a ConfigMap
+        objectName: homepage-config  # <- the ConfigMap we created above
+        # name is the volume name; you can omit or leave default
         mountPath: /app/config
         readOnly: true
-        ingress:
+    ingress:
         main:
           enabled: true
           ingressClassName: internal

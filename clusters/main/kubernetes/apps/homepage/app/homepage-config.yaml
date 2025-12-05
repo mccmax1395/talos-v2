@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: homepage-config
+  namespace: homepage
+data:
+  kubernetes.yaml: |
+    mode: cluster
+    ingress: true
+
+  settings.yaml: |
+    ---
+    instanceName: internal
+    useEqualHeights: true
+
+    layout:
+      Links for:
+        Offsite Users and Onsite Users:
+          icon: office-building
+          style: row
+          columns: 3
+        Onsight Users Only:
+          icon: home
+          style: row
+          columns: 3
+      Authentication Tools:
+        icon: office-building
+        style: row
+        columns: 3
+      Arr Stack:
+        icon: mdi-pirate
+        style: row
+        columns: 3
+        initiallyCollapsed: true
+      Tools:
+        icon: mdi-tools
+        style: row
+        columns: 3
+
+  services.yaml: |
+    ---
+    - Test:
+      - Home Assistant:
+          href: http://192.168.1.132:8123/
+          description: Home Automation
+          target: _self
+          icon: home-assistant.png
