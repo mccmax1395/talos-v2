@@ -33,8 +33,9 @@ spec:
       config:
         enabled: true
         type: configmap           # tell TrueCharts to use a ConfigMap
-        objectName: homepage-values  # <- the ConfigMap we created above
-        # name is the volume name; you can omit or leave default
+        objectName: homepage-values  
+        expandObjectName: false       # <- use exact name, don’t prefix
+        optional: true
         mountPath: /app/config
         readOnly: true
     ingress:
