@@ -78,79 +78,211 @@ spec:
             useEqualHeights: true
 
             layout:
-              Links for:
-                Offsite Users and Onsite Users:
-                  icon: office-building
-                  style: row
-                  columns: 3
-                Onsight Users Only:
-                  icon: home
-                  style: row
-                  columns: 3
-              
-              Authentication Tools:
-                icon: office-building
+              External Users:
+                header: false
+                tab: All Users
                 style: row
                 columns: 3
-              Test:
-                icon: office-building
+                Entertainment:
+                  style: row
+                  columns: 2
+                Utility:
+                  style: row
+                Auth Tools:
+                  style: row
+                  columns: 2
+              Internal Users:
+                header: false
                 style: row
+                columns: 3
+                tab: 2651 only
+                Entertainment:
+                  style: row
+                  columns: 2
+                Utility:
+                  style: row
+                Auth Tools:
+                  style: row
+                  # columns: 1
+              Max:
+                header: false
+                tab: Max Only
+                style: row
+                columns: 3
+                Entertainment:
+                  style: row
+                  columns: 2
+                Utility:
+                  style: row
+                  columns: 2
+                Auth Tools:
+                  style: row
+
+              Server Management:
+                style: row
+                tab: Max Only
                 columns: 2
+              WIP:
+                icon: mdi-sign-caution
+                style: row
+                tab: Max Only
+                columns: 3
+
               Arr Stack:
+                tab: Max Only
                 icon: mdi-pirate
                 style: row
-                columns: 3
+                columns: 4
                 initiallyCollapsed: true
-              Tools:
-                  icon: mdi-tools
-                  style: row
-                  columns: 3
-              # - Links for:
-              #   - Offsite Users and Onsite Users:
-              #       icon: office-building
-              #       style: row
-              #       columns: 3
-              #   - Onsight Users Only:
-              #       icon: home
-              #       style: row
-              #       columns: 3
-              
-              # - Authentication Tools:
-              #     icon: office-building
-              #     style: row
-              #     columns: 3
 
-              # - Arr Stack:
-              #     icon: mdi-pirate
-              #     style: row
-              #     columns: 3
-              #     initiallyCollapsed: true
-              # - Tools:
-              #     icon: mdi-tools
-              #     style: row
-              #     columns: 3
-              # - Finance:
-              #     icon: mdi-cash-multiple
-              #     #style: row
-              #     #columns: 3
-              # - Default:
-              #     style: row
-              #     columns: 3
+
           services.yaml: |
             ---
-            - Test:
-              - Home Assistant:
-                  href: http://192.168.1.132:8123/
-                  description: Home Automation
-                  target: _self
-                  icon: home-assistant.png
+            - Internal Users:
+              - Entertainment:
+                - Audiobookshelf:
+                    href: https://abs.${DOMAIN_0}
+                    description: Listen to audiobooks
+                    icon: audiobookshelf.png 
+                - Jellyfin:
+                    href: https://jellyfin.${DOMAIN_0}
+                    description: Watch TV shows and movies
+                    icon: jellyfin.png
+                - Kavita:
+                    href: https://kav.${DOMAIN_0}
+                    description: Read E-books and Graphic Novels
+                    icon: kavita.png
+                - Jellyseerr:
+                    href: https://jellyseerr.${DOMAIN_0}
+                    description: Request TV shows and movies
+                    icon: jellyseerr.png
+              - Utility:
+                - Home Assistant:
+                    href: ${HOMEASSISTANT_URL}
+                    description: Home Automation
+                    icon: home-assistant.png
+                - Mealie:
+                    href: https://mealie.${DOMAIN_0}
+                    description: Find Local Recipes here
+                    icon: mealie.png
+                - Immich:
+                    href: https://immich.${DOMAIN_0}
+                    description: Local photo and video backup
+                    icon: immich.png
+                
+              - Auth Tools:
+                - Authelia:
+                    href: https://auth.${DOMAIN_0}
+                    description: Manage your Login creds
+                    icon: authelia.png 
+
+            - External Users:
+              - Entertainment:
+                - Audiobookshelf:
+                    href: https://abs.${DOMAIN_0}
+                    description: Listen to audiobooks
+                    icon: audiobookshelf.png 
+                - Kavita:
+                    href: https://kav.${DOMAIN_0}
+                    description: Read E-books and Graphic Novels
+                    icon: kavita.png
+              - Utility:
+                - Mealie:
+                    href: https://mealie.${DOMAIN_0}
+                    description: Find Local Recipes here
+                    icon: mealie.png
+              - Auth Tools:
+                - Authelia:
+                    href: https://auth.${DOMAIN_0}
+                    description: Manage your Login creds
+                    icon: authelia.png 
+
+            - Max:
+              - Entertainment:
+                - Audiobookshelf:
+                    href: https://abs.${DOMAIN_0}
+                    description: Listen to audiobooks
+                    icon: audiobookshelf.png 
+                - Jellyfin:
+                    href: https://jellyfin.${DOMAIN_0}
+                    description: Watch TV shows and movies
+                    icon: jellyfin.png
+                - Kavita:
+                    href: https://kav.${DOMAIN_0}
+                    description: Read E-books and Graphic Novels
+                    icon: kavita.png
+                - Jellyseerr:
+                    href: https://jellyseerr.${DOMAIN_0}
+                    description: Request TV shows and movies
+                    icon: jellyseerr.png
+              - Utility:
+                - Home Assistant:
+                    href: ${HOMEASSISTANT_URL}
+                    description: Home Automation
+                    icon: home-assistant.png
+                - Mealie:
+                    href: https://mealie.${DOMAIN_0}
+                    description: Find Local Recipes here
+                    icon: mealie.png
+                - Immich:
+                    href: https://immich.${DOMAIN_0}
+                    description: Local photo and video backup
+                    icon: immich.png
+                - Actual:
+                    href: https://actual.${DOMAIN_0}
+                    description: Local Budgeting Software
+                    icon: actual-budget.png
+              - Auth Tools:
+                - Authelia:
+                    href: https://auth.${DOMAIN_0}
+                    description: Manage your Login creds
+                    icon: authelia.png 
+                - Lldap:
+                    href: https://lldap.${DOMAIN_0}
+                    description: Permissions Manager
+                    icon: lldap.png
+            - Server Management:
+                - Uptime Kuma:
+                    href: https://uptime.${DOMAIN_0}
+                    description: Endpoint monitoring
+                    icon: uptime-kuma.png 
+                - Kubernetes Dashboard:
+                    href: https://kube.${DOMAIN_0}
+                    description: Cluster Dashboard
+                    icon: kubernetes.png
+                - TrueNAS:
+                    href: ${TRUENAS_URL}
+                    description: Truenas instance
+                    icon: truenas-scale.png
+                    widget:
+                        type: truenas
+                        url: ${TRUENAS_URL}
+                        key: ${TRUENAS_KEY}
+                - Homepage Editor:
+                    href: https://editor.homepage.${DOMAIN_0}
+                    description: Homepage config editor
+                    icon: homepage.png
+            - WIP:
+              - Organizr:
+                    href: https://organizr.${DOMAIN_0}
+                    description: Possible dashboard replacement
+                    icon: organizr.png  
+              - Invidious:
+                    href: https://yt.${DOMAIN_0}
+                    description: Possible local YouTube replacement
+                    icon: invidious.png  
           bookmarks.yaml: |
             ---
-            - Myanonamouse:
-              href: https://www.myanonamouse.net/
-              description: Private torrent server for E-books and Audiobooks
-              icon: mdi-rodent
-              target: _self
+            - External:
+                - Myanonamouse:
+                    - href: https://www.myanonamouse.net
+                      abbr: MA
+                      description: Torrent server for E-books and Audiobooks
+                - Homepage Docs:
+                    - href: https://gethomepage.dev
+                      abbr: HD
+                      description: Homepage docs for config reference
+
             
     workload:
       main:
