@@ -54,7 +54,7 @@ data:
         policy: one_factor
         resources:
           - "^/.*$"
-          
+
       # #Only allow me to access
       - domain: 
         - actual.${DOMAIN_0}
@@ -68,6 +68,15 @@ data:
         - immich.${DOMAIN_0}
         subject:
         - ['group:immich-users']
+        policy: one_factor
+        resources:
+          - "^/.*$"
+      
+      # Role to allow access to homepage
+      - domain: 
+        - homepage.${DOMAIN_0}
+        subject:
+        - ['group:homepage-users']
         policy: one_factor
         resources:
           - "^/.*$"
