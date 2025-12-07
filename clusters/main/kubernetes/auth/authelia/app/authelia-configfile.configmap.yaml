@@ -75,6 +75,15 @@ data:
         policy: one_factor
         resources:
           - "^/.*$"
+      
+      # #Only allow certain people to access kube dashboard
+      - domain: 
+        - kube.${DOMAIN_0}
+        subject:
+        - ['group:server-admin']
+        policy: one_factor
+        resources:
+          - "^/.*$"
       - domain:
         - "abs.${DOMAIN_0}"
         - "kav.${DOMAIN_0}"
