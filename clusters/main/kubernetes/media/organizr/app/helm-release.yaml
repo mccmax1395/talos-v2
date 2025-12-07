@@ -65,11 +65,6 @@ spec:
             certManager:
               enabled: true
               certificateIssuer: domain-0-le-prod
-            homepage:
-              enabled: true
-              group: Tools
-              widget:
-                enabled: false
           hosts:
             - host: organizr.${DOMAIN_0}
               paths:

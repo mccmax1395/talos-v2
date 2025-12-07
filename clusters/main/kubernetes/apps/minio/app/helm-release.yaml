@@ -56,11 +56,11 @@ spec:
             certManager:
               enabled: true
               certificateIssuer: domain-0-le-prod
-            homepage:
-              enabled: true
-              group: Arr Stack
-              widget:
-                enabled: false
+            # homepage:
+            #   enabled: true
+            #   group: Arr Stack
+            #   widget:
+            #     enabled: false
           hosts:
             - host: minio.${DOMAIN_0}
               paths:

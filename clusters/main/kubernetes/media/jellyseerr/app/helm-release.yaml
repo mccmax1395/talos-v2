@@ -78,11 +78,6 @@ spec:
             certManager:
               enabled: true
               certificateIssuer: domain-0-le-prod
-            homepage:
-              enabled: true
-              group: Onsight Users Only
-              widget:
-                enabled: false
           hosts:
             - host: jellyseerr.${DOMAIN_0}
               paths:
