@@ -76,10 +76,20 @@ data:
       - domain: 
         - homepage.${DOMAIN_0}
         subject:
-        - ['group:homepage-users']
+        - ['group:homepage-user']
         policy: one_factor
         resources:
           - "^/.*$"
+      
+      # Role to allow access to homepage editor
+      - domain: 
+        - editor.homepage.${DOMAIN_0}
+        subject:
+        - ['group:homepage-admin']
+        policy: one_factor
+        resources:
+          - "^/.*$"
+
 
       # #Only allow certain people to access ARR stack
       - domain: 

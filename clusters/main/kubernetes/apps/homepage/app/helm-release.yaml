@@ -179,14 +179,14 @@ spec:
                   # Ignored if not kubeVersion >= 1.14-0
                   pathType: Prefix
           integrations:
+            nginx:
+              enabled: true
+              auth:
+                type: "authelia"
+                internalHost: "authelia.authelia.svc.cluster.local:9091"
+                externalHost: "auth.${DOMAIN_0}"
             traefik:
               enabled: false
-            # nginx:
-            #   enabled: true
-            #   auth:
-            #     type: "authelia"
-            #     internalHost: "authelia.authelia.svc.cluster.local:9091"
-            #     externalHost: "auth.${DOMAIN_0}"
             certManager:
               enabled: true
               certificateIssuer: domain-0-le-prod

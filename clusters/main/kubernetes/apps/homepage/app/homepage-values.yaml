@@ -1,47 +1,25 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: homepage-values
-  namespace: homepage
+    name: homepage-values
+    namespace: homepage
 data:
-  kubernetes.yaml: |
-    mode: cluster
-    ingress: true
-
-  settings.yaml: |
-    ---
-    instanceName: internal
-    useEqualHeights: true
-
-    layout:
-      Links for:
-        Offsite Users and Onsite Users:
-          icon: office-building
-          style: row
-          columns: 3
-        Onsight Users Only:
-          icon: home
-          style: row
-          columns: 3
-      Authentication Tools:
-        icon: office-building
-        style: row
-        columns: 3
-      Arr Stack:
-        icon: mdi-pirate
-        style: row
-        columns: 3
-        initiallyCollapsed: true
-      Tools:
-        icon: mdi-tools
-        style: row
-        columns: 3
-
-  services.yaml: |
-    ---
-    - Test:
-      - Home Assistant:
-          href: http://192.168.1.132:8123/
-          description: Home Automation
-          target: _self
-          icon: home-assistant.png
+    kubernetes.yaml: ENC[AES256_GCM,data:JFWzajL+k7aFoznV1Gnk7ZKj77XHZPwROqejxg==,iv:PF+psos6sqlzE/bz8MM0+MCbiIa56kRtN0c22qVvrbw=,tag:KSlTzCb8e56O57sZ1uzDug==,type:str]
+    settings.yaml: ENC[AES256_GCM,data:RLLMG2z6V44aiXGMAl/0CNDvE96c9Mp3U/mO0IThVtbiOEcWt47ZVqykJitQzAf4s1+XiAAaKewtjgibX35KrOEPnwx4fU0icQrvRJsaqYce+l/5Qzcz/aqrpL5cPUMvfvtZdugOxKLtYUmBV3do1OeoLJqufpf5EDG921t0WzLmDVWlwpDNJLiKqUkJ3p+DGQgTl4ueh7qqGgF6NrgRBd/XX0Jq/ADUXN5Ylrv5Oet+HR2BJijzWJs9delyJ96Gl7T8SBx6dKl/phNq9qIQPMk+jdv2E/Ycn34keeXMqmwC3TkOza58nvrNIxj3EOrupB1EG8oJLvpAZf+JZe0Pk290lG5SZm51aIwooSowNq0fm8qB6EzEwGbRjMlBP4N2JJ4eqDYHeI7XWSVMPaz87rGnOjZMwWoBspwgsBJXtvj8gfZiqVaHd/rwz0fDaSVX4cu8pVy4vBXQKHpQmpG1h33b6pMuqb+H6QcgY4eXp9Ste+Y7mNmKajX/YlSMYkXkrOji0DUse56uuzCrN+wMbxAHtGYyCEAPZCZj6RYI9MsHxqcnzgqG5txmtx5azNmZhIh0cMVCDMd6wFDc4p89N3Ld1Rg6A1LHQ3SIfbsVP/cC9vaLfHjzNy27zBQ=,iv:mO8xURnAbPcWF6drwfEAjp6PJ3inkzcvJw7cr0YS88Y=,tag:LXiE0gn/5nljLEeYtdnRiA==,type:str]
+    services.yaml: ENC[AES256_GCM,data:H5dwEMcA4mmOaHz0x4Gj8e5yNtnl4nf0uH5ZqmXpwDMHnWwTPWZXJRGL41W/tggBLIKqLVSQtm8Of8X98q2U2txBEjym+f+fqY7wh1KYUi6RtHLYXqkZncAjeSvrKVsqLDrUWr+arufWCsTKDE18QdGms9NXfwsW94Prgkj2Rf9igfEsPVMWwgAuDMaSfwjuhPnszSWyJiE5thIzHA==,iv:p1FMly7vo+l21gGtwPSR6jdv/XNhebotSuMeWmaVizQ=,tag:3huq0cluZ1xvqXIUspSKzQ==,type:str]
+sops:
+    shamir_threshold: 3
+    age:
+        - recipient: age1tnmgqfexnqyx6paryj8rcw0yfxj4apz6hjl39zmkgykuxgt0s92s3eqedl
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSAxV0xYc3lHYm1lc3RMajQ1
+            TGJZZzdYRWxYWDFxdUJBZE1Sa21Ya1pQaUcwCkI2bWJiem9CYmRwUGNMYkRZNmVH
+            L3dFVzUrc1hoUThLaFpsUTM2L0hLUFkKLS0tIHRkV094ZW5jK0hGZnhRZE1iVTN6
+            eTlUdWp2MnFnTGhyUGlGOWdzVmpDazQKWWsrSOFgYWtw3PoeGI2uy5WAgxqCJUp/
+            KREhrcesX71sPNkgmzx6yYG0e3GGZdsL8OZ4JIX3HRMQZxvy1ic+2A==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-12-07T22:32:10Z"
+    mac: ENC[AES256_GCM,data:6Cw2udAIBpObrJlytm93uHPBBpW5u54tYQcLfb/8S77NYOA+LyLW0KXSLWVBsS+1I2ekXEQGOL9/iI2nethECS4LE+R+DEbZkzJkF0Kh0wUduW+yyPHm76SsIdzY4IDX3EaJAPNpoP08WVjPG2tB7v93cyBj0+Locin/+Dq3jdE=,iv:rWiovjw7+yTVEe3cu0ZJ+ga/Tz35iH/EWjvEgEYLNsI=,tag:SAFVI88/X7Usa2xplirWFQ==,type:str]
+    encrypted_regex: ((?i)(displayname|email|pass|ca|id|bootstraptoken|secretboxencryptionsecret|secrets|secrets|password|cert|secret($|[^N])|key|token|^data$|^stringData))
+    version: 3.10.1
