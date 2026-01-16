@@ -68,6 +68,13 @@ spec:
     global:
       stopAll: false
     blocking:
+      whitelist:
+        - name: allow-critical-registries
+          lists:
+            # simplest: plain domain list
+            - |
+              tccr.io
+              *.tccr.io
       blacklist:
         - name: hagezi
           lists:
