@@ -114,7 +114,7 @@ spec:
         enabled: true
         container:
           env:
-            #VPN_SERVICE_PROVIDER: "purevpn"
+            ##VPN_SERVICE_PROVIDER: "purevpn"
             #VPN_TYPE: "openvpn"
             #OPENVPN_USER: ${VPN_USERNAME}
             #OPENVPN_PASSWORD: ${VPN_PASSWORD}
