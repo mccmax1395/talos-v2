@@ -4,22 +4,22 @@ metadata:
     name: homepage-values
     namespace: homepage
 data:
-    kubernetes.yaml: ENC[AES256_GCM,data:Nfnpn00rkHMuSwSjaU9vmrZ7sG9tnYT/42PCzg==,iv:8y4LW86Zv+R+kTaDTDkq9a2oWTY9cEnWAJUth9pl0Uw=,tag:fDQ1PhMZvNxjLc1pvGtP0g==,type:str]
-    settings.yaml: ENC[AES256_GCM,data:sxXkn6w0fJokhliWJ0lFnQUIMDBnnw7FdTll+TkuHfrp44bIF+pE4Fq/Y5qy8OjOlf5U7W1SvOjPO1/FdtY7SEC7a36rSsxLCGG0DJQRAjWTnc+QFnDE4LqkzCK6bBckW44sHg+7IRXbEJprD4/oixcYJ3/0Gz4aUhMHoHsrjjw56RkdaSfT2ZZvGt6OqSTdrPobhrqPEK94sjGGg0nyA8YwZv5J+AZI9bpHgbXa95C0j7FuggapWj7IAt6kkfTrNyzbsLmJsn7p3SZ8m/N6ckagXGhR1KFzoWj7RsqNDLPcCYFX5+WBBlNOqMLOGhyW3JsNmjWPJF1wSuTL56QagzPiq7GkQ5nvTmlePDhlPeLRGm0iBoMdIp174nQInWo7vaYnVdJw3Dvv6LtSrUwyiLmSnNarz06ToJ9fMV0JLs1nRr8S0LLTuGzI17aU69txcvGPUEjp11P9DoTUDtLLWwPL8tKh2S+fl0tLRwgWXbp+ZILy/W1imOEiFCA+s0MOO75/LHv60rKKWufh6FGmlo2UmB6roOGSMG6s1N7a0Fn8hMcqAJvflFhgXPDXcYYdHgzdg91hsWKSP2Z/Kqs6O4viZp2ZxbLYER43rhPQB7qpYI6DDptUt3w4LW0=,iv:ItD/wl6jv+CH7yycOsN7iZepJfcFVxiH6/TjgaxnDtU=,tag:0GRnuv5JqjUkzLb7zbN+TA==,type:str]
-    services.yaml: ENC[AES256_GCM,data:YjHV6tcOGSEa1W+T+ZVpkwNO7p/Iy87/mh1qNO/t9qeRP3hBq44VTmUUPSvk13R7v/wFs0xh2dt7L1qmEgPTugxjJDpN7NsLk5HbRSCxX1SOOaVh70HmBWm4sr6blX5FEJo8cbO4sSbAxivOazISQXV3JSon+LIfYvJiHKe62KcBx5Fh/2G3NZniRS4L6l6B8Kq+FGFwm4Y4tEqHcA==,iv:MSTVzwZ1aREcvJQWIwr7oLr3Lv+XfuxGKRTz7aNe5lw=,tag:XWMEv6ZPxl7Ws1Myf+d7dw==,type:str]
+    kubernetes.yaml: ENC[AES256_GCM,data:kcjU1fmo8yQ+sDn5kHgpsBbXYpJKph5/DqSiBA==,iv:0vtjeXyNeGT0D2/HGiMzIIIkdKabmu3U7/X+ycBtdx4=,tag:eC1r3IUW4hks37dFbWQkIA==,type:str]
+    settings.yaml: ENC[AES256_GCM,data:s7uAlV10PAzwHdfYen/OWmdW4zjB/V9f2WbhRZxcKFPSBIDTriFsEkQdh4ZXfb8j1n7C5oZDt1eCerzddtMkgVEX5qau8jl1PF2guLg99TkJpVCFxvFmj4ZFHRg2sTE8t6hh8W91QyXFTuQ+D0Msz7nQBP62A1wy2FFzLVTs/SU9CBF5gS4wvZKbBgPdEWYevn/VzmuhtHyBhQh5miJUMY9ei4zyPTSs7r1C8/LNAzV9YOAWwfAFJz8BZkVPP2f8J6hnNtLfRrYxOxE3JgiTT5bQjGLRBgkjnciGFbSnjcnfgYV/6HvBbIyA3e+eLn9zdRp5UuWeYZ7EmTjSD70+CzNfecGp9ypj6uJ6nWsIFTcPRHGpaTb303/3sirtl7lTLiPbF50YuI9rK2q0z5W8KgAto1mwaBAAkcK2tMQ1MWe+55tEbf+1nxC7nxskEw6ot5rZZhCOiv+w2YDOP0R3LuAWpe4dGgecprYF15ur3EN99f6ZtmmMNwlWjCXcgSoBddoBwJQseUV7sN0dHBddEEbLBn6g+iuGZ6WXzU94+lZAYCRUlUcIF6oaNw/TaMW9tKB5yYptsvso4IQpYncRZsDxZxlfovSPhHu2Gthxn5kLrnSThj0ts/QufcM=,iv:BWonMoGmxlRuy6PvlROVQo17sAQLL0BYHrwUAUaJcBI=,tag:AAxOA7MUeFo6sdqkMQd2rA==,type:str]
+    services.yaml: ENC[AES256_GCM,data:oYjJvuRHYpJR/QAk7Tr1K3z8HDtO6n31JTuHQAwxi365EbCzwox/HGdAkqzdFPA3GdNMqOrw9BsFSyBGY3d5V5+2HFAEup4KELyWfyEvN3Hj9sj3HGf5uzGY7RCJ2syrscBYfrheUh01qUJo6segWllBOlDzGz/ffskks9+KBjvIBJryKq1D+GttwmuMmbSdRVPV/TflcQwr8Eg8lQ==,iv:U0as2WKyv64REm1LH2zNoknXQ9nDCqkNv3xkursqIQg=,tag:0WNXRtawCJ/eUD2KW1uZag==,type:str]
 sops:
     shamir_threshold: 3
     age:
         - recipient: age1tnmgqfexnqyx6paryj8rcw0yfxj4apz6hjl39zmkgykuxgt0s92s3eqedl
           enc: |
             -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSA4d2dPbjVJK3pUUlZudkRv
-            QlFLZXpNM1JiTHZxT1hDV3RXWkRHUXVUaTJvCmFXYUl4NUtqUlRnWFZKa0c5L1Vk
-            Z3c4WjgwTnVwRUxkV2hYMGxjdm1Fb3MKLS0tIFBTbGl4UDNHbUhTODdhWVFOZW9w
-            Z2t5M3h6Wm8ySno0RVRjdGFUNFgxdGcKJBcUfWw5Zh1W5sOQkpZOwM7Gcs6v6tnA
-            ayVNW95iZ9rufWiyI2J5eBDhASWz52yotS6xqw5kwxYfwBP7u83D3g==
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBXSFZJMVpLdWY0UGptN0Ju
+            WVJwYmxzNjNJNU5BOGU2WjZmbEFKU0RoQURRCk43RGV2RVFzNUlLS2hzVS9CTjEy
+            WTNYaXlBUFZkWC9KNk1qcEtGbk02YWcKLS0tIGdFNEhuejRyTlRjUS95N2RPbFFh
+            bmhkZTVhZkxEMGhXVjF5Zi9DbnU0Yk0KGi15e1A/dbjmshNr23zKnDEmVe4To3I3
+            BxV2tSQA+9YZE9gekUGhs5zqrAObKFv1lzSbQTCuh7zdmwoNTH18EQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-12-07T23:11:20Z"
-    mac: ENC[AES256_GCM,data:Kfnhwctn6ZZWsOX5In2RKHd4LXoBdx342g53K8wqIKwc5unLjhGy2Ek37lSg0VA2B1AaAL0UUzDa1oNlFiFAjYAMsoXoFs6Q8rUT4FQT6NPCSLV6SsC/wI2pO8DgVqqI1tD3EJLdF/JHEyKrlg6xkYuzfXHoJ1JxQnDN6CVz1wY=,iv:ljh2lPSfMNWo+l2siErQkmV8LKGNDtFjvQJBmaezUjI=,tag:9MiQckZ35JKD6j2q7n2B7Q==,type:str]
+    lastmodified: "2026-01-18T04:13:30Z"
+    mac: ENC[AES256_GCM,data:EVBQMgPbrrtaFIkRBuqLBe0G+hmpP/DPAp66CcCdO7FvaydcFHBAixQXmY5dU558gsBUww2vJUD1hkFyOpkDjnHBe55mDI0FkxBkS8qdZIoxbhvjBRrQVr5MWlaPDBZ90n9sER085qtxSC6HmjV8o7NzOw+saVP0h16oQ2K/TKU=,iv:IkRAb0BzewUs42IhFrTJka3usK8HBI3joqLkmmBjsqY=,tag:bRNvgn7Fk6BEnjuMckedaQ==,type:str]
     encrypted_regex: ((?i)(displayname|email|pass|ca|id|bootstraptoken|secretboxencryptionsecret|secrets|secrets|password|cert|secret($|[^N])|key|token|^data$|^stringData))
-    version: 3.10.1
+    version: 3.10.2
