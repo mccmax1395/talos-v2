@@ -4,7 +4,7 @@ metadata:
   name: qbittorrent
   namespace: qbittorrent
   annotations:
-    fluxcd.io/reconcileAt: "2025-04-22T18:30:00Z"  
+    fluxcd.io/reconcileAt: "2026-01-17T18:30:00Z"  
 spec:
   # suspend: true 
   interval: 15m
