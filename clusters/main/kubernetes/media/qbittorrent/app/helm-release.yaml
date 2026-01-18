@@ -29,7 +29,7 @@ spec:
   upgrade:
     cleanupOnFail: true
     remediation:
-      retries: 3
+      retries: 2
   uninstall:
     keepHistory: false
   values:
@@ -128,6 +128,7 @@ spec:
             VPN_TYPE: wireguard
             WIREGUARD_ENDPOINT_IP: ${WIREGUARD_ENDPOINT_IP}
             WIREGUARD_ENDPOINT_PORT: ${WIREGUARD_ENDPOINT_PORT}
+            
             WIREGUARD_PUBLIC_KEY: ${WIREGUARD_PUBLIC_KEY}
             WIREGUARD_PRIVATE_KEY: ${WIREGUARD_PRIVATE_KEY}
             WIREGUARD_ADDRESSES: ${WIREGUARD_ADDRESSES}
