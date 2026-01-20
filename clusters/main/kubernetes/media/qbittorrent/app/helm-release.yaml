@@ -135,10 +135,13 @@ spec:
             VPN_SERVICE_PROVIDER: protonvpn
             VPN_TYPE: wireguard
             WIREGUARD_PRIVATE_KEY: ${WIREGUARD_PRIVATE_KEY}
+            WIREGUARD_ALLOWED_IPS: "0.0.0.0/0"
             FREE_ONLY: on
             DNS_KEEP_NAMESERVER: "off"
-            DNS_ADDRESS: "1.1.1.1"
-            DNS_ADDRESS_2: "1.0.0.1"
+            DOT: "on"
+            DNS_ADDRESS: "127.0.0.1"
+            # Optional: keep IPv6 DNS off while troubleshooting
+            DOT_IPV6: "off"
             WIREGUARD_MTU: "1280"
 
 
