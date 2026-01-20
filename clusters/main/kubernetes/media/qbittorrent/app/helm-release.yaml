@@ -11,7 +11,7 @@ spec:
   chart:
     spec:
       chart: qbittorrent
-      version: 24.2.11
+      version: 24.2.12
       # version: 22.5.3
       sourceRef:
         kind: HelmRepository
@@ -121,7 +121,7 @@ spec:
             # SERVER_COUNTRIES: "Canada"
             FIREWALL: "on"
             FIREWALL_DEBUG: "on"
-            FIREWALL_OUTBOUND_SUBNETS: "192.168.168.0/24"
+            FIREWALL_OUTBOUND_SUBNETS: "192.168.1.0/24"
             #OPENVPN_PROTOCOL: tcp
             HEALTH_CHECK_ADDRESS: google.com:443
             VPN_SERVICE_PROVIDER: custom
