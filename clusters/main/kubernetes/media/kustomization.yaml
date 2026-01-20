@@ -5,14 +5,14 @@ resources:
   - bazarr/ks.yaml
   # - beets/ks.yaml
   - flaresolverr/ks.yaml
-  - invidious/ks.yaml
+  # - invidious/ks.yaml
   - immich/ks.yaml
   - jellyfin/ks.yaml
   - jellyseerr/ks.yaml
   - jellystat/ks.yaml
   - kavita/ks.yaml
   - lidarr/ks.yaml
-  - organizr/ks.yaml
+  # - organizr/ks.yaml
   - profilarr/ks.yaml
   - prowlarr/ks.yaml
   - qbittorrent/ks.yaml
