@@ -120,10 +120,10 @@ spec:
             # OPENVPN_PASSWORD: ${VPN_PASSWORD}
             # SERVER_COUNTRIES: "Canada"
             FIREWALL: "on"
-            FIREWALL_DEBUG: "on"
+            # FIREWALL_DEBUG: "on"
             FIREWALL_OUTBOUND_SUBNETS: "192.168.1.0/24"
             #OPENVPN_PROTOCOL: tcp
-            HEALTH_CHECK_ADDRESS: google.com:443
+            # HEALTH_CHECK_ADDRESS: google.com:443
             # VPN_SERVICE_PROVIDER: custom
             # VPN_TYPE: wireguard
             # WIREGUARD_ENDPOINT_IP: ${WIREGUARD_ENDPOINT_IP}
@@ -135,14 +135,14 @@ spec:
             VPN_SERVICE_PROVIDER: protonvpn
             VPN_TYPE: wireguard
             WIREGUARD_PRIVATE_KEY: ${WIREGUARD_PRIVATE_KEY}
-            WIREGUARD_ALLOWED_IPS: "0.0.0.0/0"
+            # WIREGUARD_ALLOWED_IPS: "0.0.0.0/0"
             FREE_ONLY: on
             DNS_KEEP_NAMESERVER: "off"
             DOT: "on"
             DNS_ADDRESS: "127.0.0.1"
             # Optional: keep IPv6 DNS off while troubleshooting
-            DOT_IPV6: "off"
-            WIREGUARD_MTU: "1280"
+            # DOT_IPV6: "off"
+            # WIREGUARD_MTU: "1280"
 
 
     # workload:
