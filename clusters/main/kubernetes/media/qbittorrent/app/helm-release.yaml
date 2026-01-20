@@ -11,7 +11,7 @@ spec:
   chart:
     spec:
       chart: qbittorrent
-      version: 24.2.11
+      version: 24.2.12
       # version: 22.5.3
       sourceRef:
         kind: HelmRepository
@@ -114,26 +114,26 @@ spec:
         enabled: true
         container:
           env:
-            VPN_SERVICE_PROVIDER: "purevpn"
-            VPN_TYPE: "openvpn"
-            OPENVPN_USER: ${VPN_USERNAME}
-            OPENVPN_PASSWORD: ${VPN_PASSWORD}
+            # VPN_SERVICE_PROVIDER: "purevpn"
+            # VPN_TYPE: "openvpn"
+            # OPENVPN_USER: ${VPN_USERNAME}
+            # OPENVPN_PASSWORD: ${VPN_PASSWORD}
             # SERVER_COUNTRIES: "Canada"
             FIREWALL: "on"
             FIREWALL_DEBUG: "on"
             FIREWALL_OUTBOUND_SUBNETS: "192.168.168.0/24"
             #OPENVPN_PROTOCOL: tcp
             HEALTH_CHECK_ADDRESS: google.com:443
-            # VPN_SERVICE_PROVIDER: custom
-            # VPN_TYPE: wireguard
-            # WIREGUARD_ENDPOINT_IP: ${WIREGUARD_ENDPOINT_IP}
-            # WIREGUARD_ENDPOINT_PORT: ${WIREGUARD_ENDPOINT_PORT}
-            # WIREGUARD_PUBLIC_KEY: ${WIREGUARD_PUBLIC_KEY}
-            # WIREGUARD_PRIVATE_KEY: ${WIREGUARD_PRIVATE_KEY}
-            # WIREGUARD_ADDRESSES: ${WIREGUARD_ADDRESSES}
-            DNS_KEEP_NAMESERVER: "off"
-            DNS_ADDRESS: "1.1.1.1"
-            DNS_ADDRESS_2: "1.0.0.1"
+            VPN_SERVICE_PROVIDER: custom
+            VPN_TYPE: wireguard
+            WIREGUARD_ENDPOINT_IP: ${WIREGUARD_ENDPOINT_IP}
+            WIREGUARD_ENDPOINT_PORT: ${WIREGUARD_ENDPOINT_PORT}
+            WIREGUARD_PUBLIC_KEY: ${WIREGUARD_PUBLIC_KEY}
+            WIREGUARD_PRIVATE_KEY: ${WIREGUARD_PRIVATE_KEY}
+            WIREGUARD_ADDRESSES: ${WIREGUARD_ADDRESSES}
+            # DNS_KEEP_NAMESERVER: "off"
+            # DNS_ADDRESS: "1.1.1.1"
+            # DNS_ADDRESS_2: "1.0.0.1"
 
 
     # workload:
