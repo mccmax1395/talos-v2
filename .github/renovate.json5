@@ -1,5 +1,8 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "enabled": false,
+  "ignorePaths": [
+  ],
   "extends": [
     "config:recommended",
     "github>truecharts/public//.github/renovate/main.json5"
