@@ -124,7 +124,7 @@ spec:
             FIREWALL_OUTBOUND_SUBNETS: "192.168.1.0/24"
             #OPENVPN_PROTOCOL: tcp
             HEALTH_CHECK_ADDRESS: google.com:443
-            VPN_SERVICE_PROVIDER: custom
+            # VPN_SERVICE_PROVIDER: custom
             # VPN_TYPE: wireguard
             # WIREGUARD_ENDPOINT_IP: ${WIREGUARD_ENDPOINT_IP}
             # WIREGUARD_ENDPOINT_PORT: ${WIREGUARD_ENDPOINT_PORT}
