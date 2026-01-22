@@ -172,7 +172,7 @@ spec:
       tag: "3.20"
       pullPolicy: IfNotPresent
 
-    workload:
+        workload:
       main:
         podSpec:
           containers:
@@ -180,6 +180,7 @@ spec:
               enabled: true
               primary: false
               imageSelector: mamUpdaterImage
+
               command:
                 - /bin/sh
                 - -c
@@ -188,15 +189,51 @@ spec:
                   set -e
                   apk add --no-cache curl coreutils
                   chmod +x /config/mam-script.sh
+
+                  # initial heartbeat
+                  date -Iseconds > /tmp/mam-updater.heartbeat
+
                   while true; do
                     echo "[mam-updater] running at $(date -Iseconds)"
                     /config/mam-script.sh || echo "[mam-updater] script failed with $?"
+                    date -Iseconds > /tmp/mam-updater.heartbeat
                     sleep 3600
                   done
+
+              # Probes required by TrueCharts common chart
+              probes:
+                liveness:
+                  enabled: true
+                  type: exec
+                  command:
+                    - /bin/sh
+                    - -c
+                    - |
+                      # Fail if heartbeat older than 2 hours (7200s)
+                      test -f /tmp/mam-updater.heartbeat && \
+                      [ $(( $(date +%s) - $(date -d "$(cat /tmp/mam-updater.heartbeat)" +%s) )) -lt 7200 ]
+                  initialDelaySeconds: 30
+                  periodSeconds: 60
+                  timeoutSeconds: 5
+                  failureThreshold: 3
+
+                readiness:
+                  enabled: true
+                  type: exec
+                  command:
+                    - /bin/sh
+                    - -c
+                    - test -f /tmp/mam-updater.heartbeat
+                  initialDelaySeconds: 5
+                  periodSeconds: 30
+                  timeoutSeconds: 5
+                  failureThreshold: 3
+
               securityContext:
                 runAsUser: 0
                 runAsGroup: 0
                 readOnlyRootFilesystem: false
+
               resources:
                 requests:
                   cpu: 10m
@@ -204,5 +241,6 @@ spec:
                 limits:
                   cpu: 100m
                   memory: 128Mi
+
 
 
