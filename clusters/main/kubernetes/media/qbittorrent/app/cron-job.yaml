@@ -59,12 +59,22 @@ spec:
           - name: updater
             image: alpine:3.20
             command: ["/bin/sh","-c"]
+            # args:
+            #   - |
+            #     set -e
+            #     apk add --no-cache curl coreutils
+            #     chmod +x /config/mam-script.sh
+            #     /config/mam-script.sh
             args:
-              - |
-                set -e
-                apk add --no-cache curl coreutils
-                chmod +x /config/mam-script.sh
-                /config/mam-script.sh
+            - |
+              set -eux
+              apk add --no-cache curl coreutils
+              echo "=== ip4.me ==="
+              curl -s ip4.me/api/ || true
+              echo "=== MAM (no cookie) ==="
+              curl -sv -b "mam_id=$MAMID" https://t.myanonamouse.net/json/dynamicSeedbox.php 2>&1 || true
+              echo "=== running script ==="
+              /config/mam-script.sh || true
             volumeMounts:
             - name: config
               mountPath: /config
