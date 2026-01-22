@@ -202,6 +202,21 @@ spec:
 
               # Probes required by TrueCharts common chart
               probes:
+                # Startup: ensure the container has started and created the heartbeat file
+                startup:
+                  enabled: true
+                  type: exec
+                  command:
+                    - /bin/sh
+                    - -c
+                    - |
+                      # succeed once the heartbeat file exists
+                      test -f /tmp/mam-updater.heartbeat
+                  initialDelaySeconds: 5
+                  periodSeconds: 10
+                  timeoutSeconds: 5
+                  failureThreshold: 12
+
                 liveness:
                   enabled: true
                   type: exec
@@ -209,9 +224,8 @@ spec:
                     - /bin/sh
                     - -c
                     - |
-                      # Fail if heartbeat older than 2 hours (7200s)
-                      test -f /tmp/mam-updater.heartbeat && \
-                      [ $(( $(date +%s) - $(date -d "$(cat /tmp/mam-updater.heartbeat)" +%s) )) -lt 7200 ]
+                      # succeed only if heartbeat exists and was updated within the last 120 minutes
+                      test -f /tmp/mam-updater.heartbeat && find /tmp/mam-updater.heartbeat -mmin -120 | grep -q .
                   initialDelaySeconds: 30
                   periodSeconds: 60
                   timeoutSeconds: 5
@@ -228,6 +242,7 @@ spec:
                   periodSeconds: 30
                   timeoutSeconds: 5
                   failureThreshold: 3
+
 
               securityContext:
                 runAsUser: 0
