@@ -162,3 +162,47 @@ spec:
     #             type: init
     #             enabled: true
     #             command: [ "sh", "/config/mam.sh" ]
+
+    ###########################################################################
+    # Sidecar: runs /config/mam-script.sh every hour from inside the VPN pod
+    ###########################################################################
+
+    mamUpdaterImage:
+      repository: alpine
+      tag: "3.20"
+      pullPolicy: IfNotPresent
+
+    workload:
+      main:
+        podSpec:
+          containers:
+            mam-updater:
+              enabled: true
+              primary: false
+              imageSelector: mamUpdaterImage
+              command:
+                - /bin/sh
+                - -c
+              args:
+                - |
+                  set -e
+                  apk add --no-cache curl coreutils
+                  chmod +x /config/mam-script.sh
+                  while true; do
+                    echo "[mam-updater] running at $(date -Iseconds)"
+                    /config/mam-script.sh || echo "[mam-updater] script failed with $?"
+                    sleep 3600
+                  done
+              securityContext:
+                runAsUser: 0
+                runAsGroup: 0
+                readOnlyRootFilesystem: false
+              resources:
+                requests:
+                  cpu: 10m
+                  memory: 32Mi
+                limits:
+                  cpu: 100m
+                  memory: 128Mi
+
+
