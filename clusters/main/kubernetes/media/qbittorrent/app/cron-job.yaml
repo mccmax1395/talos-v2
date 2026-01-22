@@ -1,29 +1,76 @@
+# apiVersion: batch/v1
+# kind: CronJob
+# metadata:
+#   name: mam-ip-update
+#   namespace: qbittorrent
+# spec:
+#   schedule: "* * * * *"              # every minute
+#   successfulJobsHistoryLimit: 3   # keep only the 3 most recent successful jobs
+#   failedJobsHistoryLimit: 1  
+#   startingDeadlineSeconds: 30        # fallback window
+#   concurrencyPolicy: Forbid           # don’t overlap
+#   jobTemplate:
+#     spec:
+#       template:
+#         spec:
+#           restartPolicy: OnFailure
+#           containers:
+#             - name: mam-update
+#               image: bash:5.1
+#               command:
+#                 - sh
+#                 - /config/mam-script.sh
+#               volumeMounts:
+#                 - name: config
+#                   mountPath: /config
+#           volumes:
+#             - name: config
+#               persistentVolumeClaim:
+#                 claimName: qbittorrent-config
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: mam-ip-update
+  name: mam-ip-updater
   namespace: qbittorrent
 spec:
-  schedule: "* * * * *"              # every minute
-  successfulJobsHistoryLimit: 3   # keep only the 3 most recent successful jobs
-  failedJobsHistoryLimit: 1  
-  startingDeadlineSeconds: 30        # fallback window
-  concurrencyPolicy: Forbid           # don’t overlap
+  schedule: "0 * * * *"          # every hour
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 2
+  failedJobsHistoryLimit: 2
   jobTemplate:
     spec:
+      backoffLimit: 1
       template:
         spec:
-          restartPolicy: OnFailure
+          restartPolicy: Never
+
+          # Force this Job's pod onto the same node as the qBittorrent pod
+          affinity:
+            podAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+              - labelSelector:
+                  matchLabels:
+                    app.kubernetes.io/instance: qbittorrent
+                    app.kubernetes.io/name: qbittorrent
+                    pod.name: main
+                topologyKey: kubernetes.io/hostname
+
           containers:
-            - name: mam-update
-              image: bash:5.1
-              command:
-                - sh
-                - /config/mam-script.sh
-              volumeMounts:
-                - name: config
-                  mountPath: /config
-          volumes:
+          - name: updater
+            image: alpine:3.20
+            command: ["/bin/sh","-c"]
+            args:
+              - |
+                set -e
+                apk add --no-cache curl coreutils
+                chmod +x /config/mam-script.sh
+                /config/mam-script.sh
+            volumeMounts:
             - name: config
-              persistentVolumeClaim:
-                claimName: qbittorrent-config
+              mountPath: /config
+
+          volumes:
+          - name: config
+            persistentVolumeClaim:
+              claimName: qbittorrent-config
+
