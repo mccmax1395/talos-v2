@@ -150,6 +150,7 @@ spec:
             # DOT_IPV6: "off"
             WIREGUARD_MTU: "1280"
             VPN_PORT_FORWARDING: "on"
+            PORT_FORWARD_ONLY: "on"
             # SERVER_COUNTRIES: "Netherlands"
             HEALTH_CHECK_INITIAL_DURATION: "12s"
             HEALTH_CHECK_ADDITIONAL_DURATION: "10s"
