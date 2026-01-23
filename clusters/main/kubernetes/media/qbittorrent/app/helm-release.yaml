@@ -78,13 +78,17 @@ spec:
       #   ports:
       #     main:
       #       port: 10095 # Default qbittorrent port
-      torrent:
-        enabled: true
-        ports:
-          torrent:
-            enabled: true
-            port: 49999
-            protocol: tcp
+      # torrent:
+      #   enabled: true
+      #   ports:
+      #     torrent:
+      #       enabled: true
+      #       port: 49999
+      #       protocol: tcp
+    qbitportforward:
+      enabled: true
+      QBT_USERNAME: ${QBIT_USER}
+      QBT_PASSWORD: ${QBIT_PASS}
     persistence:
       media:
         enabled: true
@@ -145,7 +149,8 @@ spec:
             # Optional: keep IPv6 DNS off while troubleshooting
             # DOT_IPV6: "off"
             WIREGUARD_MTU: "1280"
-            SERVER_COUNTRIES: "Netherlands"
+            VPN_PORT_FORWARDING: "on"
+            # SERVER_COUNTRIES: "Netherlands"
             HEALTH_CHECK_INITIAL_DURATION: "12s"
             HEALTH_CHECK_ADDITIONAL_DURATION: "10s"
             HEALTH_CHECK_READ_TIMEOUT: "1000ms"
