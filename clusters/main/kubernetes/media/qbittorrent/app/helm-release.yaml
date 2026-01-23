@@ -78,13 +78,13 @@ spec:
       #   ports:
       #     main:
       #       port: 10095 # Default qbittorrent port
-      # torrent:
-      #   enabled: true
-      #   ports:
-      #     torrent:
-      #       enabled: true
-      #       port: 49999
-      #       protocol: tcp
+      torrent:
+        enabled: true
+        ports:
+          torrent:
+            enabled: true
+            port: 49999
+            protocol: tcp
     qbitportforward:
       enabled: true
       QBT_USERNAME: ${QBIT_USER}
