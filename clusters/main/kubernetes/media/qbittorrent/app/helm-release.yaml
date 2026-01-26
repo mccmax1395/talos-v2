@@ -183,6 +183,7 @@ spec:
         podSpec:
           initContainers:
               - name: wait-for-vpn
+                enabled: true
                 image: curlimages/curl:8.4.0
                 env:
                   - name: VPN_WAIT_TIMEOUT
