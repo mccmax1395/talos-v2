@@ -11,7 +11,7 @@ spec:
   chart:
     spec:
       chart: qbittorrent
-      version: 24.2.12
+      version: 24.2.11
       # version: 22.5.3
       sourceRef:
         kind: HelmRepository
@@ -182,107 +182,139 @@ spec:
       main:
         podSpec:
           containers:
+            initContainers:
+              - name: wait-for-vpn
+                image: curlimages/curl:8.4.0
+                env:
+                  - name: VPN_WAIT_TIMEOUT
+                    value: "300"        # seconds to wait before giving up (tune as needed)
+                  - name: VPN_CHECK_INTERVAL
+                    value: "5"          # seconds between checks
+                  - name: VPN_HEALTH_URL
+                    value: "http://127.0.0.1:9999/"   # adjust to your VPN service DNS/name and port/path
+                command:
+                  - /bin/sh
+                  - -c
+                  - |
+                    set -e
+                    timeout="${VPN_WAIT_TIMEOUT:-300}"
+                    interval="${VPN_CHECK_INTERVAL:-5}"
+                    url="${VPN_HEALTH_URL:-http://127.0.0.1:9999/}"
+                    echo "[wait-for-vpn] waiting up to ${timeout}s for ${url}"
+                    elapsed=0
+                    while [ "$elapsed" -lt "$timeout" ]; do
+                      if curl --fail --max-time 5 -sS "$url" >/dev/null 2>&1; then
+                        echo "[wait-for-vpn] VPN service reachable"
+                        exit 0
+                      fi
+                      sleep "$interval"
+                      elapsed=$((elapsed + interval))
+                      echo "[wait-for-vpn] still waiting... (${elapsed}s elapsed)"
+                    done
+                    echo "[wait-for-vpn] timeout after ${timeout}s waiting for ${url}" >&2
+                    # exit non-zero to cause pod init to fail and be retried by k8s (backoff)
+                    exit 1
             mam-updater:
               enabled: true
               primary: false
               imageSelector: mamUpdaterImage
-
               command:
                 - /bin/sh
                 - -c
+             
               args:
                 - |
                   set -e
-                  apk add --no-cache curl coreutils iproute2
+                  apk add --no-cache curl coreutils jq
+                  chmod +x /config/mam-script-with-jq.sh
 
-                  chmod +x /config/mam-script.sh
-
-                  # helper: fail-safe timeout (seconds)
-                  VPN_WAIT_TIMEOUT=${VPN_WAIT_TIMEOUT:-300}
-                  VPN_CHECK_INTERVAL=${VPN_CHECK_INTERVAL:-5}
-
-                  wait_for_tun() {
-                    echo "[mam-updater] waiting for tun0 (max ${VPN_WAIT_TIMEOUT}s)..."
-                    elapsed=0
-                    while [ $elapsed -lt "$VPN_WAIT_TIMEOUT" ]; do
-                      # check for interface existence
-                      if ip link show tun0 >/dev/null 2>&1; then
-                        echo "[mam-updater] tun0 exists"
-                        return 0
-                      fi
-                      sleep "$VPN_CHECK_INTERVAL"
-                      elapsed=$((elapsed + VPN_CHECK_INTERVAL))
-                    done
-                    return 1
-                  }
-
-                  wait_for_connectivity() {
-                    echo "[mam-updater] waiting for network connectivity through VPN (max ${VPN_WAIT_TIMEOUT}s)..."
-                    elapsed=0
-                    while [ $elapsed -lt "$VPN_WAIT_TIMEOUT" ]; do
-                      # try a quick TLS connection to cloudflare.com (same target gluetun uses for health)
-                      if curl --silent --show-error --head --fail --max-time 5 https://cloudflare.com >/dev/null 2>&1; then
-                        echo "[mam-updater] connectivity confirmed"
-                        return 0
-                      fi
-                      sleep "$VPN_CHECK_INTERVAL"
-                      elapsed=$((elapsed + VPN_CHECK_INTERVAL))
-                    done
-                    return 1
-                  }
-
-                  wait_for_vpn() {
-                    # First wait for the tun device (fast). If found, verify actual connectivity.
-                    if wait_for_tun; then
-                      # small pause to let routing / iptables settle
-                      sleep 1
-                      if wait_for_connectivity; then
-                        return 0
-                      else
-                        echo "[mam-updater] tun0 found but connectivity test failed"
-                        return 1
-                      fi
-                    else
-                      echo "[mam-updater] tun0 never appeared"
-                      return 1
-                    fi
-                  }
-
-                  # initial heartbeat (so startup probe can observe existence)
+                  # initial heartbeat
                   date -Iseconds > /tmp/mam-updater.heartbeat
 
-                  # Wait for VPN (exit if it never comes up)
-                  if wait_for_vpn; then
-                    echo "[mam-updater] VPN is up — starting main loop"
-                  else
-                    echo "[mam-updater] VPN did not come up within timeout (${VPN_WAIT_TIMEOUT}s). Exiting to allow restart." >&2
-                    # failing fast here allows k8s to restart the container and reattempt the wait loop
-                    exit 1
-                  fi
-
-                  # main loop (as you had it)
                   while true; do
                     echo "[mam-updater] running at $(date -Iseconds)"
-                    /config/mam-script.sh || echo "[mam-updater] script failed with $?"
+                    /config//config/mam-script-with-jq.sh|| echo "[mam-updater] script failed with $?"
                     date -Iseconds > /tmp/mam-updater.heartbeat
                     sleep 3600
                   done
-
               # args:
               #   - |
               #     set -e
-              #     apk add --no-cache curl coreutils
+              #     apk add --no-cache curl coreutils iproute2
+
               #     chmod +x /config/mam-script.sh
 
-              #     # initial heartbeat
+              #     # helper: fail-safe timeout (seconds)
+              #     VPN_WAIT_TIMEOUT=${VPN_WAIT_TIMEOUT:-300}
+              #     VPN_CHECK_INTERVAL=${VPN_CHECK_INTERVAL:-5}
+
+              #     wait_for_tun() {
+              #       echo "[mam-updater] waiting for tun0 (max ${VPN_WAIT_TIMEOUT}s)..."
+              #       elapsed=0
+              #       while [ $elapsed -lt "$VPN_WAIT_TIMEOUT" ]; do
+              #         # check for interface existence
+              #         if ip link show tun0 >/dev/null 2>&1; then
+              #           echo "[mam-updater] tun0 exists"
+              #           return 0
+              #         fi
+              #         sleep "$VPN_CHECK_INTERVAL"
+              #         elapsed=$((elapsed + VPN_CHECK_INTERVAL))
+              #       done
+              #       return 1
+              #     }
+
+              #     wait_for_connectivity() {
+              #       echo "[mam-updater] waiting for network connectivity through VPN (max ${VPN_WAIT_TIMEOUT}s)..."
+              #       elapsed=0
+              #       while [ $elapsed -lt "$VPN_WAIT_TIMEOUT" ]; do
+              #         # try a quick TLS connection to cloudflare.com (same target gluetun uses for health)
+              #         if curl --silent --show-error --head --fail --max-time 5 https://cloudflare.com >/dev/null 2>&1; then
+              #           echo "[mam-updater] connectivity confirmed"
+              #           return 0
+              #         fi
+              #         sleep "$VPN_CHECK_INTERVAL"
+              #         elapsed=$((elapsed + VPN_CHECK_INTERVAL))
+              #       done
+              #       return 1
+              #     }
+
+              #     wait_for_vpn() {
+              #       # First wait for the tun device (fast). If found, verify actual connectivity.
+              #       if wait_for_tun; then
+              #         # small pause to let routing / iptables settle
+              #         sleep 1
+              #         if wait_for_connectivity; then
+              #           return 0
+              #         else
+              #           echo "[mam-updater] tun0 found but connectivity test failed"
+              #           return 1
+              #         fi
+              #       else
+              #         echo "[mam-updater] tun0 never appeared"
+              #         return 1
+              #       fi
+              #     }
+
+              #     # initial heartbeat (so startup probe can observe existence)
               #     date -Iseconds > /tmp/mam-updater.heartbeat
 
+              #     # Wait for VPN (exit if it never comes up)
+              #     if wait_for_vpn; then
+              #       echo "[mam-updater] VPN is up — starting main loop"
+              #     else
+              #       echo "[mam-updater] VPN did not come up within timeout (${VPN_WAIT_TIMEOUT}s). Exiting to allow restart." >&2
+              #       # failing fast here allows k8s to restart the container and reattempt the wait loop
+              #       exit 1
+              #     fi
+
+              #     # main loop (as you had it)
               #     while true; do
               #       echo "[mam-updater] running at $(date -Iseconds)"
               #       /config/mam-script.sh || echo "[mam-updater] script failed with $?"
               #       date -Iseconds > /tmp/mam-updater.heartbeat
               #       sleep 3600
               #     done
+
 
               # Probes required by TrueCharts common chart
               probes:
