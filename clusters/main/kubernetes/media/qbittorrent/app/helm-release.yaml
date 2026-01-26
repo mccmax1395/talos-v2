@@ -181,37 +181,58 @@ spec:
     workload:
       main:
         podSpec:
-          initContainers:
-            wait-for-vpn:
+          containers:
+            mam-updater:
               enabled: true
-              type: init
-              image: curlimages/curl:8.4.0
-              env:
-                VPN_WAIT_TIMEOUT: "300"
-                VPN_CHECK_INTERVAL: "5"
-                VPN_HEALTH_URL: "http://127.0.0.1:9999/"
+              primary: false
+              imageSelector: mamUpdaterImage
               command:
                 - /bin/sh
                 - -c
               args:
                 - |
                   set -e
-                  timeout="${VPN_WAIT_TIMEOUT:-300}"
+                  apk add --no-cache curl coreutils jq
+
+                  # ---- wait for VPN sidecar (gluetun) to be healthy ----
+                  timeout="${VPN_WAIT_TIMEOUT:-600}"
                   interval="${VPN_CHECK_INTERVAL:-5}"
-                  url="${VPN_HEALTH_URL:-http://127.0.0.1:9999/}"
-                  echo "[wait-for-vpn] waiting up to ${timeout}s for ${url}"
+                  health_url="http://127.0.0.1:9999/"
+
+                  echo "[mam-updater] waiting up to ${timeout}s for gluetun health at ${health_url}"
                   elapsed=0
-                  while [ "$elapsed" -lt "$timeout" ]; do
-                    if curl --fail --max-time 5 -sS "$url" >/dev/null 2>&1; then
-                      echo "[wait-for-vpn] VPN service reachable"
-                      exit 0
-                    fi
+                  until curl --fail --max-time 3 -sS "$health_url" >/dev/null 2>&1; do
                     sleep "$interval"
                     elapsed=$((elapsed + interval))
-                    echo "[wait-for-vpn] still waiting... (${elapsed}s elapsed)"
+                    echo "[mam-updater] still waiting for VPN... (${elapsed}s elapsed)"
+                    if [ "$elapsed" -ge "$timeout" ]; then
+                      echo "[mam-updater] timeout waiting for VPN health; exiting so k8s restarts me" >&2
+                      exit 1
+                    fi
                   done
-                  echo "[wait-for-vpn] timeout after ${timeout}s waiting for ${url}" >&2
-                  exit 1
+                  echo "[mam-updater] gluetun is healthy"
+
+                  # (optional) extra assurance: outbound works through the tunnel
+                  # comment this block out if you want only gluetun health
+                  if ! curl -sS --max-time 5 https://cloudflare.com >/dev/null 2>&1; then
+                    echo "[mam-updater] outbound check failed even though health is up; exiting" >&2
+                    exit 1
+                  fi
+                  echo "[mam-updater] outbound connectivity OK"
+
+                  # ---- your existing loop ----
+                  chmod +x /config/mam-script-with-jq.sh
+
+                  # initial heartbeat
+                  date -Iseconds > /tmp/mam-updater.heartbeat
+
+                  while true; do
+                    echo "[mam-updater] running at $(date -Iseconds)"
+                    /config/mam-script-with-jq.sh || echo "[mam-updater] script failed with $?"
+                    date -Iseconds > /tmp/mam-updater.heartbeat
+                    sleep 3600
+                  done
+
 
         containers:
             mam-updater:
