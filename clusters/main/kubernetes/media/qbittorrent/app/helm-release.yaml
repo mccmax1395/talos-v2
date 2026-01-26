@@ -182,40 +182,38 @@ spec:
       main:
         podSpec:
           initContainers:
-              wait-for-vpn:
-                enabled: true
-                type: init
-                image: curlimages/curl:8.4.0
-                env:
-                  - name: VPN_WAIT_TIMEOUT
-                    value: "300"        # seconds to wait before giving up (tune as needed)
-                  - name: VPN_CHECK_INTERVAL
-                    value: "5"          # seconds between checks
-                  - name: VPN_HEALTH_URL
-                    value: "http://127.0.0.1:9999/"   # adjust to your VPN service DNS/name and port/path
-                command:
-                  - /bin/sh
-                  - -c
-                  - |
-                    set -e
-                    timeout="${VPN_WAIT_TIMEOUT:-300}"
-                    interval="${VPN_CHECK_INTERVAL:-5}"
-                    url="${VPN_HEALTH_URL:-http://127.0.0.1:9999/}"
-                    echo "[wait-for-vpn] waiting up to ${timeout}s for ${url}"
-                    elapsed=0
-                    while [ "$elapsed" -lt "$timeout" ]; do
-                      if curl --fail --max-time 5 -sS "$url" >/dev/null 2>&1; then
-                        echo "[wait-for-vpn] VPN service reachable"
-                        exit 0
-                      fi
-                      sleep "$interval"
-                      elapsed=$((elapsed + interval))
-                      echo "[wait-for-vpn] still waiting... (${elapsed}s elapsed)"
-                    done
-                    echo "[wait-for-vpn] timeout after ${timeout}s waiting for ${url}" >&2
-                    # exit non-zero to cause pod init to fail and be retried by k8s (backoff)
-                    exit 1
-          containers:
+            wait-for-vpn:
+              enabled: true
+              type: init
+              image: curlimages/curl:8.4.0
+              env:
+                VPN_WAIT_TIMEOUT: "300"
+                VPN_CHECK_INTERVAL: "5"
+                VPN_HEALTH_URL: "http://127.0.0.1:9999/"
+              command:
+                - /bin/sh
+                - -c
+              args:
+                - |
+                  set -e
+                  timeout="${VPN_WAIT_TIMEOUT:-300}"
+                  interval="${VPN_CHECK_INTERVAL:-5}"
+                  url="${VPN_HEALTH_URL:-http://127.0.0.1:9999/}"
+                  echo "[wait-for-vpn] waiting up to ${timeout}s for ${url}"
+                  elapsed=0
+                  while [ "$elapsed" -lt "$timeout" ]; do
+                    if curl --fail --max-time 5 -sS "$url" >/dev/null 2>&1; then
+                      echo "[wait-for-vpn] VPN service reachable"
+                      exit 0
+                    fi
+                    sleep "$interval"
+                    elapsed=$((elapsed + interval))
+                    echo "[wait-for-vpn] still waiting... (${elapsed}s elapsed)"
+                  done
+                  echo "[wait-for-vpn] timeout after ${timeout}s waiting for ${url}" >&2
+                  exit 1
+
+        containers:
             mam-updater:
               enabled: true
               primary: false
