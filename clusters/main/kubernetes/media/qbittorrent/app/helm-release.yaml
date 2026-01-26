@@ -184,6 +184,7 @@ spec:
           initContainers:
               - name: wait-for-vpn
                 enabled: true
+                type: init
                 image: curlimages/curl:8.4.0
                 env:
                   - name: VPN_WAIT_TIMEOUT
