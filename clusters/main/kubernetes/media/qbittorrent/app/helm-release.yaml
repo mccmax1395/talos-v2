@@ -182,7 +182,7 @@ spec:
       main:
         podSpec:
           initContainers:
-              - name: wait-for-vpn
+              wait-for-vpn:
                 enabled: true
                 type: init
                 image: curlimages/curl:8.4.0
