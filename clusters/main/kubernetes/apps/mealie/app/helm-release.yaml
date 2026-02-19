@@ -64,6 +64,9 @@ spec:
                     timeoutSeconds: 2
                     failureThreshold: 3
     mealie:
+      service:
+        environment:
+          OPENAI_API_KEY: ${MEALIE_OPENAI_API_KEY}
       frontend:
         theme:
           light_primary: "#E58147"
