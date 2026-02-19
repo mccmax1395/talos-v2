@@ -37,9 +37,9 @@ spec:
           terminationGracePeriodSeconds: 45
           containers:
             main:
-              probes:
-                env:
+              env:
                    OPENAI_API_KEY: ${MEALIE_OPENAI_API_KEY}
+              probes:
                 startup:
                   enabled: true
                   type: http
