@@ -38,6 +38,8 @@ spec:
           containers:
             main:
               probes:
+                env:
+                   OPENAI_API_KEY: ${MEALIE_OPENAI_API_KEY}
                 startup:
                   enabled: true
                   type: http
@@ -63,10 +65,7 @@ spec:
                     periodSeconds: 10
                     timeoutSeconds: 2
                     failureThreshold: 3
-    mealie:
-      service:
-        environment:
-          OPENAI_API_KEY: ${MEALIE_OPENAI_API_KEY}
+    mealie:         
       frontend:
         theme:
           light_primary: "#E58147"
